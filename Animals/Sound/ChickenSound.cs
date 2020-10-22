@@ -1,10 +1,10 @@
 ﻿using Animals.Interfaces;
 
-namespace Animals.Care
+namespace Animals.Sound
 {
-	class CatCare : ICareable
+	class ChickenSound : ISoundable
 	{
-		public void Care()
+		public void MakeASound()
 		{
 			//TODO Реализовать метод
 		}

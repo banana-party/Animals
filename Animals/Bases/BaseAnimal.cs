@@ -2,19 +2,20 @@
 
 namespace Animals.Bases
 {
-	//1.Рост животного
-	//2.Вес животного
-	//3.Цвет глаз животного
 	public abstract class BaseAnimal : IAnimal
 	{
-		protected ISoundable Soundable;
+		private ISoundable _soundable;
 		protected BaseAnimal(ISoundable soundable)
 		{
-			Soundable = soundable;
+			_soundable = soundable;
 		}
 		public float Height { get; private set; }
 		public float Weight { get; private set; }
 		public string EyeColor { get; private set; }
+		public void MakeASound()
+		{
+			_soundable.MakeASound();
+		}
 		public abstract void PrintInfo();
 	
 	}

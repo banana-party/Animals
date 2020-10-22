@@ -1,10 +1,10 @@
 ﻿using Animals.Interfaces;
 
-namespace Animals.Care
+namespace Animals.Fly
 {
-	class CatCare : ICareable
+	class NoFly : IFlyable
 	{
-		public void Care()
+		public void Fly()
 		{
 			//TODO Реализовать метод
 		}

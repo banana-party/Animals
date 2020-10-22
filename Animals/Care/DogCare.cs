@@ -2,7 +2,7 @@
 
 namespace Animals.Care
 {
-	class CatCare : ICareable
+	class DogCare : ICareable
 	{
 		public void Care()
 		{

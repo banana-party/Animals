@@ -10,9 +10,10 @@ namespace Animals.Instances
 		public Cat(ICareable careable, ISoundable soundable) : base(careable, soundable)
 		{
 		}
-
+		public bool IsItWooled { get; set; }
 		public override void PrintInfo()
 		{ 
 		}
+
 	}
 }
