@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Animals.Interfaces;
+using System;
 
 namespace Animals.Bases
 {
 	public abstract class BaseWildAnimall : BaseAnimal
 	{
-		//2.1 Место обитания
-		//2.2 Дата нахождения
+		protected BaseWildAnimall(ISoundable soundable) : base(soundable)
+		{
+		}
 		public string Habitat { get; set; }
 		public DateTime DateOfFind { get; set; }
 	}

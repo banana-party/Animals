@@ -4,9 +4,8 @@ using System.Text;
 
 namespace Animals.Interfaces
 {
-	interface IAnimal
+	public interface ISoundable
 	{
-		void PrintInfo();
+		void MakeASound();
 	}
-
 }

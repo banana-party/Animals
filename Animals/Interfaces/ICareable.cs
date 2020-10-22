@@ -1,6 +1,6 @@
 ﻿namespace Animals.Interfaces
 {
-	interface ICareable
+	public interface ICareable
 	{
 		void Care();
 	}
