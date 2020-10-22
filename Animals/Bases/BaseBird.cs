@@ -1,7 +1,4 @@
-﻿using Animals.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Animals.Core.Interfaces;
 
 namespace Animals.Bases
 {

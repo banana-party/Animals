@@ -1,5 +1,5 @@
 ﻿using Animals.Bases;
-using Animals.Interfaces;
+using Animals.Core.Interfaces;
 using Animals.Sound;
 using System;
 using System.Collections.Generic;

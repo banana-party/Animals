@@ -1,4 +1,4 @@
-﻿namespace Animals.Interfaces
+﻿namespace Animals.Core.Interfaces
 {
 	public interface ICareable
 	{

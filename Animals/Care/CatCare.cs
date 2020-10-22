@@ -1,4 +1,4 @@
-﻿using Animals.Interfaces;
+﻿using Animals.Core.Interfaces;
 
 namespace Animals.Care
 {

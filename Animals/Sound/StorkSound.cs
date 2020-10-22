@@ -1,5 +1,4 @@
-﻿using Animals.Interfaces;
-using System;
+﻿using Animals.Core.Interfaces;
 
 namespace Animals.Sound
 {

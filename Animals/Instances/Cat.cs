@@ -1,5 +1,5 @@
 ﻿using Animals.Bases;
-using Animals.Interfaces;
+using Animals.Core.Interfaces;
 using System;
 
 namespace Animals.Instances
