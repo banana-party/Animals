@@ -2,6 +2,7 @@
 {
 	public interface IAnimal
 	{
+		void MakeASound();
 		void PrintInfo();
 	}
 

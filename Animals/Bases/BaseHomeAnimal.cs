@@ -5,21 +5,20 @@ namespace Animals.Bases
 {
 	public abstract class BaseHomeAnimal : BaseAnimal
 	{
-
-		private ICareable _careable;
-		protected BaseHomeAnimal(ICareable careable, ISoundable soundable) : base(soundable)
+		protected BaseHomeAnimal(float height, float weight, string eyeColor, string name, string breed, bool isItVaccinated, string coatColor, DateTime birthDate) : base(height, weight, eyeColor)
 		{
-			_careable = careable;
+			Name = name;
+			Breed = breed;
+			IsItVaccinated = isItVaccinated;
+			CoatColor = coatColor;
+			BirthDate = birthDate;
 		}
 		public string Name { get; set; }
 		public string Breed { get; set; }
-		public bool IsITVaccinated { get; set; }
+		public bool IsItVaccinated { get; set; }
 		public string CoatColor { get; set; }
 		public DateTime BirthDate { get; set; }
-		public void Care()
-		{
-			_careable.Care();
-		}
+		public abstract void Care();
 		public override void PrintInfo()
 		{
 			//TODO Реализовать метод

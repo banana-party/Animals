@@ -4,18 +4,16 @@ namespace Animals.Bases
 {
 	public abstract class BaseAnimal : IAnimal
 	{
-		private ISoundable _soundable;
-		protected BaseAnimal(ISoundable soundable)
+		protected BaseAnimal(float height, float weight, string eyeColor)
 		{
-			_soundable = soundable;
+			Height = height;
+			Weight = weight;
+			EyeColor = eyeColor;
 		}
-		public float Height { get; private set; }
-		public float Weight { get; private set; }
-		public string EyeColor { get; private set; }
-		public void MakeASound()
-		{
-			_soundable.MakeASound();
-		}
+		protected float Height;
+		protected float Weight;
+		protected string EyeColor;
+		public abstract void MakeASound();
 		public abstract void PrintInfo();
 	
 	}

@@ -1,7 +1,7 @@
 ﻿namespace Animals.Core.Interfaces
 {
-	public interface ICareable
+	interface ICommand
 	{
-		void Care();
+		void Execute();
 	}
 }

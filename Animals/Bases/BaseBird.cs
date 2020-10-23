@@ -6,7 +6,7 @@ namespace Animals.Bases
 	{
 		protected int FlyHeight;
 		private IFlyable _flyable;
-		protected BaseBird(ISoundable soundable, IFlyable flyable) : base(soundable)
+		protected BaseBird(float height, float weight, string eyeColor, IFlyable flyable) : base(height, weight, eyeColor)
 		{
 			_flyable = flyable;
 		}

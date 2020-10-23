@@ -8,8 +8,13 @@ namespace Animals.Instances
 {
 	class Stork : BaseBird
 	{
-		public Stork(ISoundable soundable, IFlyable flyable) : base(soundable, flyable)
+		public Stork(float height, float weight, string eyeColor, IFlyable flyable) : base(height, weight, eyeColor, flyable)
 		{
+		}
+
+		public override void MakeASound()
+		{
+			//TODO реализовать метод
 		}
 	}
 }
