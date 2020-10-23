@@ -112,32 +112,33 @@ namespace Animals.Menu
 			birthDate = (DateTime)DateEnter("Введите дату рождения (dd.mm.yyyy):"); // Приведение к DateTime, т.к. компилятор ругается что возможен нулл, но по-моему, не возможен.
 			return new Cat(isItWooled, height, weight, eyeColor, name, breed, isItVaccinated, coatColor, birthDate);
 		}
+		public IAnimal CreateChicken()
+		{
+			throw new NotImplementedException();
+		}
+
+		public IAnimal CreateDog()
+		{
+			throw new NotImplementedException();
+		}
+
+		public IAnimal CreateStork()
+		{
+			throw new NotImplementedException();
+		}
+
+		public IAnimal CreateTiger()
+		{
+			throw new NotImplementedException();
+		}
+
+		public IAnimal CreateWolf()
+		{
+			throw new NotImplementedException();
+		}
 
 
 	}
-	public IAnimal CreateChicken()
-	{
-		throw new NotImplementedException();
-	}
 
-	public IAnimal CreateDog()
-	{
-		throw new NotImplementedException();
-	}
-
-	public IAnimal CreateStork()
-	{
-		throw new NotImplementedException();
-	}
-
-	public IAnimal CreateTiger()
-	{
-		throw new NotImplementedException();
-	}
-
-	public IAnimal CreateWolf()
-	{
-		throw new NotImplementedException();
-	}
 }
-}
+
