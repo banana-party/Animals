@@ -4,7 +4,7 @@ using System;
 
 namespace Animals.Instances
 {
-	class Dog : BaseHomeAnimal
+	class Dog : HomeAnimalBase
 	{
 		private ITraineble _traineble;
 		public bool IsItTrained { get; set; }
@@ -30,7 +30,7 @@ namespace Animals.Instances
 		public override void PrintInfo()
 		{
 			base.PrintInfo();
-			//TODO реализовать вывод о параметре с шерстью.
+			//TODO реализовать вывод о параметре с тренировкой
 		}
 
 

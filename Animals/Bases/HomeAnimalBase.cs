@@ -3,9 +3,9 @@ using System;
 
 namespace Animals.Bases
 {
-	public abstract class BaseHomeAnimal : BaseAnimal
+	public abstract class HomeAnimalBase : AnimalBase
 	{
-		protected BaseHomeAnimal(float height, float weight, string eyeColor, string name, string breed, bool isItVaccinated, string coatColor, DateTime birthDate) : base(height, weight, eyeColor)
+		protected HomeAnimalBase(float height, float weight, string eyeColor, string name, string breed, bool isItVaccinated, string coatColor, DateTime birthDate) : base(height, weight, eyeColor)
 		{
 			Name = name;
 			Breed = breed;

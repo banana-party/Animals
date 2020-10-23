@@ -1,29 +1,34 @@
 ﻿using Animals.Core.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace Animals
+namespace Animals.Buisness
 {
-	class Zoo
+	public class Zoo
 	{
 		private List<IAnimal> _animals;
 		public void Add(IAnimal animal)
 		{
+			if (animal == null)
+				throw new NullReferenceException("Reference was null.");
 			_animals.Add(animal);
 		}
 		public void RemoveAt(int index)
 		{
+			if (index < 0 || index >= _animals.Count)
+				throw new IndexOutOfRangeException("Index Out of range");
 			_animals.RemoveAt(index);
 		}
 		public void PrintInfo(int index)
 		{
+			if (index < 0 || index >= _animals.Count)
+				throw new IndexOutOfRangeException("Index Out of range");
 			_animals[index].PrintInfo();
 		}
 		public void PrintInfo()
 		{
 			foreach (var el in _animals)
-				el.PrintInfo();		
+				el.PrintInfo();
 		}
 		public void ReadFromFile()
 		{

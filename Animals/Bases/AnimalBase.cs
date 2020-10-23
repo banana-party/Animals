@@ -2,9 +2,9 @@
 
 namespace Animals.Bases
 {
-	public abstract class BaseAnimal : IAnimal
+	public abstract class AnimalBase : IAnimal
 	{
-		protected BaseAnimal(float height, float weight, string eyeColor)
+		protected AnimalBase(float height, float weight, string eyeColor)
 		{
 			Height = height;
 			Weight = weight;

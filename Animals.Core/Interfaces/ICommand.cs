@@ -1,6 +1,6 @@
 ﻿namespace Animals.Core.Interfaces
 {
-	interface ICommand
+	public interface ICommand
 	{
 		void Execute();
 	}

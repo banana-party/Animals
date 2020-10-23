@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Animals.Instances
 {
-	class Stork : BaseBird
+	class Stork : BirdBase
 	{
 		public Stork(float height, float weight, string eyeColor, IFlyable flyable) : base(height, weight, eyeColor, flyable)
 		{

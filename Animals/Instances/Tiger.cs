@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Animals.Instances
 {
-	class Tiger : BaseWildAnimal
+	class Tiger : WildAnimalBase
 	{
 		public Tiger(float height, float weight, string eyeColor, string habitat, DateTime dateOfFind) : base(height, weight, eyeColor, habitat, dateOfFind)
 		{

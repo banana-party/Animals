@@ -2,11 +2,11 @@
 
 namespace Animals.Bases
 {
-	public abstract class BaseBird : BaseAnimal
+	public abstract class BirdBase : AnimalBase
 	{
 		protected int FlyHeight;
 		private IFlyable _flyable;
-		protected BaseBird(float height, float weight, string eyeColor, IFlyable flyable) : base(height, weight, eyeColor)
+		protected BirdBase(float height, float weight, string eyeColor, IFlyable flyable) : base(height, weight, eyeColor)
 		{
 			_flyable = flyable;
 		}
