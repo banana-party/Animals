@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace Animals.Exceptions
 {
 	[Serializable]
-	internal class IncorrectActionException : Exception
+	public class IncorrectActionException : Exception
 	{
 		public IncorrectActionException()
 		{

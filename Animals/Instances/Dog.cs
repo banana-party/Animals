@@ -7,7 +7,7 @@ namespace Animals.Instances
 	class Dog : HomeAnimalBase
 	{
 		public bool IsItTrained { get; private set; }
-		public Dog(bool isItWooled, bool isItTrained, float height, float weight, string eyeColor, string name, string breed, bool isItVaccinated, string coatColor, DateTime birthDate) : base(height, weight, eyeColor, name, breed, isItVaccinated, coatColor, birthDate)
+		public Dog(bool isItTrained, float height, float weight, string eyeColor, string name, string breed, bool isItVaccinated, string coatColor, DateTime birthDate) : base(height, weight, eyeColor, name, breed, isItVaccinated, coatColor, birthDate)
 		{
 			IsItTrained = isItTrained;
 		}

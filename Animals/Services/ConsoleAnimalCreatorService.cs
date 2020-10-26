@@ -1,16 +1,14 @@
 ﻿using Animals.Core.Interfaces;
-using Animals.Fly;
 using Animals.Instances;
 using System;
-using System.Collections.Generic;
 
 namespace Animals.Menu
 {
-	internal class ConsoleAnimalCreator : IAnimalCreator
+	internal class ConsoleAnimalCreatorService : IAnimalCreator
 	{
 		private INotificationService _notificationService;
 		private IReaderService _readerService;
-		public ConsoleAnimalCreator(IReaderService readerService, INotificationService notificationService)
+		public ConsoleAnimalCreatorService(IReaderService readerService, INotificationService notificationService)
 		{
 			_notificationService = notificationService;
 			_readerService = readerService;
@@ -47,7 +45,7 @@ namespace Animals.Menu
 
 				else if (choose == "Н" || choose == "н" || choose == "N" || choose == "n")
 					return false;
-				
+
 				else
 					_notificationService.WriteLine("Не верный формат. Повторите ввод.");
 
@@ -55,16 +53,15 @@ namespace Animals.Menu
 		}
 		private DateTime? DateEnter(string text)
 		{
-			_notificationService.Write($"{text} (dd.mm.yyyy): ");
 			bool isItReady = false;
 			DateTime? res = null;
 			while (!isItReady)
 			{
-				var str = _readerService.ReadLine();
-				var lst = str.Split('.');
+				_notificationService.Write($"{text} (dd.mm.yyyy): ");
+				var lst = _readerService.ReadLine().Split('.');
 				try
 				{
-					res = new DateTime(int.Parse(lst[0]), int.Parse(lst[1]), int.Parse(lst[2]));
+					res = new DateTime(int.Parse(lst[2]), int.Parse(lst[1]), int.Parse(lst[0]));
 				}
 				catch (FormatException e)
 				{
@@ -81,6 +78,10 @@ namespace Animals.Menu
 					_notificationService.WriteLine(e.Message);
 					continue;
 				}
+				catch(IndexOutOfRangeException e)
+				{
+					_notificationService.WriteLine("Incorrect input.");
+				}
 				isItReady = true;
 			}
 			return res;
@@ -88,7 +89,7 @@ namespace Animals.Menu
 		public IAnimal CreateCat()
 		{
 			var tuple = AnimalParams();
-			float height = tuple.Item1;	float weight = tuple.Item2; string eyeColor = tuple.Item3;
+			float height = tuple.Item1; float weight = tuple.Item2; string eyeColor = tuple.Item3;
 
 
 			_notificationService.Write("Введите имя: ");
@@ -121,25 +122,17 @@ namespace Animals.Menu
 
 			_notificationService.Write("Введите имя: ");
 			string name = _readerService.ReadLine();
-			_notificationService.Write("Введите породу:" );
+			_notificationService.Write("Введите породу:");
 			string breed = _readerService.ReadLine();
 
-			bool isItWooled = BoolEnter("У нее есть шерсть?");
-
-			string coatColor;
-			if (isItWooled)
-			{
-				_notificationService.Write("Введите цвет шерсти: ");
-				coatColor = _readerService.ReadLine();
-			}
-			else
-				coatColor = "Шерсти нет";
+			_notificationService.Write("Введите цвет шерсти: ");
+			string coatColor = _readerService.ReadLine();
 
 			bool isItVaccinated = BoolEnter("У нее есть прививки?");
 			DateTime birthDate = (DateTime)DateEnter("Введите дату рождения"); // Приведение к DateTime, т.к. компилятор ругается что возможен нулл, но по-моему, не возможен.
 
 			bool isItTrained = BoolEnter("Собака тренированная?");
-			return new Dog(isItWooled, isItTrained, height, weight, eyeColor, name, breed, isItVaccinated, coatColor, birthDate);
+			return new Dog(isItTrained, height, weight, eyeColor, name, breed, isItVaccinated, coatColor, birthDate);
 		}
 		public IAnimal CreateChicken()
 		{
@@ -148,7 +141,7 @@ namespace Animals.Menu
 			float weight = tuple.Item2;
 			string eyeColor = tuple.Item3;
 
-			return new Chicken(height, weight, eyeColor, 0, new NoFly());
+			return new Chicken(height, weight, eyeColor, 0);
 		}
 		public IAnimal CreateStork()
 		{
@@ -157,7 +150,7 @@ namespace Animals.Menu
 			float weight = tuple.Item2;
 			string eyeColor = tuple.Item3;
 
-			return new Stork(height, weight, eyeColor, 200, new StorkFly());
+			return new Stork(height, weight, eyeColor, 200);
 		}
 		public IAnimal CreateTiger()
 		{

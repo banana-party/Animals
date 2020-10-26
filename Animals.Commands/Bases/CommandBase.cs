@@ -5,7 +5,7 @@ namespace Animals.Commands.Bases
 {
 	public abstract class CommandBase : ICommand
 	{
-		protected readonly Zoo _zoo;
+		protected Zoo _zoo;
 		protected CommandBase(Zoo zoo)
 		{
 			_zoo = zoo;

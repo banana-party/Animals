@@ -1,8 +1,7 @@
 ﻿using Animals.Core.Interfaces;
 using Animals.Exceptions;
-using Animals.Instances;
 
-namespace Animals.Factories
+namespace Animals.Factory
 {
 	public class SimpleFactory
 	{
@@ -15,7 +14,7 @@ namespace Animals.Factories
 		public static SimpleFactory CreateFactory(IAnimalCreator animalCreator)
 		{
 			if (_factory == null)
-				return new SimpleFactory(animalCreator);
+				_factory = new SimpleFactory(animalCreator);
 			return _factory;
 		}
 		public IAnimal GetAnimal(string type)
@@ -48,5 +47,5 @@ namespace Animals.Factories
 		}
 	}
 
-	
+
 }

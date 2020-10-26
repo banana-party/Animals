@@ -7,6 +7,10 @@ namespace Animals.Buisness
 	public class Zoo
 	{
 		private List<IAnimal> _animals;
+		public Zoo()
+		{
+			_animals = new List<IAnimal>();
+		}
 		public void Add(IAnimal animal)
 		{
 			if (animal == null)
@@ -18,6 +22,12 @@ namespace Animals.Buisness
 			if (index < 0 || index >= _animals.Count)
 				throw new IndexOutOfRangeException("Index Out of range");
 			_animals.RemoveAt(index);
+		}
+		public void MakeASound(int index)
+		{
+			if (index < 0 || index >= _animals.Count)
+				throw new IndexOutOfRangeException("Index Out of range");
+			_animals[index].MakeASound();
 		}
 		public void PrintInfo(int index)
 		{

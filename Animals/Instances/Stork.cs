@@ -8,7 +8,7 @@ namespace Animals.Instances
 {
 	class Stork : BirdBase
 	{
-		public Stork(float height, float weight, string eyeColor, int flyHeight, IFlyable flyable) : base(height, weight, eyeColor, flyHeight, flyable)
+		public Stork(float height, float weight, string eyeColor, int flyHeight) : base(height, weight, eyeColor, flyHeight)
 		{
 		}
 
