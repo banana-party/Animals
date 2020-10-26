@@ -6,15 +6,16 @@ namespace Animals.Factories
 {
 	public class SimpleFactory
 	{
-
-		private SimpleFactory()
+		private IAnimalCreator _animalCreator;
+		private SimpleFactory(IAnimalCreator animalCreator)
 		{
+			_animalCreator = animalCreator;
 		}
 		private static SimpleFactory _factory;
-		public static SimpleFactory CreateFactory()
+		public static SimpleFactory CreateFactory(IAnimalCreator animalCreator)
 		{
 			if (_factory == null)
-				return new SimpleFactory();
+				return new SimpleFactory(animalCreator);
 			return _factory;
 		}
 		public IAnimal GetAnimal(string type)
@@ -23,22 +24,22 @@ namespace Animals.Factories
 			switch (type)
 			{
 				case "Cat":
-					animal = new Cat();
+					animal = _animalCreator.CreateCat();
 					break;
 				case "Dog":
-					animal = new Dog();
+					animal = _animalCreator.CreateDog();
 					break;
 				case "Chicken":
-					animal = new Chicken();
+					animal = _animalCreator.CreateChicken();
 					break;
 				case "Stork":
-					animal = new Stork();
+					animal = _animalCreator.CreateStork();
 					break;
 				case "Tiger":
-					animal = new Tiger();
+					animal = _animalCreator.CreateTiger();
 					break;
 				case "Wolf":
-					animal = new Wolf();
+					animal = _animalCreator.CreateWolf();
 					break;
 				default:
 					throw new IncorrectActionException("There is no animal like this.");

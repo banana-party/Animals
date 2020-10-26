@@ -8,7 +8,7 @@ namespace Animals.Instances
 {
 	class Chicken : BirdBase
 	{
-		public Chicken(float height, float weight, string eyeColor, IFlyable flyable) : base(height, weight, eyeColor, flyable)
+		public Chicken(float height, float weight, string eyeColor, int flyheight, IFlyable flyable) : base(height, weight, eyeColor, flyheight, flyable)
 		{
 		}
 

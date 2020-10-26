@@ -10,7 +10,7 @@ namespace Animals.Commands
 		private Dictionary<string, ICommand> _dict;
 		public AddAnimalCommand(Zoo zoo, IReaderService readerService, INotificationService notificationService) : base(zoo, readerService, notificationService)
 		{
-			_
+			
 		}
 
 		public override void Execute()

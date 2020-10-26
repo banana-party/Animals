@@ -6,15 +6,14 @@ namespace Animals.Instances
 {
 	class Dog : HomeAnimalBase
 	{
-		private ITraineble _traineble;
-		public bool IsItTrained { get; set; }
-		public Dog(bool isItWooled, float height, float weight, string eyeColor, string name, string breed, bool isItVaccinated, string coatColor, DateTime birthDate, ITraineble traineble) : base(height, weight, eyeColor, name, breed, isItVaccinated, coatColor, birthDate)
+		public bool IsItTrained { get; private set; }
+		public Dog(bool isItWooled, bool isItTrained, float height, float weight, string eyeColor, string name, string breed, bool isItVaccinated, string coatColor, DateTime birthDate) : base(height, weight, eyeColor, name, breed, isItVaccinated, coatColor, birthDate)
 		{
-			_traineble = traineble;
+			IsItTrained = isItTrained;
 		}
 		public void Train()
 		{
-			_traineble.Train();
+			//TODO Реализовать метод
 		}
 
 		public override void Care()
