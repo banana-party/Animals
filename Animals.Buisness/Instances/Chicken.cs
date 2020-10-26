@@ -1,12 +1,8 @@
 ﻿using Animals.Bases;
-using Animals.Core.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Animals.Instances
+namespace Animals.Buisness.Instances
 {
-	class Chicken : BirdBase
+	public class Chicken : BirdBase
 	{
 		public Chicken(float height, float weight, string eyeColor, int flyheight) : base(height, weight, eyeColor, flyheight)
 		{

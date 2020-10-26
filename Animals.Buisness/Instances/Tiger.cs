@@ -1,12 +1,9 @@
 ﻿using Animals.Bases;
-using Animals.Core.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Animals.Instances
+namespace Animals.Buisness.Instances
 {
-	class Tiger : WildAnimalBase
+	public class Tiger : WildAnimalBase
 	{
 		public Tiger(float height, float weight, string eyeColor, string habitat, DateTime dateOfFind) : base(height, weight, eyeColor, habitat, dateOfFind)
 		{

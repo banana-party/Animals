@@ -1,5 +1,5 @@
-﻿using Animals.Core.Interfaces;
-using Animals.Instances;
+﻿using Animals.Buisness.Instances;
+using Animals.Core.Interfaces;
 using System;
 
 namespace Animals.Menu
@@ -73,14 +73,15 @@ namespace Animals.Menu
 					_notificationService.WriteLine(e.Message);
 					continue;
 				}
-				catch (ArgumentOutOfRangeException e)
+				catch (ArgumentOutOfRangeException)
 				{
-					_notificationService.WriteLine(e.Message);
+					_notificationService.WriteLine("Не корректный формат даты.");
 					continue;
 				}
-				catch(IndexOutOfRangeException e)
+				catch (IndexOutOfRangeException)
 				{
-					_notificationService.WriteLine("Incorrect input.");
+					_notificationService.WriteLine("Не корректный формат даты.");
+					continue;
 				}
 				isItReady = true;
 			}
@@ -109,7 +110,7 @@ namespace Animals.Menu
 				coatColor = "Шерсти нет";
 
 			bool isItVaccinated = BoolEnter("У нее есть прививки?");
-			DateTime birthDate = (DateTime)DateEnter("Введите дату рождения"); // Приведение к DateTime, т.к. компилятор ругается что возможен нулл, но по-моему, не возможен.
+			DateTime birthDate = (DateTime)DateEnter("Введите дату рождения"); // Приведение к DateTime, т.к. компилятор ругается что возможен null, но по-моему, не возможен.
 			return new Cat(isItWooled, height, weight, eyeColor, name, breed, isItVaccinated, coatColor, birthDate);
 		}
 		public IAnimal CreateDog()

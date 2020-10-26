@@ -22,7 +22,7 @@ namespace Animals.Commands
 				_notificationService.WriteLine("Неверный ввод.");
 				_notificationService.Write("Введите индекс животного, которое хотите удалить: ");
 			}
-			_zoo.RemoveAt(index);
+			_zoo.RemoveAt(--index);
 		}
 		public override string ToString()
 		{

@@ -1,9 +1,9 @@
 ﻿using Animals.Bases;
 using System;
 
-namespace Animals.Instances
+namespace Animals.Buisness.Instances
 {
-	class Cat : HomeAnimalBase
+	public class Cat : HomeAnimalBase
 	{
 
 		public Cat(bool isItWooled, float height, float weight, string eyeColor, string name, string breed, bool isItVaccinated, string coatColor, DateTime birthDate) : base(height, weight, eyeColor, name, breed, isItVaccinated, coatColor, birthDate)

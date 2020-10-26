@@ -15,6 +15,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Animals.Factory", "Animals.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Animals.Exceptions", "Animals.Exceptions\Animals.Exceptions.csproj", "{85AD6F12-C6F7-4EB5-90D8-34981CB9C06F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{18005F38-0BA2-4E6F-BC9E-D038EDC2430F}"
+	ProjectSection(SolutionItems) = preProject
+		Input.txt = Input.txt
+		Output.txt = Output.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

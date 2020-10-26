@@ -19,7 +19,7 @@ namespace Animals.Commands
 				_notificationService.WriteLine("Неверный ввод.");
 				_notificationService.Write("Введите индекс животного, информацию о котором необходимо вывести: ");
 			}
-			_zoo.PrintInfo(index);
+			_zoo.PrintInfo(--index);
 		}
 		public override string ToString()
 		{

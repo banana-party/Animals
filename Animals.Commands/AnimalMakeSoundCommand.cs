@@ -12,14 +12,14 @@ namespace Animals.Commands
 
 		public override void Execute()
 		{
-			_notificationService.Write("Введите индекс животного, которое должно издать звук: ");
+			_notificationService.Write("Введите номер животного, которое должно издать звук: ");
 			int index;	
 			while (!int.TryParse(_readerService.ReadLine(), out index))
 			{
 				_notificationService.WriteLine("Неверный ввод.");
 				_notificationService.Write("Введите индекс животного, которое должно издать звук: ");
 			}
-			_zoo.MakeASound(index);
+			_zoo.MakeASound(--index);
 		}
 		public override string ToString()
 		{

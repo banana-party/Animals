@@ -4,7 +4,9 @@ using Animals.Core.Interfaces;
 using Animals.Factory;
 using Animals.Menu;
 using Animals.Services;
+using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Animals
 {
@@ -12,6 +14,8 @@ namespace Animals
 	{
 		static IReaderService reader;
 		static INotificationService notification;
+		//static StreamReader fileReader;
+		//static IFileWriter fileWriter;
 		static void Main(string[] args)
 		{
 			Zoo zoo = new Zoo();
@@ -21,7 +25,7 @@ namespace Animals
 			SimpleFactory factory = SimpleFactory.CreateFactory(service);
 			Dictionary<string, ICommand> dict = new Dictionary<string, ICommand>()
 			{
-				{"1", new AddAnimalCommand(zoo, factory,reader, notification) },
+				{"1", new AddAnimalCommand(zoo, factory, reader, notification) },
 				{"2", new DeleteAnimalCommand(zoo, reader, notification) },
 				{"3", new PrintAnimalInfoCommand(zoo, reader, notification)},
 				{"4", new AnimalMakeSoundCommand(zoo, reader, notification) },
@@ -33,13 +37,23 @@ namespace Animals
 				PrintMenu(dict);
 				string i = reader.ReadLine();
 
-				if (dict.ContainsKey(i))
+
+				try
 				{
-					dict[i].Execute();
+					if (dict.ContainsKey(i))
+					{
+						dict[i].Execute();
+					}
+					else if (i == "0")
+						break;
+					else
+					{
+						notification.WriteLine("Нет такой команды.");
+					}
 				}
-				else
+				catch(IndexOutOfRangeException)
 				{
-					notification.WriteLine("Нет такой комманды.");
+					notification.WriteLine("Индекс вне области");
 				}
 
 			}
@@ -51,6 +65,17 @@ namespace Animals
 			{
 				notification.WriteLine($"{item.Key} - {item.Value}");
 			}
+			notification.WriteLine("0 - Выход");
 		}
+
+		//static void OpenFile(string path)
+		//{
+		//	fileReader = new StreamReader(path);
+		//	while(!fileReader.EndOfStream)
+		//	{
+		//		var str = fileReader.ReadLine();
+				
+		//	}
+		//}
 	}
 }

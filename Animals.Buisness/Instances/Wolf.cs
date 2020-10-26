@@ -1,9 +1,9 @@
 ﻿using Animals.Bases;
 using System;
 
-namespace Animals.Instances
+namespace Animals.Buisness.Instances
 {
-	class Wolf : WildAnimalBase
+	public class Wolf : WildAnimalBase
 	{
 		public bool IsItAlpha { get; }
 		public Wolf(bool isItAlpha, float height, float weight, string eyeColor, string habitat, DateTime dateOfFind) : base(height, weight, eyeColor, habitat, dateOfFind)
@@ -13,6 +13,11 @@ namespace Animals.Instances
 		public override void MakeASound()
 		{
 			//TODO реализовать метод
+		}
+		public override void PrintInfo()
+		{
+			base.PrintInfo();
+			//TODO реализовать часть с альфа волком
 		}
 	}
 
