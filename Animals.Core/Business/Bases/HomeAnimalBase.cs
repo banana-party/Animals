@@ -25,7 +25,7 @@ namespace Animals.Core.Business.Bases
 		public override void PrintInfo()
 		{
 			base.PrintInfo();
-			NotificationService.WriteLine($"\tИмя: {Name}\n\tПорода: {Breed}\n\tПрививки {(IsItVaccinated ? "есть" : "отсутствуют")}\n\tЦвет шерсти: {CoatColor}\n\tДата рождения: {BirthDate.Date}");
+			NotificationService.WriteLine($"\tИмя: {Name}\n\tПорода: {Breed}\n\tПрививки {(IsItVaccinated ? "есть" : "отсутствуют")}\n\tЦвет шерсти: {CoatColor}\n\tДата рождения: {BirthDate.Day}.{BirthDate.Month}.{BirthDate.Year}");
 		}
 	}
 }

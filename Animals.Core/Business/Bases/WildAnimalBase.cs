@@ -15,7 +15,7 @@ namespace Animals.Core.Business.Bases
 		public override void PrintInfo()
 		{
 			base.PrintInfo();
-			NotificationService.WriteLine($"\tСреда обитания: {Habitat}\n\tДата нахождения: {DateOfFind}");
+			NotificationService.WriteLine($"\tСреда обитания: {Habitat}\n\tДата нахождения: {DateOfFind.Day}.{DateOfFind.Month}.{DateOfFind.Year}");
 		}
 	}
 }
