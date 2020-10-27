@@ -6,12 +6,14 @@ namespace Animals.Core.Business.Bases
 	public abstract class AnimalBase : IAnimal
 	{
 		protected INotificationService NotificationService;
-		protected AnimalBase(INotificationService notificationService, float height, float weight, string eyeColor)
+		protected IMakeASoundable ASound;
+		protected AnimalBase(IMakeASoundable aSound, INotificationService notificationService, float height, float weight, string eyeColor)
 		{
 			Height = height;
 			Weight = weight;
 			EyeColor = eyeColor;
 			NotificationService = notificationService;
+			ASound = aSound;
 		}
 		protected float Height;
 		protected float Weight;

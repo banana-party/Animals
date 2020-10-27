@@ -3,18 +3,18 @@ using Animals.Core.Interfaces;
 
 namespace Animals.Factory
 {
-	public class SimpleFactory
+	public class AnimalsFactory
 	{
 		private IAnimalCreator _animalCreator;
-		private SimpleFactory(IAnimalCreator animalCreator)
+		private AnimalsFactory(IAnimalCreator animalCreator)
 		{
 			_animalCreator = animalCreator;
 		}
-		private static SimpleFactory _factory;
-		public static SimpleFactory CreateFactory(IAnimalCreator animalCreator)
+		private static AnimalsFactory _factory;
+		public static AnimalsFactory CreateFactory(IAnimalCreator animalCreator)
 		{
 			if (_factory == null)
-				_factory = new SimpleFactory(animalCreator);
+				_factory = new AnimalsFactory(animalCreator);
 			return _factory;
 		}
 		public IAnimal GetAnimal(string type)

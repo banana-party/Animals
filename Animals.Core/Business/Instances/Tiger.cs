@@ -6,12 +6,12 @@ namespace Animals.Core.Business.Instances
 {
 	public class Tiger : WildAnimalBase
 	{
-		public Tiger(INotificationService notificationService, float height, float weight, string eyeColor, string habitat, DateTime dateOfFind) : base(notificationService, height, weight, eyeColor, habitat, dateOfFind)
+		public Tiger(IMakeASoundable aSound, INotificationService notificationService, float height, float weight, string eyeColor, string habitat, DateTime dateOfFind) : base(aSound, notificationService, height, weight, eyeColor, habitat, dateOfFind)
 		{
 		}
 		public override void MakeASound()
 		{
-			//TODO реализовать метод
+			ASound.MakeASound("РЯЯЯЯЯЯ");
 		}
 	}
 }

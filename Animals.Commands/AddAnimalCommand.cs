@@ -10,8 +10,8 @@ namespace Animals.Commands
 	public class AddAnimalCommand : NotificationCommandBase
 	{
 		private Dictionary<string, string> _dict;
-		private SimpleFactory _factory;
-		public AddAnimalCommand(Zoo zoo, SimpleFactory factory, IReaderService readerService, INotificationService notificationService) : base(zoo, readerService, notificationService)
+		private AnimalsFactory _factory;
+		public AddAnimalCommand(Zoo zoo, AnimalsFactory factory, IReaderService readerService, INotificationService notificationService) : base(zoo, readerService, notificationService)
 		{
 			_dict = new Dictionary<string, string>()
 			{

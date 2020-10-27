@@ -15,6 +15,7 @@ namespace Animals
 	{
 		static IReaderService reader;
 		static INotificationService notification;
+		static IMakeASoundable sound;
 		//static StreamReader fileReader;
 		//static IFileWriter fileWriter;
 		static void Main(string[] args)
@@ -22,8 +23,9 @@ namespace Animals
 			Zoo zoo = new Zoo();
 			reader = new ConsoleReaderService();
 			notification = new ConsoleNotificationService();
-			ConsoleAnimalCreatorService service = new ConsoleAnimalCreatorService(reader, notification);
-			SimpleFactory factory = SimpleFactory.CreateFactory(service);
+			sound = new ConsoleAnimalMakeASondService();
+			ConsoleAnimalCreatorService service = new ConsoleAnimalCreatorService(reader, notification, sound);
+			AnimalsFactory factory = AnimalsFactory.CreateFactory(service);
 			Dictionary<string, ICommand> dict = new Dictionary<string, ICommand>()
 			{
 				{"1", new AddAnimalCommand(zoo, factory, reader, notification) },

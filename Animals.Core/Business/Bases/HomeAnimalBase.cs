@@ -5,7 +5,7 @@ namespace Animals.Core.Business.Bases
 {
 	public abstract class HomeAnimalBase : AnimalBase
 	{
-		protected HomeAnimalBase(INotificationService notificationService, float height, float weight, string eyeColor, string name, string breed, bool isItVaccinated, string coatColor, DateTime birthDate) : base(notificationService, height, weight, eyeColor)
+		protected HomeAnimalBase(IMakeASoundable aSound, INotificationService notificationService, float height, float weight, string eyeColor, string name, string breed, bool isItVaccinated, string coatColor, DateTime birthDate) : base(aSound, notificationService, height, weight, eyeColor)
 		{
 			Name = name;
 			Breed = breed;
@@ -18,7 +18,10 @@ namespace Animals.Core.Business.Bases
 		public bool IsItVaccinated { get; set; }
 		public string CoatColor { get; set; }
 		public DateTime BirthDate { get; set; }
-		public abstract void Care();
+		public virtual void Care()
+		{
+			NotificationService.WriteLine($"{Type()} проявляет заботу о вас..");
+		}
 		public override void PrintInfo()
 		{
 			base.PrintInfo();

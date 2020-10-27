@@ -15,7 +15,7 @@ namespace Animals.Commands
 
 		public override void Execute()
 		{
-			_notificationService.Write("Введите индекс животного, которое хотите удалить: ");
+			_notificationService.Write("Введите номер животного, которое хотите удалить: ");
 			int index;
 			while(!int.TryParse(_readerService.ReadLine(), out index))
 			{
