@@ -22,7 +22,7 @@ namespace Animals
 			Zoo zoo = new Zoo();
 			reader = new ConsoleReaderService();
 			notification = new ConsoleNotificationService();
-			ConsoleAnimalCreatorService service = new ConsoleAnimalCreatorService(reader , notification);
+			ConsoleAnimalCreatorService service = new ConsoleAnimalCreatorService(reader, notification);
 			SimpleFactory factory = SimpleFactory.CreateFactory(service);
 			Dictionary<string, ICommand> dict = new Dictionary<string, ICommand>()
 			{
