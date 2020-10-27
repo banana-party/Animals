@@ -1,9 +1,9 @@
-﻿using Animals.Buisness;
-using Animals.Commands.Bases;
+﻿using Animals.Commands.Bases;
 using Animals.Core.Interfaces;
 using System.Collections.Generic;
 using Animals.Factory;
-using Animals.Exceptions;
+using Animals.Core.Exceptions;
+using Animals.Core.Business;
 
 namespace Animals.Commands
 {

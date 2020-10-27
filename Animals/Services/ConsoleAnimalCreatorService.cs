@@ -1,4 +1,4 @@
-﻿using Animals.Buisness.Instances;
+﻿using Animals.Core.Business.Instances;
 using Animals.Core.Interfaces;
 using System;
 

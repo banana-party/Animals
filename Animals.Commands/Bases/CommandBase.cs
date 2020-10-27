@@ -1,5 +1,5 @@
 ﻿using Animals.Core.Interfaces;
-using Animals.Buisness;
+using Animals.Core.Business;
 
 namespace Animals.Commands.Bases
 {

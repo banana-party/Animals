@@ -1,4 +1,4 @@
-﻿using Animals.Buisness;
+﻿using Animals.Core.Business;
 using Animals.Core.Interfaces;
 
 namespace Animals.Commands.Bases

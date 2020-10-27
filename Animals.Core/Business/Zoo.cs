@@ -1,14 +1,14 @@
-﻿using Animals.Core.Interfaces;
-using Animals.Exceptions;
+﻿using Animals.Core.Exceptions;
+using Animals.Core.Interfaces;
 using System;
 using System.Collections.Generic;
 
-namespace Animals.Buisness
+namespace Animals.Core.Business
 {
 	public class Zoo
 	{
 		private List<IAnimal> _animals;
-		public int Count 
+		public int Count
 		{
 			get => _animals.Count;
 		}

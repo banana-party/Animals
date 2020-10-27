@@ -1,7 +1,7 @@
-﻿using Animals.Buisness;
-using Animals.Commands;
+﻿using Animals.Commands;
+using Animals.Core.Business;
+using Animals.Core.Exceptions;
 using Animals.Core.Interfaces;
-using Animals.Exceptions;
 using Animals.Factory;
 using Animals.Menu;
 using Animals.Services;

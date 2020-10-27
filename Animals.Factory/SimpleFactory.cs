@@ -1,5 +1,5 @@
-﻿using Animals.Core.Interfaces;
-using Animals.Exceptions;
+﻿using Animals.Core.Exceptions;
+using Animals.Core.Interfaces;
 
 namespace Animals.Factory
 {

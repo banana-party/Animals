@@ -1,6 +1,6 @@
 ﻿using Animals.Core.Interfaces;
 
-namespace Animals.Bases
+namespace Animals.Core.Business.Bases
 {
 	public abstract class BirdBase : AnimalBase
 	{

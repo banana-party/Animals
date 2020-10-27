@@ -1,7 +1,7 @@
 ﻿using Animals.Core.Interfaces;
 using System;
 
-namespace Animals.Bases
+namespace Animals.Core.Business.Bases
 {
 	public abstract class WildAnimalBase : AnimalBase
 	{

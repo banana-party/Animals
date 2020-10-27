@@ -1,7 +1,7 @@
 ﻿using Animals.Core.Interfaces;
 using System.Text;
 
-namespace Animals.Bases
+namespace Animals.Core.Business.Bases
 {
 	public abstract class AnimalBase : IAnimal
 	{
@@ -24,8 +24,8 @@ namespace Animals.Bases
 		public string Type()
 		{
 			StringBuilder stringBuilder = new StringBuilder();
-			stringBuilder.Append(this.GetType());
-			stringBuilder.Remove(0, 27);
+			stringBuilder.Append(GetType());
+			stringBuilder.Remove(0, 32);
 			return TypeFromEngToRus(stringBuilder.ToString());
 		}
 		private string TypeFromEngToRus(string type)
@@ -48,6 +48,6 @@ namespace Animals.Bases
 					return type;
 			}
 		}
-	
+
 	}
 }

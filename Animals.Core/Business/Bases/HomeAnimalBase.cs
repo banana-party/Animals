@@ -1,7 +1,7 @@
 ﻿using Animals.Core.Interfaces;
 using System;
 
-namespace Animals.Bases
+namespace Animals.Core.Business.Bases
 {
 	public abstract class HomeAnimalBase : AnimalBase
 	{
@@ -22,7 +22,7 @@ namespace Animals.Bases
 		public override void PrintInfo()
 		{
 			base.PrintInfo();
-			NotificationService.WriteLine($"\tИмя: {Name}\n\tПорода: {Breed}\n\tПрививки {(IsItVaccinated? "есть" : "отсутствуют")}\n\tЦвет шерсти: {CoatColor}\n\tДата рождения: {BirthDate.Date}");
+			NotificationService.WriteLine($"\tИмя: {Name}\n\tПорода: {Breed}\n\tПрививки {(IsItVaccinated ? "есть" : "отсутствуют")}\n\tЦвет шерсти: {CoatColor}\n\tДата рождения: {BirthDate.Date}");
 		}
 	}
 }
