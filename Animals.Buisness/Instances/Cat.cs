@@ -1,4 +1,5 @@
 ﻿using Animals.Bases;
+using Animals.Core.Interfaces;
 using System;
 
 namespace Animals.Buisness.Instances
@@ -6,7 +7,7 @@ namespace Animals.Buisness.Instances
 	public class Cat : HomeAnimalBase
 	{
 
-		public Cat(bool isItWooled, float height, float weight, string eyeColor, string name, string breed, bool isItVaccinated, string coatColor, DateTime birthDate) : base(height, weight, eyeColor, name, breed, isItVaccinated, coatColor, birthDate)
+		public Cat(INotificationService notificationService, bool isItWooled, float height, float weight, string eyeColor, string name, string breed, bool isItVaccinated, string coatColor, DateTime birthDate) : base(notificationService, height, weight, eyeColor, name, breed, isItVaccinated, coatColor, birthDate)
 		{
 			IsItWooled = isItWooled;
 		}
@@ -25,7 +26,7 @@ namespace Animals.Buisness.Instances
 		public override void PrintInfo()
 		{
 			base.PrintInfo();
-			//TODO реализовать вывод о параметре с шерстью.
+			NotificationService.WriteLine($"\tШерсть {(IsItWooled ? "есть" : "отсутствует")}");
 		}
 
 	}

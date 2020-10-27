@@ -111,7 +111,7 @@ namespace Animals.Menu
 
 			bool isItVaccinated = BoolEnter("У нее есть прививки?");
 			DateTime birthDate = (DateTime)DateEnter("Введите дату рождения"); // Приведение к DateTime, т.к. компилятор ругается что возможен null, но по-моему, не возможен.
-			return new Cat(isItWooled, height, weight, eyeColor, name, breed, isItVaccinated, coatColor, birthDate);
+			return new Cat(_notificationService, isItWooled, height, weight, eyeColor, name, breed, isItVaccinated, coatColor, birthDate);
 		}
 		public IAnimal CreateDog()
 		{
@@ -133,7 +133,7 @@ namespace Animals.Menu
 			DateTime birthDate = (DateTime)DateEnter("Введите дату рождения"); // Приведение к DateTime, т.к. компилятор ругается что возможен нулл, но по-моему, не возможен.
 
 			bool isItTrained = BoolEnter("Собака тренированная?");
-			return new Dog(isItTrained, height, weight, eyeColor, name, breed, isItVaccinated, coatColor, birthDate);
+			return new Dog(_notificationService, isItTrained, height, weight, eyeColor, name, breed, isItVaccinated, coatColor, birthDate);
 		}
 		public IAnimal CreateChicken()
 		{
@@ -142,7 +142,7 @@ namespace Animals.Menu
 			float weight = tuple.Item2;
 			string eyeColor = tuple.Item3;
 
-			return new Chicken(height, weight, eyeColor, 0);
+			return new Chicken(_notificationService, height, weight, eyeColor, 0);
 		}
 		public IAnimal CreateStork()
 		{
@@ -151,7 +151,7 @@ namespace Animals.Menu
 			float weight = tuple.Item2;
 			string eyeColor = tuple.Item3;
 
-			return new Stork(height, weight, eyeColor, 200);
+			return new Stork(_notificationService, height, weight, eyeColor, 200);
 		}
 		public IAnimal CreateTiger()
 		{
@@ -165,7 +165,7 @@ namespace Animals.Menu
 
 			DateTime dateOfFind = (DateTime)DateEnter("Введите дату нахождения");
 
-			return new Tiger(height, weight, eyeColor, habitat, dateOfFind);
+			return new Tiger(_notificationService, height, weight, eyeColor, habitat, dateOfFind);
 		}
 		public IAnimal CreateWolf()
 		{
@@ -181,7 +181,7 @@ namespace Animals.Menu
 			bool isItAlpha = BoolEnter("Он вожак стаи?");
 
 
-			return new Wolf(isItAlpha, height, weight, eyeColor, habitat, dateOfFind);
+			return new Wolf(_notificationService, isItAlpha, height, weight, eyeColor, habitat, dateOfFind);
 		}
 
 

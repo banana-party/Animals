@@ -11,7 +11,7 @@ namespace Animals.Commands
 
 		public override void Execute()
 		{
-			_zoo.PrintInfo();
+			_zoo.MakeASound();
 		}
 		public override string ToString()
 		{

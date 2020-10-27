@@ -5,7 +5,7 @@ namespace Animals.Bases
 {
 	public abstract class WildAnimalBase : AnimalBase
 	{
-		protected WildAnimalBase(float height, float weight, string eyeColor, string habitat, DateTime dateOfFind) : base(height, weight, eyeColor)
+		protected WildAnimalBase(INotificationService notificationService, float height, float weight, string eyeColor, string habitat, DateTime dateOfFind) : base(notificationService, height, weight, eyeColor)
 		{
 			Habitat = habitat;
 			DateOfFind = dateOfFind;
@@ -14,7 +14,8 @@ namespace Animals.Bases
 		public DateTime DateOfFind { get; set; }
 		public override void PrintInfo()
 		{
-			//TODO Реализовать метод
+			base.PrintInfo();
+			NotificationService.WriteLine($"\tСреда обитания: {Habitat}\n\tДата нахождения: {DateOfFind}");
 		}
 	}
 }

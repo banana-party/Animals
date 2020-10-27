@@ -5,18 +5,20 @@ namespace Animals.Bases
 	public abstract class BirdBase : AnimalBase
 	{
 		protected int FlyHeight;
-		protected BirdBase(float height, float weight, string eyeColor, int flyHeight) : base(height, weight, eyeColor)
+		protected BirdBase(INotificationService notificationService, float height, float weight, string eyeColor, int flyHeight) : base(notificationService, height, weight, eyeColor)
 		{
 			FlyHeight = flyHeight;
 		}
 		public void Fly()
 		{
-			//TODO Реализовать метод
+			NotificationService.WriteLine($"Я лечу на высоте {FlyHeight} метров!");
 		}
 
 		public override void PrintInfo()
 		{
-			//TODO Реализовать метод
+			base.PrintInfo();
+			NotificationService.WriteLine($"\tВысота полета: {FlyHeight}");
 		}
 	}
 }
+

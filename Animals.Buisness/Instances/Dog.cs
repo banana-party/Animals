@@ -1,4 +1,5 @@
 ﻿using Animals.Bases;
+using Animals.Core.Interfaces;
 using System;
 
 namespace Animals.Buisness.Instances
@@ -6,7 +7,7 @@ namespace Animals.Buisness.Instances
 	public class Dog : HomeAnimalBase
 	{
 		public bool IsItTrained { get; private set; }
-		public Dog(bool isItTrained, float height, float weight, string eyeColor, string name, string breed, bool isItVaccinated, string coatColor, DateTime birthDate) : base(height, weight, eyeColor, name, breed, isItVaccinated, coatColor, birthDate)
+		public Dog(INotificationService notificationService, bool isItTrained, float height, float weight, string eyeColor, string name, string breed, bool isItVaccinated, string coatColor, DateTime birthDate) : base(notificationService, height, weight, eyeColor, name, breed, isItVaccinated, coatColor, birthDate)
 		{
 			IsItTrained = isItTrained;
 		}
@@ -28,7 +29,7 @@ namespace Animals.Buisness.Instances
 		public override void PrintInfo()
 		{
 			base.PrintInfo();
-			//TODO реализовать вывод о параметре с тренировкой
+			NotificationService.WriteLine($"\tСобака {(IsItTrained ? "тренированная" : "не тренированная")}");
 		}
 
 

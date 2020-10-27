@@ -1,6 +1,7 @@
 ﻿using Animals.Buisness;
 using Animals.Commands;
 using Animals.Core.Interfaces;
+using Animals.Exceptions;
 using Animals.Factory;
 using Animals.Menu;
 using Animals.Services;
@@ -34,26 +35,34 @@ namespace Animals
 			};
 			while (true)
 			{
+				Console.Clear();
+				PrintAnimalsList(zoo);
 				PrintMenu(dict);
 				string i = reader.ReadLine();
-
-
 				try
 				{
 					if (dict.ContainsKey(i))
 					{
 						dict[i].Execute();
+						Console.ReadKey();
 					}
 					else if (i == "0")
 						break;
 					else
 					{
 						notification.WriteLine("Нет такой команды.");
+						Console.ReadKey();
 					}
 				}
 				catch(IndexOutOfRangeException)
 				{
 					notification.WriteLine("Индекс вне области");
+					Console.ReadKey();
+				}
+				catch (IncorrectActionException e)
+				{
+					notification.WriteLine(e.Message);
+					Console.ReadKey();
 				}
 
 			}
@@ -66,6 +75,13 @@ namespace Animals
 				notification.WriteLine($"{item.Key} - {item.Value}");
 			}
 			notification.WriteLine("0 - Выход");
+		}
+		static void PrintAnimalsList(Zoo zoo)
+		{
+			for (int i = 0; i < zoo.Count; i++)
+			{
+				notification.WriteLine($"{i + 1}. {zoo.GetTypeOfAnimal(i)}");
+			}
 		}
 
 		//static void OpenFile(string path)

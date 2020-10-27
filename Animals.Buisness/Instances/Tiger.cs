@@ -1,11 +1,12 @@
 ﻿using Animals.Bases;
+using Animals.Core.Interfaces;
 using System;
 
 namespace Animals.Buisness.Instances
 {
 	public class Tiger : WildAnimalBase
 	{
-		public Tiger(float height, float weight, string eyeColor, string habitat, DateTime dateOfFind) : base(height, weight, eyeColor, habitat, dateOfFind)
+		public Tiger(INotificationService notificationService, float height, float weight, string eyeColor, string habitat, DateTime dateOfFind) : base(notificationService, height, weight, eyeColor, habitat, dateOfFind)
 		{
 		}
 		public override void MakeASound()
