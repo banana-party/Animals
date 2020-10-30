@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -9,6 +9,21 @@
     <ProjectReference Include="..\Animals.Commands\Animals.Commands.csproj" />
     <ProjectReference Include="..\Animals.Core\Animals.Core.csproj" />
     <ProjectReference Include="..\Animals.Factory\Animals.Factory.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Input.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Input.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Output.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Output.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

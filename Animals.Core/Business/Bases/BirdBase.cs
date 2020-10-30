@@ -4,7 +4,7 @@ namespace Animals.Core.Business.Bases
 {
 	public abstract class BirdBase : AnimalBase
 	{
-		protected int FlyHeight;
+		public int FlyHeight { get; private set; }
 		protected BirdBase(IMakeASoundable aSound, INotificationService notificationService, float height, float weight, string eyeColor, int flyHeight) : base(aSound, notificationService, height, weight, eyeColor)
 		{
 			FlyHeight = flyHeight;

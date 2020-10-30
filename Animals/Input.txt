@@ -1,0 +1,6 @@
+Cat,true,12.5,3.3,Green,Grisha,Streey,false,No coat,11.05.2017
+Chicken,27.3,40.5,red,0
+Dog,true,48.5,55.3,Yellow,Pinya,Shaizenberger,false,Black,11.05.2017
+Stork,37,14,Black,200
+Tiger,98.3,150,Yellow,Ussurussia,03.01.2010
+Wolf,true,77.9,70,Orange,Tayga,03.09.2015

@@ -15,9 +15,9 @@ namespace Animals.Core.Business.Bases
 			NotificationService = notificationService;
 			ASound = aSound;
 		}
-		protected float Height;
-		protected float Weight;
-		protected string EyeColor;
+		public float Height { get; private set; }
+		public float Weight { get; private set; }
+		public string EyeColor { get; private set; }
 		public abstract void MakeASound();
 		public virtual void PrintInfo()
 		{

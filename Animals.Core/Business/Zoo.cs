@@ -2,19 +2,24 @@
 using Animals.Core.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Animals.Core.Business
 {
 	public class Zoo
 	{
 		private List<IAnimal> _animals;
+		private IFileReader _fileReader;
+		private IFileWriter _fileWriter;
 		public int Count
 		{
 			get => _animals.Count;
 		}
-		public Zoo()
+		public Zoo(IFileReader fileReader, IFileWriter fileWriter)
 		{
 			_animals = new List<IAnimal>();
+			_fileReader = fileReader;
+			_fileWriter = fileWriter;
 		}
 		public void Add(IAnimal animal)
 		{
@@ -56,7 +61,7 @@ namespace Animals.Core.Business
 		}
 		public void ReadFromFile()
 		{
-			//TODO реализация
+			_animals = _fileReader.Read().ToList();
 		}
 		public void SaveToFile()
 		{

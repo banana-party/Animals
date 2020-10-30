@@ -1,8 +1,10 @@
 ﻿using Animals.Commands;
 using Animals.Core.Business;
 using Animals.Core.Exceptions;
+using Animals.Core.FileParsers;
 using Animals.Core.Interfaces;
 using Animals.Factory;
+using Animals.FileReaders;
 using Animals.Menu;
 using Animals.Services;
 using System;
@@ -16,16 +18,22 @@ namespace Animals
 		static IReaderService reader;
 		static INotificationService notification;
 		static IMakeASoundable sound;
-		//static StreamReader fileReader;
-		//static IFileWriter fileWriter;
+		static IFileReader fileReader;
+		static IFileWriter fileWriter;
 		static void Main(string[] args)
 		{
-			Zoo zoo = new Zoo();
+			
 			reader = new ConsoleReaderService();
 			notification = new ConsoleNotificationService();
 			sound = new ConsoleAnimalMakeASondService();
+			
+			fileReader = new FileReader(sound, notification);
+			fileReader.Open("Input.txt");
+			Zoo zoo = new Zoo(fileReader, fileWriter);
+
 			ConsoleAnimalCreatorService service = new ConsoleAnimalCreatorService(reader, notification, sound);
 			AnimalsFactory factory = AnimalsFactory.CreateFactory(service);
+
 			Dictionary<string, ICommand> dict = new Dictionary<string, ICommand>()
 			{
 				{"1", new AddAnimalCommand(zoo, factory, reader, notification) },
@@ -35,6 +43,9 @@ namespace Animals
 				{"5", new PrintAllAnimalsInfoCommand(zoo) },
 				{"6", new AllAnimalMakeSoundCommand(zoo) }
 			};
+
+			zoo.ReadFromFile();
+
 			while (true)
 			{
 				Console.Clear();
@@ -85,15 +96,5 @@ namespace Animals
 				notification.WriteLine($"{i + 1}. {zoo.GetTypeOfAnimal(i)}");
 			}
 		}
-
-		//static void OpenFile(string path)
-		//{
-		//	fileReader = new StreamReader(path);
-		//	while(!fileReader.EndOfStream)
-		//	{
-		//		var str = fileReader.ReadLine();
-				
-		//	}
-		//}
 	}
 }

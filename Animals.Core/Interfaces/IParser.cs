@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Animals.Core.Interfaces
 {
-	public interface IFileReader
+	public interface IParser
 	{
-		bool Open(string path);
-		IEnumerable<IAnimal> Read();
+		List<string> Parse(IAnimal animal);
+		IAnimal Parse(List<string> lst);
 	}
 }

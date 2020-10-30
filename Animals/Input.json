@@ -1,0 +1,64 @@
+﻿[
+    {
+      "Cat": 
+      {
+        "isItWooled": true,
+        "height": 12.5,
+        "weight": 3.3,
+        "eyeColor": "Green",
+        "name": "Grisha",
+        "breed": "Streety",
+        "isItVaccinated": false,
+        "coatColor": "No coat",
+        "birthDate": "11.05.2017"
+      }
+    },
+    {
+      "Chicken": {
+        "height": 27.3,
+        "weight": 40.5,
+        "eyeColor": "red",
+        "flyheight": 0
+      }
+    },
+    {
+      "Dog": {
+        "isItWooled": true,
+        "height": 48.5,
+        "weight": 55.3,
+        "eyeColor": "Yellow",
+        "name": "Pinya",
+        "Shaizenberger",
+        "breed": false,
+        "coatColor": "Black",
+        "birthDate": "11.05.2017"
+      }
+    },
+    {
+      "Stork": {
+        "height": 37,
+        "weight": 14,
+        "eyeColor": "Black",
+        "flyheight": 200
+      }
+    },
+    {
+      "Tiger": {
+        "height": 98.3,
+        "weight": 150,
+        "eyeColor": "Yellow",
+        "habitat": "Ussurussia",
+        "dateOfFind": "03.01.2010"
+      }
+    },
+    {
+      "Wolf": {
+        "isItAlpha": true,
+        "height": 77.9,
+        "weight": 70,
+        "eyeColor": "Orange",
+        "habitat": "Tayga",
+        "dateOfFind": "03.09.2015"
+      }
+    }
+]
