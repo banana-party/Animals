@@ -5,6 +5,7 @@ namespace Animals.Commands.Bases
 {
 	public abstract class CommandBase : ICommand
 	{
+		//Лучше было назвать поле Zoo
 		protected Zoo _zoo;
 		protected CommandBase(Zoo zoo)
 		{

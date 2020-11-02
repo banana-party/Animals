@@ -65,7 +65,7 @@ namespace Animals.Core.Business
 		}
 		public void SaveToFile()
 		{
-			//TODO реализация
+			//е эти TODO реализация
 		}
 		public string GetTypeOfAnimal(int index)
 		{

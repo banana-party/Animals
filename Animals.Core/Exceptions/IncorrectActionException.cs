@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Runtime.Serialization;
-
+//Нет никакого абсолютно смысле делать исключения сериализуемыми
 namespace Animals.Core.Exceptions
 {
 	[Serializable]

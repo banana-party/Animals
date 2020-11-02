@@ -12,6 +12,7 @@ namespace Animals.Commands
 
 		public override void Execute()
 		{
+			//Избежать дублирование кода в данном услучае
 			_notificationService.Write("Введите индекс животного, информацию о котором необходимо вывести: ");
 			int index;
 			while (!int.TryParse(_readerService.ReadLine(), out index))

@@ -15,6 +15,7 @@ namespace Animals.Core.Business.Bases
 			NotificationService = notificationService;
 			ASound = aSound;
 		}
+        //у этих свойств private set можно было не писать
 		public float Height { get; private set; }
 		public float Weight { get; private set; }
 		public string EyeColor { get; private set; }
@@ -23,6 +24,7 @@ namespace Animals.Core.Business.Bases
 		{
 			NotificationService.WriteLine($"{Type()}:\n\tРост: {Height}\n\tВес: {Weight}\n\tЦвет глаз: {EyeColor}");
 		}
+        //не вижу никакого смысла этого метода
 		public string Type()
 		{
 			StringBuilder stringBuilder = new StringBuilder();
@@ -30,6 +32,7 @@ namespace Animals.Core.Business.Bases
 			stringBuilder.Remove(0, 32);
 			return TypeFromEngToRus(stringBuilder.ToString());
 		}
+        //не вижу смысла этого метода вообще
 		private string TypeFromEngToRus(string type)
 		{
 			switch (type)

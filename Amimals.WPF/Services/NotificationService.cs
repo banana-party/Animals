@@ -1,5 +1,7 @@
 ﻿using Animals.Core.Interfaces;
-
+/*
+ Необходимо сделать реализацию этого сервиса
+ */
 
 namespace Amimals.WPF.Services
 {

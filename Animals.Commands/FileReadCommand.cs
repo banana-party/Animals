@@ -1,14 +1,9 @@
 ﻿using Animals.Commands.Bases;
 using Animals.Core.Business;
 using Animals.Core.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 namespace Animals.Commands
 {
-	class FileReadCommand : NotificationCommandBase
+    class FileReadCommand : NotificationCommandBase
 	{
 		public FileReadCommand(Zoo zoo, IReaderService readerService, INotificationService notificationService) : base(zoo, readerService, notificationService)
 		{
@@ -20,12 +15,13 @@ namespace Animals.Commands
 			string text = _readerService.ReadLine();
 			if (string.IsNullOrEmpty(text))
 			{
-				
-			}
+                //непотнятна реализация в этом месте даже не понятны планы на реализацию
+            }
 			_zoo.ReadFromFile();
 		}
 		public override string ToString()
 		{
+			//метод всё же стоило переопределить правильно
 			return "";
 		}
 	}

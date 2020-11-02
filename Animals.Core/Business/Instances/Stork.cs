@@ -1,6 +1,6 @@
 ﻿using Animals.Core.Business.Bases;
 using Animals.Core.Interfaces;
-
+// Хорошо всё
 namespace Animals.Core.Business.Instances
 {
 	public class Stork : BirdBase

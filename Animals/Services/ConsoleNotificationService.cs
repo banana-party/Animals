@@ -1,6 +1,6 @@
 ﻿using Animals.Core.Interfaces;
 using System;
-
+//Всё отлично, но, возможно, какой-то из этих методов лишний
 namespace Animals.Services
 {
 	class ConsoleNotificationService : INotificationService
