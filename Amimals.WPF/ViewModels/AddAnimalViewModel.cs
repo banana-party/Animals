@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Amimals.WPF.ViewModels
+﻿namespace Amimals.WPF.ViewModels
 {
-	class AddAnimalViewModel : BaseViewModel
+    //Реализовать добаление животного в зоопарк в WPF
+    class AddAnimalViewModel : BaseViewModel
 	{
 	}
 }

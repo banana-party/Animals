@@ -1,5 +1,5 @@
 ﻿using Animals.Core.Interfaces;
-
+//Всё нормально
 namespace Animals.Core.Business.Bases
 {
 	public abstract class BirdBase : AnimalBase

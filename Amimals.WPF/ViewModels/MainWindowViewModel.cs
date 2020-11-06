@@ -2,16 +2,12 @@
 using Amimals.WPF.Services;
 using Animals.Core.Business.Instances;
 using Animals.Core.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Amimals.WPF.ViewModels
 {
-	class MainWindowViewModel : BaseViewModel
+	//Реализовать добавление, удаление и редактирование животных в зоопарке
+    class MainWindowViewModel : BaseViewModel
 	{
 		private List<IAnimal> _animals;
 		public List<IAnimal> Animals

@@ -13,6 +13,7 @@ namespace Animals.Core.Business.Bases
 			CoatColor = coatColor;
 			BirthDate = birthDate;
 		}
+        //Все эти свойства кроме имени не должны быть изменяемы
 		public string Name { get; set; }
 		public string Breed { get; set; }
 		public bool IsItVaccinated { get; set; }

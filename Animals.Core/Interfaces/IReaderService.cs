@@ -1,4 +1,5 @@
-﻿namespace Animals.Core.Interfaces
+﻿//Всё логично и хорошо
+namespace Animals.Core.Interfaces
 {
 	public interface IReaderService
 	{

@@ -1,20 +1,19 @@
 ﻿using Animals.Commands;
 using Animals.Core.Business;
 using Animals.Core.Exceptions;
-using Animals.Core.FileParsers;
 using Animals.Core.Interfaces;
 using Animals.Factory;
 using Animals.FileReaders;
 using Animals.Menu;
 using Animals.Services;
-using System;
+using System;t
 using System.Collections.Generic;
-using System.IO;
 
 namespace Animals
 {
 	class Program
 	{
+        //лучше эти поля назвать, начиная с нижнего подчёркивания
 		static IReaderService reader;
 		static INotificationService notification;
 		static IMakeASoundable sound;

@@ -1,7 +1,7 @@
 ﻿using Animals.Core.Business.Bases;
 using Animals.Core.Interfaces;
 using System;
-
+//Хорошо всё
 namespace Animals.Core.Business.Instances
 {
 	public class Tiger : WildAnimalBase

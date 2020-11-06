@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel;
-
+//Всё отлично
 namespace Amimals.WPF.ViewModels
 {
 	public abstract class BaseViewModel : INotifyPropertyChanged

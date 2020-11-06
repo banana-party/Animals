@@ -7,6 +7,6 @@
         mc:Ignorable="d"
         Title="AddAnimalView" Height="450" Width="800">
     <Grid>
-        
+        <!--Реализовать добалвение животного в зоопарк!-->
     </Grid>
 </Window>

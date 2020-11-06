@@ -1,6 +1,6 @@
 ﻿using Animals.Commands.Bases;
 using Animals.Core.Business;
-
+// всё отлично
 namespace Animals.Commands
 {
 	public class AllAnimalMakeSoundCommand : CommandBase

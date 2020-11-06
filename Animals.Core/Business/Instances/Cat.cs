@@ -1,7 +1,7 @@
 ﻿using Animals.Core.Business.Bases;
 using Animals.Core.Interfaces;
 using System;
-
+//отлично всё
 namespace Animals.Core.Business.Instances
 {
 	public class Cat : HomeAnimalBase

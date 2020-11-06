@@ -1,5 +1,5 @@
 ﻿using Animals.Core.Interfaces;
-
+//Сделать реализацию этого сервиса
 namespace Amimals.WPF.Services
 {
 	class SoundService : IMakeASoundable

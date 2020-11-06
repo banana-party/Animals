@@ -1,7 +1,7 @@
 ﻿using Animals.Commands.Bases;
 using Animals.Core.Business;
 using Animals.Core.Interfaces;
-
+//Всё отлично
 namespace Animals.Commands
 {
 	public class AnimalMakeSoundCommand : NotificationCommandBase

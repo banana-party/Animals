@@ -1,13 +1,10 @@
 ﻿using Animals.Commands.Bases;
 using Animals.Core.Business;
 using Animals.Core.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Animals.Commands
 {
-	public class DeleteAnimalCommand : NotificationCommandBase
+    public class DeleteAnimalCommand : NotificationCommandBase
 	{
 		public DeleteAnimalCommand(Zoo zoo, IReaderService readerService, INotificationService notificationService) : base(zoo, readerService, notificationService)
 		{
@@ -17,6 +14,7 @@ namespace Animals.Commands
 		{
 			_notificationService.Write("Введите номер животного, которое хотите удалить: ");
 			int index;
+            //Необходимо было измежать дублирования этого кода
 			while(!int.TryParse(_readerService.ReadLine(), out index))
 			{
 				_notificationService.WriteLine("Неверный ввод.");

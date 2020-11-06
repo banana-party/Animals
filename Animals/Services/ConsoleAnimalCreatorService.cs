@@ -1,11 +1,16 @@
 ﻿using Animals.Core.Business.Instances;
 using Animals.Core.Interfaces;
 using System;
-
+//лучше чтобы namespace совпрадал с путём к папке
+/*Куча огромного нерасширяемого кода, нарушений SOLID принципов как минимум
+ принципа разделения интерфейсов, так же как и у этого сервиса много различных ответственностей
+и лучше было бы разбить этот сервис в несколько хелперов или подумать над ещё одним 
+паттерном команда с фабрикой команд как вариант*/
 namespace Animals.Menu
 {
 	internal class ConsoleAnimalCreatorService : IAnimalCreator
 	{
+		//приватные поля, задаваемые в конструкторе лучше делать readonly
 		private INotificationService _notificationService;
 		private IReaderService _readerService;
 		private IMakeASoundable _soundService;

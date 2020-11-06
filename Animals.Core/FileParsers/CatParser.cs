@@ -1,20 +1,18 @@
-﻿using Animals.Core.Business.Bases;
-using Animals.Core.Business.Instances;
+﻿using Animals.Core.Business.Instances;
 using Animals.Core.Interfaces;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Reflection;
 
 namespace Animals.Core.FileParsers
 {
-	public class CatParser : IParser
+    public class CatParser : IParser
 	{
 		private readonly IMakeASoundable _aSound;
 		private readonly INotificationService _notificationService;
-		public CatParser(IMakeASoundable aSound, INotificationService notificationService)
+		//Надо подумать как избавиться от этих параметрах в парсере, они тут нелогичны абсолютно
+		//но никакого разумного решения этого я тут предложить не смогу.
+        public CatParser(IMakeASoundable aSound, INotificationService notificationService)
 		{
 			_aSound = aSound;
 			_notificationService = notificationService;
@@ -34,6 +32,7 @@ namespace Animals.Core.FileParsers
 
 		public List<string> Parse(IAnimal animal)
 		{
+			//Не вижу смысл этого метода вообще и не понимаю зачем его включать в Интерфейс
 			throw new NotImplementedException();
 		}
 	}
