@@ -24,7 +24,8 @@ namespace Animals.Console.FileWorkers
 		public void WriteToFile(IEnumerable<string> animals)
 		{
 			foreach (var el in animals)
-				_streamWriter.Write($"{el}\n");
+				_streamWriter.WriteLine(el);
+			_streamWriter.Dispose();
 		}
 	}
 }

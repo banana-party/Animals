@@ -1,6 +1,6 @@
 ﻿using Animals.Core.Exctensions;
 using Animals.Core.Interfaces;
-using System.Text;
+using System.Globalization;
 
 namespace Animals.Core.Business.Bases
 {
@@ -14,14 +14,13 @@ namespace Animals.Core.Business.Bases
 			EyeColor = eyeColor;
 			ASound = aSound;
 		}
-		//у этих свойств private set можно было не писать
 		public float Height { get; }
 		public float Weight { get; }
 		public string EyeColor { get; }
 		public abstract void MakeASound();
 		public override string ToString()
 		{
-			return $"{this.Type()},{Height},{Weight},{EyeColor}";
+			return $"{this.Type()},{Height.ToString(CultureInfo.InvariantCulture)},{Weight.ToString(CultureInfo.InvariantCulture)},{EyeColor}";
 		}
 
 	}

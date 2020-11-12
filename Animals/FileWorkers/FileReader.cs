@@ -30,7 +30,7 @@ namespace Animals.Console.FileWorkers
 			_stream.Dispose();
 		}
 
-		public IEnumerable<IAnimal> Read(string path = "Input.txt")
+		public IEnumerable<IAnimal> Read(string path)
 		{
 			if (string.IsNullOrEmpty(path))
 				throw new NullReferenceException("String was null or empty");

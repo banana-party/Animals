@@ -3,7 +3,6 @@ using Animals.Core.Interfaces;
 using Animals.Core.Business.Bases;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Animals.Core.Exctensions;
 
 namespace Animals.Core.Business
@@ -28,6 +27,13 @@ namespace Animals.Core.Business
 			if (animal == null)
 				throw new NullReferenceException("Reference was null.");
 			_animals.Add(animal);
+		}
+		public void Add(IEnumerable<IAnimal> animals)
+		{
+			if (animals == null)
+				throw new NullReferenceException("Reference was null.");
+			foreach (var el in animals)
+				_animals.Add(el);
 		}
 		public void RemoveAt(int index)
 		{
@@ -62,15 +68,6 @@ namespace Animals.Core.Business
 			foreach (var el in _animals)
 				res.Add(el.ToString());
 			return res;
-		}
-		//TODO: использовать методы Add для добавления с файла
-		public void ReadFromFile()
-		{
-			//_animals = _fileReader.Read().ToList();
-		}
-		public void SaveToFile()
-		{
-			//TODO: реализация
 		}
 		public string GetTypeOfAnimal(int index)
 		{

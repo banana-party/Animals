@@ -21,7 +21,7 @@ namespace Animals.Core.Business.Bases
 		public DateTime BirthDate { get; }
 		public string Care()
 		{
-			return $"{this.Type()} проявляет заботу о вас..";
+			return $"{this.RusType()} проявляет заботу о вас..";
 		}
 		//public override void PrintInfo()
 		//{

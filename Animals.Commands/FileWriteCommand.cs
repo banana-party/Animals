@@ -9,7 +9,7 @@ namespace Animals.Commands
 {
 	public class FileWriteCommand : CommandBase
 	{
-		IFileWriter _fileWriter;
+		private readonly IFileWriter _fileWriter;
 		public FileWriteCommand(Zoo zoo, IFileWriter fileWriter) : base(zoo)
 		{
 			_fileWriter = fileWriter;
@@ -18,6 +18,10 @@ namespace Animals.Commands
 		public override void Execute()
 		{
 			_fileWriter.WriteToFile(Zoo.Info());
+		}
+		public override string ToString()
+		{
+			return "Сохранить зоопарк в файл.";
 		}
 	}
 }

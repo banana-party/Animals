@@ -2,7 +2,7 @@
 
 namespace Animals.Console.Services
 {
-	class ConsoleSoundService : IMakeASoundable
+	public class ConsoleSoundService : IMakeASoundable
 	{
 		private readonly INotificationService _notificationService;
 		private static ConsoleSoundService _soundService;

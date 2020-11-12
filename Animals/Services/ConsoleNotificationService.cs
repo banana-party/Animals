@@ -2,7 +2,7 @@
 
 namespace Animals.Console.Services
 {
-	class ConsoleNotificationService : INotificationService
+	public class ConsoleNotificationService : INotificationService
 	{
 		public void Write(string text)
 		{

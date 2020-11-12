@@ -30,15 +30,6 @@ namespace Animals
 			_fileWriter = new FileWriter();
 
 			Zoo zoo = new Zoo(_fileReader, _fileWriter);
-			IAnimal chick = new Chicken(12f, 32.3f, "Red", 0, _sound);
-
-			StreamWriter _streamWriter = new StreamWriter("Output.txt");
-			_streamWriter.Write($"{chick.ToString()}\n");
-
-
-
-
-			zoo.Add(chick);
 			ConsoleAnimalCreatorService service = new ConsoleAnimalCreatorService(_reader, _notification);
 			AnimalsFactory factory = AnimalsFactory.CreateFactory(service);
 
@@ -51,12 +42,10 @@ namespace Animals
 				{"4", new AnimalMakeSoundCommand(zoo, _notification, _reader) },
 				{"5", new PrintAllAnimalsInfoCommand(zoo, _notification) },
 				{"6", new AllAnimalMakeSoundCommand(zoo) },
-				{"7", new FileReadCommand(zoo, _notification, _reader) },
+				{"7", new FileReadCommand(zoo, _notification, _reader, _fileReader) },
 				{"8", new FileWriteCommand(zoo, _fileWriter) }
 			}; 
 			
-
-			zoo.ReadFromFile();
 			bool a = false;
 			while (!a)
 			{
@@ -100,7 +89,7 @@ namespace Animals
 			}
 			_notification.Write("0 - Выход\n");
 		}
-		static void PrintAnimalsList(Zoo zoo)
+		static void PrintAnimalsList(Zoo zoo) // TODO: Удалить в релизе
 		{
 			for (int i = 0; i < zoo.Count; i++)
 			{
