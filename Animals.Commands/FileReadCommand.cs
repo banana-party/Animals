@@ -6,7 +6,7 @@ using System.IO;
 
 namespace Animals.Commands
 {
-    public class FileReadCommand : NotificationAndReaderCommandBase
+	public class FileReadCommand : NotificationAndReaderCommandBase
 	{
 		private IFileReader _fileReader;
 		public FileReadCommand(Zoo zoo, INotificationService notificationService, IReaderService readerService, IFileReader fileReader) : base(zoo, notificationService, readerService)
@@ -19,18 +19,16 @@ namespace Animals.Commands
 			NotificationService.Write("Введите путь к файлу (пустая строка означает путь по умолчанию): \n");
 			string text = ReaderService.ReadLine();
 			if (string.IsNullOrEmpty(text))
-				Zoo.Add(_fileReader.Read("Input.txt"));
-			else
+				text = "Input.txt";
+			try
 			{
-				try
-				{
-					Zoo.Add(_fileReader.Read(text));
-				}
-				catch (IOException)
-				{
-					NotificationService.Write("File or directory does not exist.");
-				}
+				Zoo.Add(_fileReader.Read(text));
 			}
+			catch (IOException)
+			{
+				NotificationService.Write("File or directory does not exist.");
+			}
+
 		}
 		public override string ToString()
 		{

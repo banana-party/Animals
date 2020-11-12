@@ -10,17 +10,13 @@ namespace Animals.Core.Business
 	public class Zoo
 	{
 		private List<IAnimal> _animals;
-		private IFileReader _fileReader;
-		private IFileWriter _fileWriter;
 		public int Count
 		{
 			get => _animals.Count;
 		}
-		public Zoo(IFileReader fileReader, IFileWriter fileWriter)
+		public Zoo()
 		{
 			_animals = new List<IAnimal>();
-			_fileReader = fileReader;
-			_fileWriter = fileWriter;
 		}
 		public void Add(IAnimal animal)
 		{
@@ -73,6 +69,12 @@ namespace Animals.Core.Business
 		{
 			if (_animals[index] is AnimalBase animal) // TODO: Костыль?
 				return animal.Type();
+			return "";
+		}
+		public string GetRusTypeOfAnimal(int index)
+		{
+			if (_animals[index] is AnimalBase animal) 
+				return animal.RusType();
 			return "";
 		}
 	}
