@@ -1,13 +1,13 @@
 ﻿using Animals.Core.Interfaces;
 using System;
 //Всё отлично
-namespace Animals.Services
+namespace Animals.Console.Services
 {
 	class ConsoleAnimalMakeASondService : IMakeASoundable
 	{
 		public void MakeASound(string str)
 		{
-			Console.WriteLine(str);
+			System.Console.Write(str);
 		}
 	}
 }

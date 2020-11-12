@@ -7,8 +7,7 @@
 	public interface IAnimal
 	{
 		void MakeASound();
-		void PrintInfo();
-		string Type();
+		//void PrintInfo();
 	}
 
 }

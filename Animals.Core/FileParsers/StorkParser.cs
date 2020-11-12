@@ -6,27 +6,22 @@ using System.Globalization;
 
 namespace Animals.Core.FileParsers
 {
-	public class StorkParser : IParser
+	public class StorkParser : IFromFileParser
 	{
 		private readonly IMakeASoundable _aSound;
-		private readonly INotificationService _notificationService;
-		public StorkParser(IMakeASoundable aSound, INotificationService notificationService)
+		public StorkParser(IMakeASoundable aSound)
 		{
 			_aSound = aSound;
-			_notificationService = notificationService;
 		}
 		public IAnimal Parse(List<string> lst)
 		{
-			return new Stork(_aSound, _notificationService, 
+			return new Stork(
 				float.Parse(lst[1], CultureInfo.InvariantCulture), 
 				float.Parse(lst[2], CultureInfo.InvariantCulture), 
 				lst[3], 
-				int.Parse(lst[4]));
+				int.Parse(lst[4]), 
+				_aSound);
 		}
 
-		List<string> IParser.Parse(IAnimal animal)
-		{
-			throw new NotImplementedException();
-		}
 	}
 }

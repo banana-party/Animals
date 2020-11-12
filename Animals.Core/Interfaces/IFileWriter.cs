@@ -1,8 +1,10 @@
 ﻿//Метод WiriteToFile должен принимать либо IAnimal либо IEnumerable<IAnimal> либо Zoo
+using System.Collections.Generic;
+
 namespace Animals.Core.Interfaces
 {
     public interface IFileWriter
 	{
-		bool WriteToFile();
+		void WriteToFile(IEnumerable<string> animals);
 	}
 }

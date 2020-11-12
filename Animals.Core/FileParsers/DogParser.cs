@@ -6,30 +6,28 @@ using System.Globalization;
 
 namespace Animals.Core.FileParsers
 {
-	public class DogParser : IParser
+	public class DogParser : IFromFileParser
 	{
 		private readonly IMakeASoundable _aSound;
-		private readonly INotificationService _notificationService;
-		public DogParser(IMakeASoundable aSound, INotificationService notificationService)
+		public DogParser(IMakeASoundable aSound)
 		{
 			_aSound = aSound;
-			_notificationService = notificationService;
+
 		}
 		public IAnimal Parse(List<string> lst)
 		{
-			return new Dog(_aSound, _notificationService, 
-				bool.Parse(lst[1]), 
-				float.Parse(lst[2], CultureInfo.InvariantCulture), 
-				float.Parse(lst[3], CultureInfo.InvariantCulture), 
-				lst[4], lst[5], lst[6], 
-				bool.Parse(lst[7]), 
-				lst[8], 
-				DateTime.Parse(lst[9]));
+			return new Dog(
+				float.Parse(lst[1], CultureInfo.InvariantCulture),
+				float.Parse(lst[2], CultureInfo.InvariantCulture),
+				lst[3],
+				lst[4], lst[5],
+				bool.Parse(lst[6]),
+				lst[7],
+				DateTime.Parse(lst[8]),
+				bool.Parse(lst[9]),
+				_aSound
+				);
 		}
 
-		public List<string> Parse(IAnimal animal)
-		{
-			throw new NotImplementedException();
-		}
 	}
 }

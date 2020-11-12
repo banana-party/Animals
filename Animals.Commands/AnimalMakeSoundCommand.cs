@@ -1,25 +1,19 @@
 ﻿using Animals.Commands.Bases;
 using Animals.Core.Business;
 using Animals.Core.Interfaces;
-//Всё отлично
+using Animals.Commands.Extensions;
+
 namespace Animals.Commands
 {
-	public class AnimalMakeSoundCommand : NotificationCommandBase
+	public class AnimalMakeSoundCommand : NotificationAndReaderCommandBase
 	{
-		public AnimalMakeSoundCommand(Zoo zoo, IReaderService readerService, INotificationService notificationService) : base(zoo, readerService, notificationService)
+		public AnimalMakeSoundCommand(Zoo zoo, INotificationService notificationService, IReaderService readerService) : base(zoo, notificationService, readerService)
 		{
 		}
-
+	
 		public override void Execute()
 		{
-			_notificationService.Write("Введите номер животного, которое должно издать звук: ");
-			int index;	
-			while (!int.TryParse(_readerService.ReadLine(), out index))
-			{
-				_notificationService.WriteLine("Неверный ввод.");
-				_notificationService.Write("Введите индекс животного, которое должно издать звук: ");
-			}
-			_zoo.MakeASound(--index);
+			Zoo.MakeASound(this.ReadIndex(NotificationService, ReaderService));
 		}
 		public override string ToString()
 		{

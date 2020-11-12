@@ -4,20 +4,24 @@ namespace Animals.Core.Business.Bases
 {
 	public abstract class BirdBase : AnimalBase
 	{
-		public int FlyHeight { get; private set; }
-		protected BirdBase(IMakeASoundable aSound, INotificationService notificationService, float height, float weight, string eyeColor, int flyHeight) : base(aSound, notificationService, height, weight, eyeColor)
+		public int FlyHeight { get; }
+		protected BirdBase(float height, float weight, string eyeColor, int flyHeight, IMakeASoundable aSound) : base( height, weight, eyeColor, aSound)
 		{
 			FlyHeight = flyHeight;
 		}
-		public void Fly()
+		public string Fly()
 		{
-			NotificationService.WriteLine($"Я лечу на высоте {FlyHeight} метров!");
+			return $"Я лечу на высоте {FlyHeight} метров!";
 		}
 
-		public override void PrintInfo()
+		//public override void PrintInfo()
+		//{
+		//	base.PrintInfo();
+		//	NotificationService.Write($"\tВысота полета: {FlyHeight}]n");
+		//}
+		public override string ToString()
 		{
-			base.PrintInfo();
-			NotificationService.WriteLine($"\tВысота полета: {FlyHeight}");
+			return $"{base.ToString()},{FlyHeight}";
 		}
 	}
 }

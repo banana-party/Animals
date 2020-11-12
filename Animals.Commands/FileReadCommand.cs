@@ -1,28 +1,40 @@
 ﻿using Animals.Commands.Bases;
 using Animals.Core.Business;
 using Animals.Core.Interfaces;
+using System;
+using System.IO;
+
 namespace Animals.Commands
 {
-    class FileReadCommand : NotificationCommandBase
+    public class FileReadCommand : NotificationAndReaderCommandBase
 	{
-		public FileReadCommand(Zoo zoo, IReaderService readerService, INotificationService notificationService) : base(zoo, readerService, notificationService)
+		private IFileReader _fileReader;
+		public FileReadCommand(Zoo zoo, INotificationService notificationService, IReaderService readerService, IFileReader fileReader) : base(zoo, notificationService, readerService)
 		{
+			_fileReader = fileReader;
 		}
 
 		public override void Execute()
 		{
-			_notificationService.WriteLine("Введите путь к файлу (пустая строка означает путь по умолчанию): ");
-			string text = _readerService.ReadLine();
+			NotificationService.Write("Введите путь к файлу (пустая строка означает путь по умолчанию): \n");
+			string text = ReaderService.ReadLine();
 			if (string.IsNullOrEmpty(text))
+				Zoo.Add(_fileReader.Read("Input.txt"));
+			else
 			{
-                //непотнятна реализация в этом месте даже не понятны планы на реализацию
-            }
-			_zoo.ReadFromFile();
+				try
+				{
+					Zoo.Add(_fileReader.Read(text));
+				}
+				catch (IOException)
+				{
+					NotificationService.Write("File or directory does not exist.");
+				}
+			}
 		}
 		public override string ToString()
 		{
-			//метод всё же стоило переопределить правильно
-			return "";
+			return "Прочитать зоопарк из файла.";
 		}
 	}
 }

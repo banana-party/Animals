@@ -7,7 +7,8 @@ namespace Animals.Core.Business.Instances
 	public class Dog : HomeAnimalBase
 	{
 		public bool IsItTrained { get; private set; }
-		public Dog(IMakeASoundable aSound, INotificationService notificationService, bool isItTrained, float height, float weight, string eyeColor, string name, string breed, bool isItVaccinated, string coatColor, DateTime birthDate) : base(aSound, notificationService, height, weight, eyeColor, name, breed, isItVaccinated, coatColor, birthDate)
+		public Dog(float height, float weight, string eyeColor, string name, string breed, bool isItVaccinated, string coatColor, DateTime birthDate, bool isItTrained, IMakeASoundable aSound) 
+			: base(height, weight, eyeColor, name, breed, isItVaccinated, coatColor, birthDate, aSound)
 		{
 			IsItTrained = isItTrained;
 		}
@@ -15,20 +16,22 @@ namespace Animals.Core.Business.Instances
 		{
 			if (IsItTrained)
 				return;
-			else
-				IsItTrained = true;
+			IsItTrained = true;
 		}
 		public override void MakeASound()
 		{
 			ASound.MakeASound("ГААААВ");
 		}
 
-		public override void PrintInfo()
+		//public override void PrintInfo()
+		//{
+		//	base.PrintInfo();
+		//	NotificationService.Write($"\tСобака {(IsItTrained ? "тренированная" : "не тренированная")}\n");
+		//}
+
+		public override string ToString()
 		{
-			base.PrintInfo();
-			NotificationService.WriteLine($"\tСобака {(IsItTrained ? "тренированная" : "не тренированная")}");
+			return $"{base.ToString()},{IsItTrained}";
 		}
-
-
 	}
 }

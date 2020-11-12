@@ -3,25 +3,30 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Amimals.WPF" xmlns:viewmodels="clr-namespace:Amimals.WPF.ViewModels" xmlns:converters="clr-namespace:Amimals.WPF.Converters"
+        xmlns:local="clr-namespace:Amimals.WPF" 
+		xmlns:converters="clr-namespace:Amimals.WPF.Converters"
 		mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-	<Window.DataContext>
-		<viewmodels:MainWindowViewModel/>
-	</Window.DataContext>
 	<Window.Resources>
 		<Style TargetType="Button">
 			<Setter Property="Margin" Value="12"/>
 		</Style>
+		<converters:AnimalToStringConverter x:Key="AnimalToStringConverter"/>
+		<converters:ValueToBoolConverter x:Key="ValueToBoolConverter"/>
+		<converters:AnimalToSoundPathConverter x:Key="AnimalToSoundPathConverter"/>
 	</Window.Resources>
     <Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="6*"/>
 			<RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
-		<DataGrid Grid.Row="0" ItemsSource="{Binding Animals, Mode=OneWay}" AutoGenerateColumns="False" CanUserAddRows="False">
+		<DataGrid Grid.Row="0" 
+				  ItemsSource="{Binding Animals, Mode=OneWay}" 
+				  AutoGenerateColumns="False" 
+				  CanUserAddRows="False" 
+				  SelectedItem="{Binding SelectedAnimal, Mode=TwoWay}">
 			<DataGrid.Columns>
-				<DataGridTextColumn Header="Тип" Binding="{Binding AnimalToStringConverter}" IsReadOnly="True"/>
+				<DataGridTextColumn Header="Тип" IsReadOnly="True"/> <!--TODO: Отображение типа животного-->
 				<DataGridTextColumn Header="Рост" Binding="{Binding Height}" IsReadOnly="True"/>
 				<DataGridTextColumn Header="Вес" Binding="{Binding Weight}" IsReadOnly="True"/>
 				<DataGridTextColumn Header="Цвет глаз" Binding="{Binding EyeColor}" IsReadOnly="True"/>
@@ -32,11 +37,24 @@
 				<ColumnDefinition Width="*"/>
 				<ColumnDefinition Width="*"/>
 				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="*"/>
 			</Grid.ColumnDefinitions>
 			<!--TODO:Проверить работу этой View-->
 			<Button Grid.Column="0" Command="{Binding AddCommand}">Добавить</Button>
-			<Button Grid.Column="1" Command="{Binding EditCommand}">Редактировать</Button>
-			<Button Grid.Column="2" Command="{Binding RemoveCommand}">Удалить</Button>
+			<Button Grid.Column="1" Command="{Binding EditCommand}" IsEnabled="{Binding SelectedAnimal, Converter={StaticResource ValueToBoolConverter}}">Редактировать</Button>
+			<Button Grid.Column="2" Command="{Binding RemoveCommand}" IsEnabled="{Binding SelectedAnimal, Converter={StaticResource ValueToBoolConverter}}">Удалить</Button>
+			
+			<Button Grid.Column="3" Name="soundplayer" Content="Go">
+				<Button.Triggers>
+					<EventTrigger RoutedEvent="Button.Click">
+						<EventTrigger.Actions>
+							<!--<SoundPlayerAction Source="{Binding SelectedAnimal, Converter={StaticResource AnimalToSoundPathConverter}}"></SoundPlayerAction>-->
+							<SoundPlayerAction Source="chicken.wav"></SoundPlayerAction>
+						</EventTrigger.Actions>
+					</EventTrigger>
+				</Button.Triggers>
+			</Button>
+			
 		</Grid>
     </Grid>
 </Window>

@@ -6,34 +6,29 @@ using System.Globalization;
 
 namespace Animals.Core.FileParsers
 {
-    public class CatParser : IParser
+    public class CatParser : IFromFileParser
 	{
 		private readonly IMakeASoundable _aSound;
-		private readonly INotificationService _notificationService;
 		//Надо подумать как избавиться от этих параметрах в парсере, они тут нелогичны абсолютно
 		//но никакого разумного решения этого я тут предложить не смогу.
-        public CatParser(IMakeASoundable aSound, INotificationService notificationService)
+        public CatParser(IMakeASoundable aSound)
 		{
 			_aSound = aSound;
-			_notificationService = notificationService;
 		}
 		public IAnimal Parse(List<string> lst)
 		{
-			return new Cat(_aSound, _notificationService, 
-				bool.Parse(lst[1]), 
+			return new Cat(
+				float.Parse(lst[1], CultureInfo.InvariantCulture), 
 				float.Parse(lst[2], CultureInfo.InvariantCulture), 
-				float.Parse(lst[3], CultureInfo.InvariantCulture), 
-				lst[4], lst[5], lst[6], 
-				bool.Parse(lst[7]), 
-				lst[8], 
-				DateTime.Parse(lst[9])
+				lst[3], 
+				lst[4], lst[5],
+				bool.Parse(lst[6]), 
+				lst[7],
+				DateTime.Parse(lst[8]),
+				bool.Parse(lst[9]),
+				_aSound
 				);
 		}
 
-		public List<string> Parse(IAnimal animal)
-		{
-			//Не вижу смысл этого метода вообще и не понимаю зачем его включать в Интерфейс
-			throw new NotImplementedException();
-		}
 	}
 }

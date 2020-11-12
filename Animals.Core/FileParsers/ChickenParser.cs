@@ -6,27 +6,22 @@ using System.Globalization;
 
 namespace Animals.Core.FileParsers
 {
-	public class ChickenParser : IParser
+	public class ChickenParser : IFromFileParser
 	{
 		private readonly IMakeASoundable _aSound;
-		private readonly INotificationService _notificationService;
-		public ChickenParser(IMakeASoundable aSound, INotificationService notificationService)
+		public ChickenParser(IMakeASoundable aSound)
 		{
 			_aSound = aSound;
-			_notificationService = notificationService;
 		}
 		public IAnimal Parse(List<string> lst)
 		{
-			return new Chicken(_aSound, _notificationService, 
+			return new Chicken(
 				float.Parse(lst[1], CultureInfo.InvariantCulture), 
 				float.Parse(lst[2], CultureInfo.InvariantCulture), 
 				lst[3], 
-				int.Parse(lst[4]));
-		}
-
-		public List<string> Parse(IAnimal animal)
-		{
-			throw new NotImplementedException();
+				int.Parse(lst[4]), 
+				_aSound
+				);
 		}
 	}
 }

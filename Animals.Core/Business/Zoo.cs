@@ -1,8 +1,9 @@
 ﻿using Animals.Core.Exceptions;
 using Animals.Core.Interfaces;
+using Animals.Core.Business.Bases;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using Animals.Core.Exctensions;
 
 namespace Animals.Core.Business
 {
@@ -27,6 +28,13 @@ namespace Animals.Core.Business
 				throw new NullReferenceException("Reference was null.");
 			_animals.Add(animal);
 		}
+		public void Add(IEnumerable<IAnimal> animals)
+		{
+			if (animals == null)
+				throw new NullReferenceException("Reference was null.");
+			foreach (var el in animals)
+				_animals.Add(el);
+		}
 		public void RemoveAt(int index)
 		{
 			if (index < 0 || index >= _animals.Count)
@@ -46,30 +54,26 @@ namespace Animals.Core.Business
 			foreach (var el in _animals)
 				el.MakeASound();
 		}
-		public void PrintInfo(int index)
+		public string Info(int index)
 		{
 			if (index < 0 || index >= _animals.Count)
 				throw new IndexOutOfRangeException("Index Out of range");
-			_animals[index].PrintInfo();
+			return _animals[index].ToString();
 		}
-		public void PrintInfo()
+		public IEnumerable<string> Info()
 		{
 			if (Count == 0)
 				throw new IncorrectActionException("В зоопарке нет животных");
+			List<string> res = new List<string>();
 			foreach (var el in _animals)
-				el.PrintInfo();
-		}
-		public void ReadFromFile()
-		{
-			_animals = _fileReader.Read().ToList();
-		}
-		public void SaveToFile()
-		{
-			//е эти TODO реализация
+				res.Add(el.ToString());
+			return res;
 		}
 		public string GetTypeOfAnimal(int index)
 		{
-			return _animals[index].Type();
+			if (_animals[index] is AnimalBase animal) // TODO: Костыль?
+				return animal.Type();
+			return "";
 		}
 	}
 }

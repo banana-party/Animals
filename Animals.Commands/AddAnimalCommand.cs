@@ -7,11 +7,11 @@ using Animals.Core.Business;
 
 namespace Animals.Commands
 {
-	public class AddAnimalCommand : NotificationCommandBase
+	public class AddAnimalCommand : NotificationAndReaderCommandBase
 	{
 		private Dictionary<string, string> _dict;
 		private AnimalsFactory _factory;
-		public AddAnimalCommand(Zoo zoo, AnimalsFactory factory, IReaderService readerService, INotificationService notificationService) : base(zoo, readerService, notificationService)
+		public AddAnimalCommand(Zoo zoo, AnimalsFactory factory, INotificationService notificationService, IReaderService readerService) : base(zoo, notificationService, readerService)
 		{
 			_dict = new Dictionary<string, string>()
 			{
@@ -27,13 +27,11 @@ namespace Animals.Commands
 
 		public override void Execute()
 		{
-			_notificationService.WriteLine("Выберете животное, которое хотите добавить:\n1 - Кошка\n2 - Собака\n3 - Курица\n4 - Аист\n5 - Тигр\n6 - Волк");
-			string choose = _readerService.ReadLine();
+			NotificationService.Write("Выберете животное, которое хотите добавить:\n1 - Кошка\n2 - Собака\n3 - Курица\n4 - Аист\n5 - Тигр\n6 - Волк\n");
+			string choose = ReaderService.ReadLine();
 
 			if (_dict.ContainsKey(choose))
-			{
-				_zoo.Add(_factory.GetAnimal(_dict[choose]));
-			}
+				Zoo.Add(_factory.GetAnimal(_dict[choose]));
 			else
 				throw new IncorrectActionException("Неверный ввод.");
 		}

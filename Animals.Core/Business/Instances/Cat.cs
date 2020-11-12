@@ -7,7 +7,8 @@ namespace Animals.Core.Business.Instances
 	public class Cat : HomeAnimalBase
 	{
 
-		public Cat(IMakeASoundable aSound, INotificationService notificationService, bool isItWooled, float height, float weight, string eyeColor, string name, string breed, bool isItVaccinated, string coatColor, DateTime birthDate) : base(aSound, notificationService, height, weight, eyeColor, name, breed, isItVaccinated, coatColor, birthDate)
+		public Cat(float height, float weight, string eyeColor, string name, string breed, bool isItVaccinated, string coatColor, DateTime birthDate, bool isItWooled, IMakeASoundable aSound) 
+			: base(height, weight, eyeColor, name, breed, isItVaccinated, coatColor, birthDate, aSound)
 		{
 			IsItWooled = isItWooled;
 		}
@@ -18,10 +19,14 @@ namespace Animals.Core.Business.Instances
 			ASound.MakeASound("МЯЯЯЯУ");
 		}
 
-		public override void PrintInfo()
+		//public override void PrintInfo()
+		//{
+		//	base.PrintInfo();
+		//	NotificationService.Write($"\tШерсть {(IsItWooled ? "есть" : "отсутствует")}\n");
+		//}
+		public override string ToString()
 		{
-			base.PrintInfo();
-			NotificationService.WriteLine($"\tШерсть {(IsItWooled ? "есть" : "отсутствует")}");
+			return $"{base.ToString()},{IsItWooled}";
 		}
 
 	}
