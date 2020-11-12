@@ -1,26 +1,19 @@
 ﻿using Animals.Commands.Bases;
 using Animals.Core.Business;
 using Animals.Core.Interfaces;
+using Animals.Commands.Extensions;
 
 namespace Animals.Commands
 {
-    public class DeleteAnimalCommand : NotificationCommandBase
+    public class DeleteAnimalCommand : NotificationAndReaderCommandBase
 	{
-		public DeleteAnimalCommand(Zoo zoo, IReaderService readerService, INotificationService notificationService) : base(zoo, readerService, notificationService)
+		public DeleteAnimalCommand(Zoo zoo, INotificationService notificationService, IReaderService readerService) : base(zoo, notificationService, readerService)
 		{
 		}
 
 		public override void Execute()
 		{
-			_notificationService.Write("Введите номер животного, которое хотите удалить: ");
-			int index;
-            //Необходимо было измежать дублирования этого кода
-			while(!int.TryParse(_readerService.ReadLine(), out index))
-			{
-				_notificationService.WriteLine("Неверный ввод.");
-				_notificationService.Write("Введите индекс животного, которое хотите удалить: ");
-			}
-			_zoo.RemoveAt(--index);
+			Zoo.RemoveAt(this.ReadIndex(NotificationService, ReaderService));
 		}
 		public override string ToString()
 		{

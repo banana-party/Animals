@@ -1,20 +1,17 @@
 ﻿using Animals.Core.Business;
 using Animals.Core.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Animals.Commands.Bases
 {
 	public abstract class NotificationCommandBase : CommandBase
 	{
-        //лучше приватные поля, получаемые только в конструкторе делать readonly
-		protected INotificationService _notificationService;
-		protected IReaderService _readerService;
-        //Конструктор должен быть защищённый
-		public NotificationCommandBase(Zoo zoo, IReaderService readerService, INotificationService notificationService) : base(zoo)
+		protected readonly INotificationService NotificationService;
+		protected NotificationCommandBase(Zoo zoo, INotificationService notificationService) : base(zoo)
 		{
-			_notificationService = notificationService;
-			_readerService = readerService;
+			NotificationService = notificationService;
 		}
-
-
 	}
 }

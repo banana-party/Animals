@@ -7,29 +7,22 @@ using System.Text;
 
 namespace Animals.Core.FileParsers
 {
-	public class TigerParser : IParser
+	public class TigerParser : IFromFileParser
 	{
 		private readonly IMakeASoundable _aSound;
-		private readonly INotificationService _notificationService;
-		public TigerParser(IMakeASoundable aSound, INotificationService notificationService)
+		public TigerParser(IMakeASoundable aSound)
 		{
 			_aSound = aSound;
-			_notificationService = notificationService;
 		}
 		public IAnimal Parse(List<string> lst)
 		{
-			return new Tiger(_aSound, _notificationService, 
+			return new Tiger(
 				float.Parse(lst[1], CultureInfo.InvariantCulture), 
 				float.Parse(lst[2], CultureInfo.InvariantCulture), 
 				lst[3], 
 				lst[4], 
-				DateTime.Parse(lst[5]));
-		}
-
-
-		List<string> IParser.Parse(IAnimal animal)
-		{
-			throw new NotImplementedException();
+				DateTime.Parse(lst[5]), 
+				_aSound);
 		}
 	}
 }

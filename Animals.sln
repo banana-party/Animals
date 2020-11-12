@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30517.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Animals", "Animals\Animals.csproj", "{E2013C69-920C-4828-8B57-FB416864470F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Animals.Console", "Animals\Animals.Console.csproj", "{E2013C69-920C-4828-8B57-FB416864470F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Animals.Core", "Animals.Core\Animals.Core.csproj", "{78FE7CE9-7E12-4616-BB42-D3C71DF1B26F}"
 EndProject

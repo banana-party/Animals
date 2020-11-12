@@ -5,17 +5,21 @@ namespace Animals.Core.Business.Bases
 {
 	public abstract class WildAnimalBase : AnimalBase
 	{
-		protected WildAnimalBase(IMakeASoundable aSound, INotificationService notificationService, float height, float weight, string eyeColor, string habitat, DateTime dateOfFind) : base(aSound, notificationService, height, weight, eyeColor)
+		protected WildAnimalBase(float height, float weight, string eyeColor, string habitat, DateTime dateOfFind, IMakeASoundable aSound) : base(height, weight, eyeColor, aSound)
 		{
 			Habitat = habitat;
 			DateOfFind = dateOfFind;
 		}
-		public string Habitat { get; set; }
-		public DateTime DateOfFind { get; set; }
-		public override void PrintInfo()
+		public string Habitat { get; }
+		public DateTime DateOfFind { get; }
+		//public override void PrintInfo()
+		//{
+		//	base.PrintInfo();
+		//	NotificationService.Write($"\tСреда обитания: {Habitat}\n\tДата нахождения: {DateOfFind.Day}.{DateOfFind.Month}.{DateOfFind.Year}\n");
+		//}
+		public override string ToString()
 		{
-			base.PrintInfo();
-			NotificationService.WriteLine($"\tСреда обитания: {Habitat}\n\tДата нахождения: {DateOfFind.Day}.{DateOfFind.Month}.{DateOfFind.Year}");
+			return $"{base.ToString()},{Habitat},{DateOfFind.Day}.{DateOfFind.Month}.{DateOfFind.Year}";
 		}
 	}
 }

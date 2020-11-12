@@ -6,7 +6,8 @@ namespace Animals.Core.Business.Instances
 {
 	public class Tiger : WildAnimalBase
 	{
-		public Tiger(IMakeASoundable aSound, INotificationService notificationService, float height, float weight, string eyeColor, string habitat, DateTime dateOfFind) : base(aSound, notificationService, height, weight, eyeColor, habitat, dateOfFind)
+		public Tiger(float height, float weight, string eyeColor, string habitat, DateTime dateOfFind, IMakeASoundable aSound) 
+			: base(height, weight, eyeColor, habitat, dateOfFind, aSound)
 		{
 		}
 		public override void MakeASound()

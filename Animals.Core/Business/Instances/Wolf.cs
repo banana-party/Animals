@@ -7,7 +7,8 @@ namespace Animals.Core.Business.Instances
 	public class Wolf : WildAnimalBase
 	{
 		public bool IsItAlpha { get; }
-		public Wolf(IMakeASoundable aSound, INotificationService notificationService, bool isItAlpha, float height, float weight, string eyeColor, string habitat, DateTime dateOfFind) : base(aSound, notificationService, height, weight, eyeColor, habitat, dateOfFind)
+		public Wolf(float height, float weight, string eyeColor, string habitat, DateTime dateOfFind, bool isItAlpha, IMakeASoundable aSound) 
+			: base(height, weight, eyeColor, habitat, dateOfFind, aSound)
 		{
 			IsItAlpha = isItAlpha;
 		}
@@ -15,10 +16,14 @@ namespace Animals.Core.Business.Instances
 		{
 			ASound.MakeASound("ВУУУУУУУУУУ");
 		}
-		public override void PrintInfo()
+		//public override void PrintInfo()
+		//{
+		//	base.PrintInfo();
+		//	NotificationService.Write($"\t{(IsItAlpha ? "Я" : "Не я")}вляется вожаком стаи\n");
+		//}
+		public override string ToString()
 		{
-			base.PrintInfo();
-			NotificationService.WriteLine($"\t{(IsItAlpha ? "Я" : "Не я")}вляется вожаком стаи");
+			return $"{base.ToString()},{IsItAlpha}";
 		}
 	}
 

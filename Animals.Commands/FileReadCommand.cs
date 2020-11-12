@@ -3,26 +3,27 @@ using Animals.Core.Business;
 using Animals.Core.Interfaces;
 namespace Animals.Commands
 {
-    class FileReadCommand : NotificationCommandBase
+    public class FileReadCommand : NotificationAndReaderCommandBase
 	{
-		public FileReadCommand(Zoo zoo, IReaderService readerService, INotificationService notificationService) : base(zoo, readerService, notificationService)
+
+		public FileReadCommand(Zoo zoo, INotificationService notificationService, IReaderService readerService) : base(zoo, notificationService, readerService)
 		{
 		}
 
 		public override void Execute()
 		{
-			_notificationService.WriteLine("Введите путь к файлу (пустая строка означает путь по умолчанию): ");
-			string text = _readerService.ReadLine();
-			if (string.IsNullOrEmpty(text))
+			NotificationService.Write("Введите путь к файлу (пустая строка означает путь по умолчанию): \n");
+			string text = ReaderService.ReadLine();
+			if (!string.IsNullOrEmpty(text))
 			{
-                //непотнятна реализация в этом месте даже не понятны планы на реализацию
+				//Если строка пустая, то открыть стандартный путь, иначе изменить путь на тот который ввел пользователь
+				//Zoo.Open(path);
             }
-			_zoo.ReadFromFile();
+			Zoo.ReadFromFile();
 		}
 		public override string ToString()
 		{
-			//метод всё же стоило переопределить правильно
-			return "";
+			return "Прочитать зоопарк из файла.";
 		}
 	}
 }

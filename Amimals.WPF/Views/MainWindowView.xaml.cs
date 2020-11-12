@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Amimals.WPF.Services;
+using Amimals.WPF.ViewModels;
+using Animals.Core.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +25,8 @@ namespace Amimals.WPF.Views
 	{
 		public MainWindowView()
 		{
+			IDialogService dialogService = new DialogService();
+			DataContext = new MainWindowViewModel(dialogService);
 			InitializeComponent();
 		}
 	}

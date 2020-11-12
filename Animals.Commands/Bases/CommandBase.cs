@@ -5,11 +5,10 @@ namespace Animals.Commands.Bases
 {
 	public abstract class CommandBase : ICommand
 	{
-		//Лучше было назвать поле Zoo
-		protected Zoo _zoo;
+		protected Zoo Zoo;
 		protected CommandBase(Zoo zoo)
 		{
-			_zoo = zoo;
+			Zoo = zoo;
 		}
 		public abstract void Execute();
 	}

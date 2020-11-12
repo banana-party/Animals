@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Runtime.Serialization;
-//Нет никакого абсолютно смысле делать исключения сериализуемыми
+
 namespace Animals.Core.Exceptions
 {
-	[Serializable]
 	public class IncorrectActionException : Exception
 	{
 		public IncorrectActionException()

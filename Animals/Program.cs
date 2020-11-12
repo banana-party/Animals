@@ -1,98 +1,110 @@
 ﻿using Animals.Commands;
+using Animals.Console.FileWorkers;
+using Animals.Console.Services;
 using Animals.Core.Business;
+using Animals.Core.Business.Instances;
 using Animals.Core.Exceptions;
 using Animals.Core.Interfaces;
 using Animals.Factory;
-using Animals.FileReaders;
-using Animals.Menu;
-using Animals.Services;
-using System;t
+using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Animals
 {
 	class Program
 	{
-        //лучше эти поля назвать, начиная с нижнего подчёркивания
-		static IReaderService reader;
-		static INotificationService notification;
-		static IMakeASoundable sound;
-		static IFileReader fileReader;
-		static IFileWriter fileWriter;
+		static IReaderService _reader;
+		static INotificationService _notification;
+		static IMakeASoundable _sound;
+		static IFileReader _fileReader;
+		static IFileWriter _fileWriter;
 		static void Main(string[] args)
 		{
-			
-			reader = new ConsoleReaderService();
-			notification = new ConsoleNotificationService();
-			sound = new ConsoleAnimalMakeASondService();
-			
-			fileReader = new FileReader(sound, notification);
-			fileReader.Open("Input.txt");
-			Zoo zoo = new Zoo(fileReader, fileWriter);
 
-			ConsoleAnimalCreatorService service = new ConsoleAnimalCreatorService(reader, notification, sound);
+			_reader = new ConsoleReaderService();
+			_notification = new ConsoleNotificationService();
+			_sound = new ConsoleAnimalMakeASondService();
+
+			_fileReader = new FileReader(_sound);
+			_fileWriter = new FileWriter();
+
+			Zoo zoo = new Zoo(_fileReader, _fileWriter);
+			IAnimal chick = new Chicken(12f, 32.3f, "Red", 0, _sound);
+
+			StreamWriter _streamWriter = new StreamWriter("Output.txt");
+			_streamWriter.Write($"{chick.ToString()}\n");
+
+
+
+
+			zoo.Add(chick);
+			ConsoleAnimalCreatorService service = new ConsoleAnimalCreatorService(_reader, _notification);
 			AnimalsFactory factory = AnimalsFactory.CreateFactory(service);
 
+			// TODO: Посмотреть в видео и создать класс меню, который будет хранить команды
 			Dictionary<string, ICommand> dict = new Dictionary<string, ICommand>()
 			{
-				{"1", new AddAnimalCommand(zoo, factory, reader, notification) },
-				{"2", new DeleteAnimalCommand(zoo, reader, notification) },
-				{"3", new PrintAnimalInfoCommand(zoo, reader, notification)},
-				{"4", new AnimalMakeSoundCommand(zoo, reader, notification) },
-				{"5", new PrintAllAnimalsInfoCommand(zoo) },
-				{"6", new AllAnimalMakeSoundCommand(zoo) }
-			};
+				{"1", new AddAnimalCommand(zoo, factory, _notification, _reader) }, // TODO: Вводить "ваше животное успешно добавлено"
+				{"2", new DeleteAnimalCommand(zoo, _notification, _reader) },	 // TODO: Вводить "ваше животное успешно удалено"
+				{"3", new PrintAnimalInfoCommand(zoo, _notification, _reader)},
+				{"4", new AnimalMakeSoundCommand(zoo, _notification, _reader) },
+				{"5", new PrintAllAnimalsInfoCommand(zoo, _notification) },
+				{"6", new AllAnimalMakeSoundCommand(zoo) },
+				{"7", new FileReadCommand(zoo, _notification, _reader) },
+				{"8", new FileWriteCommand(zoo, _fileWriter) }
+			}; 
+			
 
 			zoo.ReadFromFile();
-
-			while (true)
+			bool a = false;
+			while (!a)
 			{
-				Console.Clear();
+				System.Console.Clear();
 				PrintAnimalsList(zoo);
-				PrintMenu(dict);
-				string i = reader.ReadLine();
+				PrintMenu(dict); // TODO: проверить. иногда пропадает
+				string i = _reader.ReadLine();
 				try
 				{
 					if (dict.ContainsKey(i))
 					{
 						dict[i].Execute();
-						Console.ReadKey();
+						System.Console.ReadKey();
 					}
-					else if (i == "0")
-						break;
+					else if (i == "0") // TODO: Подумать как избавиться от этого условия
+						a = true; 
 					else
 					{
-						notification.WriteLine("Нет такой команды.");
-						Console.ReadKey();
+						_notification.Write("Нет такой команды.\n");
+						System.Console.ReadKey();
 					}
 				}
 				catch(IndexOutOfRangeException)
 				{
-					notification.WriteLine("Индекс вне области");
-					Console.ReadKey();
+					_notification.Write("Индекс вне области\n");
+					System.Console.ReadKey();
 				}
 				catch (IncorrectActionException e)
 				{
-					notification.WriteLine(e.Message);
-					Console.ReadKey();
+					_notification.Write(e.Message + "\n");
+					System.Console.ReadKey();
 				}
-
 			}
-
 		}
+		
 		static void PrintMenu(Dictionary<string, ICommand> dict)
 		{
 			foreach (var item in dict)
 			{
-				notification.WriteLine($"{item.Key} - {item.Value}");
+				_notification.Write($"{item.Key} - {item.Value}\n");
 			}
-			notification.WriteLine("0 - Выход");
+			_notification.Write("0 - Выход\n");
 		}
 		static void PrintAnimalsList(Zoo zoo)
 		{
 			for (int i = 0; i < zoo.Count; i++)
 			{
-				notification.WriteLine($"{i + 1}. {zoo.GetTypeOfAnimal(i)}");
+				_notification.Write($"{i + 1}. {zoo.GetTypeOfAnimal(i)}\n");
 			}
 		}
 	}
