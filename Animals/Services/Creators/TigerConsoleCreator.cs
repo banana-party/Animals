@@ -8,6 +8,7 @@ namespace Animals.Console.Services.Creators
 	{
 		public TigerConsoleCreator(IReaderService readerService, INotificationService notificationService) : base(readerService, notificationService)
 		{
+			SoundService = ConsoleSoundService.CreateSoundService("РЯЯ");
 		}
 
 		public override IAnimal Create()

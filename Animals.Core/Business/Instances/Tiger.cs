@@ -12,7 +12,7 @@ namespace Animals.Core.Business.Instances
 		}
 		public override void MakeASound()
 		{
-			ASound.MakeASound("РЯЯЯЯЯЯ");
+			ASound.MakeASound();
 		}
 	}
 }

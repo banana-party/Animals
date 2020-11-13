@@ -26,17 +26,22 @@ namespace Amimals.WPF.ViewModels
 			_dialogService = dialogService;
 			Animals = new List<IAnimal>()
 			{
-				new Chicken(new SoundService(), new NotificationService(), 12.2f, 13.3f, "Red", 0),
-				new Chicken(new SoundService(), new NotificationService(), 12.2f, 13.3f, "Red", 0),
-				new Chicken(new SoundService(), new NotificationService(), 12.2f, 13.3f, "Red", 0),
-				new Chicken(new SoundService(), new NotificationService(), 12.2f, 13.3f, "Red", 0),
+				new Chicken(12.2f, 13.3f, "Red", 0, new SoundService(@"Sounds\chicken.wav")),
 				new Cat
 				(
-					new SoundService(), 
-					new NotificationService(), true, 12f, 44f, 
-					"Green", "Vasya", "Tasmanian", true, 
-					"Black", new System.DateTime(1332, 11, 3)
-				)
+					 12f, 44f,
+					"Green", "Vasya", "Tasmanian", true,
+					"Black", new System.DateTime(1332, 11, 3),
+					true, new SoundService(@"Sounds\meow.wav")
+				),
+				new Dog
+				(
+					12.2f,33f,
+					"Yellow", "Boobick", "Street", false,
+					"Brown", new System.DateTime(2015,3,24), 
+					false, new SoundService(@"Sounds\bark.wav")
+				),
+				new Stork(11.1f,22,"Black", 200, new SoundService(@"Sounds\stork.wav"))
 			};
 		}
 		private IAnimal _selectedAnimal;
@@ -74,6 +79,11 @@ namespace Amimals.WPF.ViewModels
 			Animals.Remove(SelectedAnimal);
 			SelectedAnimal = null;
 			Animals = new List<IAnimal>(Animals);
+		}
+		public Command PlaySoundCommand => new Command(PlaySound);
+		private void PlaySound()
+		{
+			SelectedAnimal.MakeASound();
 		}
 	}
 }

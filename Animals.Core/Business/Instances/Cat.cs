@@ -16,14 +16,9 @@ namespace Animals.Core.Business.Instances
 
 		public override void MakeASound()
 		{
-			ASound.MakeASound("МЯЯЯЯУ");
+			ASound.MakeASound();
 		}
 
-		//public override void PrintInfo()
-		//{
-		//	base.PrintInfo();
-		//	NotificationService.Write($"\tШерсть {(IsItWooled ? "есть" : "отсутствует")}\n");
-		//}
 		public override string ToString()
 		{
 			return $"{base.ToString()},{IsItWooled}";

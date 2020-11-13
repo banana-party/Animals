@@ -8,6 +8,7 @@ namespace Animals.Console.Services.Creators
 	{
 		public CatConsoleCreator(IReaderService readerService, INotificationService notificationService) : base(readerService, notificationService)
 		{
+			SoundService = ConsoleSoundService.CreateSoundService("МЯЯУ");
 		}
 
 		public override IAnimal Create()

@@ -23,7 +23,7 @@ namespace Animals.Console.Services
 		{
 			_reader = new ConsoleReaderService();
 			_notification = new ConsoleNotificationService(); //Сервисы ввода/вывода в консоль
-			_sound = new ConsoleAnimalMakeASondService(); 
+			_sound = ConsoleSoundService.CreateSoundService(); 
 
 			_fileReader = new FileReader(_sound);
 			_fileWriter = new FileWriter();

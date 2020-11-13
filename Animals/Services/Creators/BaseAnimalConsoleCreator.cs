@@ -7,12 +7,11 @@ namespace Animals.Console.Services.Creators
 	{
 		protected readonly INotificationService NotificationService;
 		protected readonly IReaderService ReaderService;
-		protected readonly IMakeASoundable SoundService;
+		protected IMakeASoundable SoundService;
 		protected BaseAnimalConsoleCreator(IReaderService readerService, INotificationService notificationService)
 		{
 			NotificationService = notificationService;
 			ReaderService = readerService;
-			SoundService = ConsoleSoundService.CreateSoundService(notificationService);
 		}
 		public abstract IAnimal Create();
 		protected Tuple<float, float, string> AnimalParams()

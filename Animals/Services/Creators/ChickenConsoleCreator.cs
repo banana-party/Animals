@@ -7,6 +7,7 @@ namespace Animals.Console.Services.Creators
 	{
 		public ChickenConsoleCreator(IReaderService readerService, INotificationService notificationService) : base(readerService, notificationService)
 		{
+			SoundService = ConsoleSoundService.CreateSoundService("Пок-пок-пок");
 		}
 
 		public override IAnimal Create()

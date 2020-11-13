@@ -4,21 +4,22 @@ namespace Animals.Console.Services
 {
 	public class ConsoleSoundService : IMakeASoundable
 	{
-		private readonly INotificationService _notificationService;
 		private static ConsoleSoundService _soundService;
-		private ConsoleSoundService(INotificationService notificationService)
+		private readonly string _soundText;
+		private ConsoleSoundService(string text)
 		{
-			_notificationService = notificationService;
+			_soundText = text;
 		}
-		public static ConsoleSoundService CreateSoundService(INotificationService notificationService)
+		public static ConsoleSoundService CreateSoundService(string text)
 		{
 			if (_soundService == null)
-				_soundService = new ConsoleSoundService(notificationService);
+				_soundService = new ConsoleSoundService(text);
 			return _soundService;
 		}
-		public void MakeASound(string str)
+		public void MakeASound()
 		{
-			_notificationService.Write($"{str}\n");
+			System.Console.WriteLine(_soundText);
+			// Это же Console Sound. Мне не обязательно пользоваться Notification сервисом. Можно сразу юзать консоль.
 		}
 	}
 }

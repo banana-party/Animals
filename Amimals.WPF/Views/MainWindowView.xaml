@@ -15,7 +15,7 @@
 		<converters:ValueToBoolConverter x:Key="ValueToBoolConverter"/>
 		<converters:AnimalToSoundPathConverter x:Key="AnimalToSoundPathConverter"/>
 	</Window.Resources>
-    <Grid>
+	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="6*"/>
 			<RowDefinition Height="*"/>
@@ -26,7 +26,8 @@
 				  CanUserAddRows="False" 
 				  SelectedItem="{Binding SelectedAnimal, Mode=TwoWay}">
 			<DataGrid.Columns>
-				<DataGridTextColumn Header="Тип" IsReadOnly="True"/> <!--TODO: Отображение типа животного-->
+				<DataGridTextColumn Header="Тип" IsReadOnly="True"/>
+				<!--TODO: Отображение типа животного-->
 				<DataGridTextColumn Header="Рост" Binding="{Binding Height}" IsReadOnly="True"/>
 				<DataGridTextColumn Header="Вес" Binding="{Binding Weight}" IsReadOnly="True"/>
 				<DataGridTextColumn Header="Цвет глаз" Binding="{Binding EyeColor}" IsReadOnly="True"/>
@@ -43,18 +44,7 @@
 			<Button Grid.Column="0" Command="{Binding AddCommand}">Добавить</Button>
 			<Button Grid.Column="1" Command="{Binding EditCommand}" IsEnabled="{Binding SelectedAnimal, Converter={StaticResource ValueToBoolConverter}}">Редактировать</Button>
 			<Button Grid.Column="2" Command="{Binding RemoveCommand}" IsEnabled="{Binding SelectedAnimal, Converter={StaticResource ValueToBoolConverter}}">Удалить</Button>
-			
-			<Button Grid.Column="3" Name="soundplayer" Content="Go">
-				<Button.Triggers>
-					<EventTrigger RoutedEvent="Button.Click">
-						<EventTrigger.Actions>
-							<!--<SoundPlayerAction Source="{Binding SelectedAnimal, Converter={StaticResource AnimalToSoundPathConverter}}"></SoundPlayerAction>-->
-							<SoundPlayerAction Source="chicken.wav"></SoundPlayerAction>
-						</EventTrigger.Actions>
-					</EventTrigger>
-				</Button.Triggers>
-			</Button>
-			
+			<Button Grid.Column="3" Command="{Binding PlaySoundCommand}" IsEnabled="{Binding SelectedAnimal, Converter={StaticResource ValueToBoolConverter}}">Издать звук</Button>
 		</Grid>
-    </Grid>
+	</Grid>
 </Window>

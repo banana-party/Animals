@@ -1,20 +1,20 @@
 ﻿using Animals.Core.Interfaces;
 using System.Media;
-//Сделать реализацию этого сервиса
+
 namespace Amimals.WPF.Services
 {
 	class SoundService : IMakeASoundable
 	{
 		private SoundPlayer soundPlayer;
-		public SoundService()
+		public SoundService(string text)
 		{
 			soundPlayer = new SoundPlayer();
+			soundPlayer.SoundLocation = text;
+			soundPlayer.Load();
 		}
-		public void MakeASound(string str)
+		public void MakeASound()
 		{
-			soundPlayer.SoundLocation = str;
 			soundPlayer.Play();
 		}
-		// TODO: класс должен выглядеть примерно так, создать в мввм команду выведения звука, создать кнопку, забиндиться на команду.
 	}
 }

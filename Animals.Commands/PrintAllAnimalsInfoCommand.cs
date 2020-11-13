@@ -12,7 +12,7 @@ namespace Animals.Commands
 		{
 		}
 
-		public override void Execute()
+		public override void Execute() //TODO: вывод на экран в консоли выглядит убого.
 		{
 			var arr = Zoo.Info().ToList();
 			List<List<string>> lst = new List<List<string>>();

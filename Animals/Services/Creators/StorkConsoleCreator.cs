@@ -7,6 +7,7 @@ namespace Animals.Console.Services.Creators
 	{
 		public StorkConsoleCreator(IReaderService readerService, INotificationService notificationService) : base(readerService, notificationService)
 		{
+			SoundService = ConsoleSoundService.CreateSoundService("Вааа");
 		}
 
 		public override IAnimal Create()

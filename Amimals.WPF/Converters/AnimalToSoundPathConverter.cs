@@ -14,12 +14,14 @@ namespace Amimals.WPF.Converters
 	{
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-			var i = value as SoundService;
-			if (i == null)
-			{
-				return null;
-			}
-			return i.SoundPath;
+			//var i = value as SoundService;
+			//if (i == null)
+			//{
+			//	return null;
+			//}
+			//return i.SoundPath;
+
+			throw new NotImplementedException();
 		}
 
 		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

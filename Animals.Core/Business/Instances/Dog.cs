@@ -20,15 +20,8 @@ namespace Animals.Core.Business.Instances
 		}
 		public override void MakeASound()
 		{
-			ASound.MakeASound("ГААААВ");
+			ASound.MakeASound();
 		}
-
-		//public override void PrintInfo()
-		//{
-		//	base.PrintInfo();
-		//	NotificationService.Write($"\tСобака {(IsItTrained ? "тренированная" : "не тренированная")}\n");
-		//}
-
 		public override string ToString()
 		{
 			return $"{base.ToString()},{IsItTrained}";
