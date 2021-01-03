@@ -14,11 +14,6 @@ namespace Animals.Core.Business.Bases
 			return $"Я лечу на высоте {FlyHeight} метров!";
 		}
 
-		//public override void PrintInfo()
-		//{
-		//	base.PrintInfo();
-		//	NotificationService.Write($"\tВысота полета: {FlyHeight}]n");
-		//}
 		public override string ToString()
 		{
 			return $"{base.ToString()},{FlyHeight}";

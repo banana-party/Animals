@@ -1,5 +1,4 @@
-﻿using Animals.Core.Interfaces;
-using System;
+﻿using System;
 using System.Globalization;
 using System.Windows.Data;
 using Animals.Core.Business.Bases;
@@ -17,10 +16,8 @@ namespace Amimals.WPF.Converters
 			if (value == null)
 				throw new NullReferenceException("Reference was null"); 
 			if (value is AnimalBase animal)
-			{
 				return animal.Type();
-			}
-			return null;
+			throw new IncorrectTypeException("Type was incorrect");
 		}
 
 		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

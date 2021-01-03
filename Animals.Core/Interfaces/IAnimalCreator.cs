@@ -3,7 +3,5 @@
     public interface IAnimalCreator
 	{
 		IAnimal Create(string type);
-
-
 	}
 }

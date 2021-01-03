@@ -13,7 +13,7 @@ namespace Animals.Console.Services
 	{
 		private readonly IReaderService _reader;
 		private readonly INotificationService _notification;
-		private readonly IMakeASoundable _sound;
+		private readonly IAnimalParser _animalParser;
 		private IFileReader _fileReader;
 		private IFileWriter _fileWriter;
 		private Dictionary<string, ICommand> _dict;
@@ -23,9 +23,9 @@ namespace Animals.Console.Services
 		{
 			_reader = new ConsoleReaderService();
 			_notification = new ConsoleNotificationService(); //Сервисы ввода/вывода в консоль
-			_sound = ConsoleSoundService.CreateSoundService(); 
+			_animalParser = new ConsoleAnimalParserService();
 
-			_fileReader = new FileReader(_sound);
+			_fileReader = new FileReader(_animalParser);
 			_fileWriter = new FileWriter();
 
 			_service = new ConsoleAnimalCreatorService(_reader, _notification);
@@ -36,23 +36,26 @@ namespace Animals.Console.Services
 			{
 				{"1", new AddAnimalCommand(_zoo, factory, _notification, _reader) }, // TODO: Вводить "ваше животное успешно добавлено"
 				{"2", new DeleteAnimalCommand(_zoo, _notification, _reader) },	 // TODO: Вводить "ваше животное успешно удалено"
-				{"3", new PrintAnimalInfoCommand(_zoo, _notification, _reader)},
-				{"4", new AnimalMakeSoundCommand(_zoo, _notification, _reader) },
+				{"3", new PrintAnimalInfoCommand(_zoo, _notification, _reader)},  //TODO: Убрать вывод животных над меню
+				{"4", new AnimalMakeSoundCommand(_zoo, _notification, _reader) }, 
 				{"5", new PrintAllAnimalsInfoCommand(_zoo, _notification) },
 				{"6", new AllAnimalMakeSoundCommand(_zoo) },
 				{"7", new FileReadCommand(_zoo, _notification, _reader, _fileReader) },
-				{"8", new FileWriteCommand(_zoo, _fileWriter) }
+				{"8", new FileWriteCommand(_zoo, _fileWriter) },
+				{"0", new ExitCommand() } 
+
 			};
 
 		}
 		public void PerformAction()
 		{
-			while (true)
+			string i;
+			do
 			{
 				System.Console.Clear();
-				PrintAnimalsList(_zoo);
-				PrintMenu(_dict); // TODO: проверить. иногда пропадает
-				string i = _reader.ReadLine();
+				PrintAnimalsList(_zoo); // TODO: Удалить в релизе
+				PrintMenu(_dict); 
+				i = _reader.ReadLine();
 				try
 				{
 					if (_dict.ContainsKey(i))
@@ -60,8 +63,6 @@ namespace Animals.Console.Services
 						_dict[i].Execute();
 						System.Console.ReadKey();
 					}
-					else if (i == "0") // TODO: Подумать как избавиться от этого условия
-						return;
 					else
 					{
 						_notification.Write("Нет такой команды.\n");
@@ -78,14 +79,13 @@ namespace Animals.Console.Services
 					_notification.Write(e.Message + "\n");
 					System.Console.ReadKey();
 				}
-			}
+			} while (i != "0");
 		}
 
 		public void PrintMenu(Dictionary<string, ICommand> dict)
 		{
 			foreach (var item in dict)
 				_notification.Write($"{item.Key} - {item.Value}\n");
-			_notification.Write("0 - Выход\n");
 		}
 		public void PrintAnimalsList(Zoo zoo) // TODO: Удалить в релизе
 		{

@@ -47,7 +47,6 @@ namespace Animals.Console.Services.Creators
 					return false;
 				else
 					NotificationService.Write("Не верный формат. Повторите ввод.\n");
-
 			} while (true);
 		}
 		protected DateTime? DateEnter(string text)
@@ -56,7 +55,7 @@ namespace Animals.Console.Services.Creators
 			DateTime? res = null;
 			while (!isItReady)
 			{
-				NotificationService.Write($"{text} (dd.mm.yyyy): ");
+				NotificationService.Write($"{text} (dd.mm.yyyy): "); //TODO: DateTime.Parse или TryParse
 				var lst = ReaderService.ReadLine().Split('.');
 				try
 				{

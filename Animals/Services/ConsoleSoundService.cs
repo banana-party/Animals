@@ -10,16 +10,16 @@ namespace Animals.Console.Services
 		{
 			_soundText = text;
 		}
-		public static ConsoleSoundService CreateSoundService(string text)
+		// Все мяукали потому что я Использовал синглтон в этом сервисе. 
+		public static ConsoleSoundService CreateSoundService(string text) 
 		{
-			if (_soundService == null)
-				_soundService = new ConsoleSoundService(text);
-			return _soundService;
+			//if (_soundService == null)
+			//	_soundService = new ConsoleSoundService(text);
+			return new ConsoleSoundService(text);
 		}
 		public void MakeASound()
 		{
 			System.Console.WriteLine(_soundText);
-			// Это же Console Sound. Мне не обязательно пользоваться Notification сервисом. Можно сразу юзать консоль.
 		}
 	}
 }

@@ -11,18 +11,10 @@ namespace Animals.Console.FileWorkers
 	{
 		private StreamReader _stream;
 		private Dictionary<string, IFromFileParser> _dict;
-
-		public FileReader(IMakeASoundable aSound)
+		private readonly IAnimalParser _animalParser; // TODO: IAnimalParser или IFromFileParser? Парсеры одинаковые, есть ли смысл разделять интерфейсы?
+		public FileReader(IAnimalParser animalParser)
 		{
-			_dict = new Dictionary<string, IFromFileParser>()
-			{
-				{"Cat", new CatParser(aSound) },
-				{"Dog", new DogParser(aSound) },
-				{"Chicken", new ChickenParser(aSound) },
-				{"Stork", new StorkParser(aSound) },
-				{"Tiger", new TigerParser(aSound) },
-				{"Wolf", new WolfParser(aSound) }
-			};
+			_animalParser = animalParser;
 		}
 
 		public void Dispose()
@@ -40,9 +32,9 @@ namespace Animals.Console.FileWorkers
 			{
 				var txt = _stream.ReadLine();
 				List<string> lst = txt.Split(',').ToList();
-				if (_dict.ContainsKey(lst[0]))
-					animals.Add(_dict[lst[0]].Parse(lst));
+				animals.Add(_animalParser.Parse(lst));
 			}
+			Dispose();
 			return animals;
 		}
 	}

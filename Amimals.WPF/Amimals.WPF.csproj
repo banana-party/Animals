@@ -81,6 +81,7 @@
     </Compile>
     <Compile Include="Converters\AnimalToSoundPathConverter.cs" />
     <Compile Include="Converters\AnimalToStringConverter.cs" />
+    <Compile Include="Exceptions\IncorrectTypeException.cs" />
     <Compile Include="Converters\ValueToBoolConverter.cs" />
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\NotificationService.cs" />

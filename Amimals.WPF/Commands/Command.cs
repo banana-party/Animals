@@ -7,7 +7,7 @@ namespace Amimals.WPF.Commands
 	{
 		public event EventHandler CanExecuteChanged;
         //Приватное поле, изменяемое только в конструкторе, лучше всего делать readonly
-		private Action _action;
+		private readonly Action _action;
 		public Command(Action action)
 		{
 			_action = action;

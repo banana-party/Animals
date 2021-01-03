@@ -7,10 +7,7 @@ namespace Animals.Core.Exctensions
 	{
 		public static string Type(this AnimalBase animal)
 		{
-			StringBuilder stringBuilder = new StringBuilder();
-			stringBuilder.Append(animal.GetType());
-			stringBuilder.Remove(0, 32);                        // вычесть "Animals.Core.Business.Instances."
-			return stringBuilder.ToString();
+			return animal.GetType().Name;
 		}
 		public static string RusType(this AnimalBase animal)
 		{

@@ -26,8 +26,8 @@
 				  CanUserAddRows="False" 
 				  SelectedItem="{Binding SelectedAnimal, Mode=TwoWay}">
 			<DataGrid.Columns>
-				<DataGridTextColumn Header="Тип" IsReadOnly="True"/>
-				<!--TODO: Отображение типа животного-->
+				<DataGridTextColumn Header="Тип" IsReadOnly="True" Binding="{Binding Path=., Converter={StaticResource AnimalToStringConverter}}"/>
+				
 				<DataGridTextColumn Header="Рост" Binding="{Binding Height}" IsReadOnly="True"/>
 				<DataGridTextColumn Header="Вес" Binding="{Binding Weight}" IsReadOnly="True"/>
 				<DataGridTextColumn Header="Цвет глаз" Binding="{Binding EyeColor}" IsReadOnly="True"/>

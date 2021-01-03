@@ -12,11 +12,6 @@ namespace Animals.Core.Business.Bases
 		}
 		public string Habitat { get; }
 		public DateTime DateOfFind { get; }
-		//public override void PrintInfo()
-		//{
-		//	base.PrintInfo();
-		//	NotificationService.Write($"\tСреда обитания: {Habitat}\n\tДата нахождения: {DateOfFind.Day}.{DateOfFind.Month}.{DateOfFind.Year}\n");
-		//}
 		public override string ToString()
 		{
 			return $"{base.ToString()},{Habitat},{DateOfFind.Day}.{DateOfFind.Month}.{DateOfFind.Year}";
