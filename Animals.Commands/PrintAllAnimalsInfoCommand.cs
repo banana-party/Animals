@@ -16,10 +16,10 @@ namespace Animals.Commands
 		{
 			var arr = Zoo.Info().ToList();
 			List<List<string>> lst = new List<List<string>>();
+            //Нужно было воспользоваться LINQ
 			for (int i = 0; i < arr.Count; i++)
 				lst.Add(arr[i].Split(',').ToList());
-
-			int count = 1;
+            int count = 1;
 			foreach (var el in lst)
 			{
 				NotificationService.Write($"{count++}. {el[0]}:\n\t");
@@ -30,6 +30,7 @@ namespace Animals.Commands
 				NotificationService.Write($"\n");
 			}
 		}
+        //Метод можно было реализовать лучше
 		public override string ToString()
 		{
 			return "Напечатать информацию о животных, которые есть на данный момент в зоопарке.";

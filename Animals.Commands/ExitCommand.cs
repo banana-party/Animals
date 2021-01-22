@@ -1,5 +1,5 @@
 ﻿using Animals.Core.Interfaces;
-
+//Отличная команда
 namespace Animals.Commands
 {
 	public class ExitCommand : ICommand

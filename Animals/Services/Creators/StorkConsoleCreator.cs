@@ -1,6 +1,6 @@
 ﻿using Animals.Core.Business.Instances;
 using Animals.Core.Interfaces;
-
+//Дублирование кода у всех птиц, надо постараться избавиться от дублирования кода
 namespace Animals.Console.Services.Creators
 {
 	class StorkConsoleCreator : BaseAnimalConsoleCreator

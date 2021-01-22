@@ -12,6 +12,7 @@ namespace Amimals.WPF.ViewModels
 	{
 		private readonly IDialogService _dialogService;
 		private List<IAnimal> _animals;
+		//лучше использовать ObservableColletion<Animal>
 		public List<IAnimal> Animals
 		{
 			get => _animals;
@@ -61,6 +62,7 @@ namespace Amimals.WPF.ViewModels
 		public Command EditCommand => new Command(Edit);
 		public void Edit()
 		{
+			//Нужно использовать сервис навигации
 			EditAnimalView view = new EditAnimalView()
 			{
 				DataContext = new EditAnimalViewModel()
@@ -78,8 +80,10 @@ namespace Amimals.WPF.ViewModels
 				return;
 			Animals.Remove(SelectedAnimal);
 			SelectedAnimal = null;
+			//Уйдёт при использовании ObservableCollection
 			Animals = new List<IAnimal>(Animals);
 		}
+		//Команда нигде не используется
 		public Command PlaySoundCommand => new Command(PlaySound);
 		private void PlaySound()
 		{

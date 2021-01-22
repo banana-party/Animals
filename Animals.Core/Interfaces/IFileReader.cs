@@ -2,6 +2,7 @@
 
 namespace Animals.Core.Interfaces
 {
+	//Всё отлично
     public interface IFileReader
 	{
 		IEnumerable<IAnimal> Read(string path); 

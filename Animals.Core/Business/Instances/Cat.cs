@@ -13,12 +13,12 @@ namespace Animals.Core.Business.Instances
 			IsItWooled = isItWooled;
 		}
 		public bool IsItWooled { get; }
-
+        //метод можно было реализовать лучше
 		public override void MakeASound()
 		{
 			ASound.MakeASound();
 		}
-
+		//метод можно было реализовать лучше
 		public override string ToString()
 		{
 			return $"{base.ToString()},{IsItWooled}";

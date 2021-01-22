@@ -24,6 +24,9 @@ namespace Animals.Console.FileWorkers
 
 		public IEnumerable<IAnimal> Read(string path)
 		{
+            /*Лучше всего использовать конструкцию using и тогда не хранить приватное поле потока, либо открывать поток
+             в конструкторе или каком-то методе типо Open и закрывать его в соответствующем методе и реализовывать
+			IDisposable параллельно, а сейчас это смсешивание двух возможных подходов*/
 			if (string.IsNullOrEmpty(path))
 				throw new NullReferenceException("String was null or empty");
 			_stream = new StreamReader(path);

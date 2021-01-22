@@ -10,11 +10,13 @@ namespace Animals.Commands
 		public AnimalMakeSoundCommand(Zoo zoo, INotificationService notificationService, IReaderService readerService) : base(zoo, notificationService, readerService)
 		{
 		}
-	
-		public override void Execute()
+		//Метод можно было написать лучше
+        public override void Execute()
 		{
+			//Лучше использовать ?.
 			Zoo.MakeASound(this.ReadIndex(NotificationService, ReaderService));
 		}
+		//Метод можно было написать лучше
 		public override string ToString()
 		{
 			return "Заставить животное с номером i издать звук.";

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
-
-namespace Amimals.WPF.Converters
+//Всё отлично
+namespace Amimals.WPF.Exceptions
 {
 	internal class IncorrectTypeException : Exception
 	{

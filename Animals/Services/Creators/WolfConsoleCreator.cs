@@ -1,7 +1,7 @@
 ﻿using Animals.Core.Business.Instances;
 using Animals.Core.Interfaces;
 using System;
-
+//Дублирование кода с птицами, домашними и дикими животными
 namespace Animals.Console.Services.Creators
 {
 	class WolfConsoleCreator : BaseAnimalConsoleCreator

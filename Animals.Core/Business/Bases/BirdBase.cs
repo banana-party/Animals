@@ -9,11 +9,12 @@ namespace Animals.Core.Business.Bases
 		{
 			FlyHeight = flyHeight;
 		}
+		//Лишний метод? Метод можно было реализовать лучше
 		public string Fly()
 		{
 			return $"Я лечу на высоте {FlyHeight} метров!";
 		}
-
+		//Метод можно было реализовать лучше
 		public override string ToString()
 		{
 			return $"{base.ToString()},{FlyHeight}";

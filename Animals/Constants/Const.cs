@@ -1,5 +1,6 @@
 ﻿namespace Animals.Console.Constants
 {
+    //этот класс можно было сделать статическим, так же как и константы статическими
 	class Const
 	{
 		public const string CAT_SOUND = "Мяяяу";

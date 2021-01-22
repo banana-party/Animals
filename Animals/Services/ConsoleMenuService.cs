@@ -11,6 +11,7 @@ namespace Animals.Console.Services
 {
 	class ConsoleMenuService
 	{
+		//Поля лучше сделать readonly
 		private readonly IReaderService _reader;
 		private readonly INotificationService _notification;
 		private readonly IAnimalParser _animalParser;

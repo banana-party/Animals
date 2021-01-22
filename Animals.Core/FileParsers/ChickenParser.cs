@@ -1,11 +1,11 @@
 ﻿using Animals.Core.Business.Instances;
 using Animals.Core.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Globalization;
 
 namespace Animals.Core.FileParsers
 {
+	//Дублирование кода конструкторов
 	public class ChickenParser : IFromFileParser
 	{
 		private readonly IMakeASoundable _aSound;
@@ -15,6 +15,8 @@ namespace Animals.Core.FileParsers
 		}
 		public IAnimal Parse(List<string> lst)
 		{
+			//Необходимо сделать проверки на то, что коллекция не пуста и не null и параметров достаточно,
+			//Так же возможны исключения в float.Parse
 			return new Chicken(
 				float.Parse(lst[1], CultureInfo.InvariantCulture), 
 				float.Parse(lst[2], CultureInfo.InvariantCulture), 

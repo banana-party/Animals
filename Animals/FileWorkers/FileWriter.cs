@@ -20,6 +20,8 @@ namespace Animals.Console.FileWorkers
 
 		public void WriteToFile(IEnumerable<string> animals)
 		{
+            //Те же самые ошибки, что и в StreamReader
+			//Необходимо проверять коллекцию на то, что в ней есть элементы иначе возможно исключение
 			foreach (var el in animals)
 				_streamWriter.WriteLine(el);
 			_streamWriter.Dispose();

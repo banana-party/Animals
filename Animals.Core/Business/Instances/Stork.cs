@@ -8,6 +8,7 @@ namespace Animals.Core.Business.Instances
 		public Stork(float height, float weight, string eyeColor, int flyHeight, IMakeASoundable aSound) : base(height, weight, eyeColor, flyHeight, aSound)
 		{
 		}
+		//Метод можно было реализовать лучше
 		public override void MakeASound()
 		{
 			ASound.MakeASound();

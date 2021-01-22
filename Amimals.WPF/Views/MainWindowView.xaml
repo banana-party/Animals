@@ -13,7 +13,7 @@
 		</Style>
 		<converters:AnimalToStringConverter x:Key="AnimalToStringConverter"/>
 		<converters:ValueToBoolConverter x:Key="ValueToBoolConverter"/>
-		<converters:AnimalToSoundPathConverter x:Key="AnimalToSoundPathConverter"/>
+        <converters:AnimalToSoundPathConverter x:Key="AnimalToSoundPathConverter"/><!--Лишний конвертер-->
 	</Window.Resources>
 	<Grid>
 		<Grid.RowDefinitions>
@@ -27,8 +27,7 @@
 				  SelectedItem="{Binding SelectedAnimal, Mode=TwoWay}">
 			<DataGrid.Columns>
 				<DataGridTextColumn Header="Тип" IsReadOnly="True" Binding="{Binding Path=., Converter={StaticResource AnimalToStringConverter}}"/>
-				
-				<DataGridTextColumn Header="Рост" Binding="{Binding Height}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Рост" Binding="{Binding Height}" IsReadOnly="True"/>
 				<DataGridTextColumn Header="Вес" Binding="{Binding Weight}" IsReadOnly="True"/>
 				<DataGridTextColumn Header="Цвет глаз" Binding="{Binding EyeColor}" IsReadOnly="True"/>
 			</DataGrid.Columns>

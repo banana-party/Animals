@@ -1,7 +1,7 @@
 ﻿using Animals.Core.Exctensions;
 using Animals.Core.Interfaces;
 using System.Globalization;
-
+//Отличный базовый класс, в принципе свойства можно вынести в интерфейс
 namespace Animals.Core.Business.Bases
 {
 	public abstract class AnimalBase : IAnimal

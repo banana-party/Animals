@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
-
+//Полностью лишний конвертер
 namespace Amimals.WPF.Converters
 {
 	class AnimalToSoundPathConverter : IValueConverter

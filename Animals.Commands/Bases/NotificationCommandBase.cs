@@ -1,9 +1,6 @@
 ﻿using Animals.Core.Business;
 using Animals.Core.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
+//Всё отлично
 namespace Animals.Commands.Bases
 {
 	public abstract class NotificationCommandBase : CommandBase

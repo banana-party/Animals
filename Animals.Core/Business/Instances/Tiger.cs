@@ -10,6 +10,7 @@ namespace Animals.Core.Business.Instances
 			: base(height, weight, eyeColor, habitat, dateOfFind, aSound)
 		{
 		}
+		//Метод можно было реализовать лучше
 		public override void MakeASound()
 		{
 			ASound.MakeASound();

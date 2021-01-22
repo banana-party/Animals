@@ -1,11 +1,7 @@
 ﻿using Amimals.WPF.Commands;
 using Animals.Core.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+//Необходимо реализовать редактирование животного в WPF
 namespace Amimals.WPF.ViewModels
 {
 	class EditAnimalViewModel : BaseViewModel

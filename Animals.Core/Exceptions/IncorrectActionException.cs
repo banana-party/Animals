@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Runtime.Serialization;
-
+//Хорошо реализованный класс
 namespace Animals.Core.Exceptions
 {
 	public class IncorrectActionException : Exception

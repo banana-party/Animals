@@ -3,11 +3,12 @@ using Animals.Core.FileParsers;
 using Animals.Core.Interfaces;
 using System.Collections.Generic;
 using Animals.Console.Constants;
-
+//Тут всё отлично
 namespace Animals.Console.Services
 {
 	class ConsoleAnimalParserService : IAnimalParser
 	{
+        //Поле должно быть readonly
 		private Dictionary<string, IFromFileParser> _dict;
 		public ConsoleAnimalParserService()
 		{

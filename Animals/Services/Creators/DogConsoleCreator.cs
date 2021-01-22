@@ -1,7 +1,7 @@
 ﻿using Animals.Core.Business.Instances;
 using Animals.Core.Interfaces;
 using System;
-
+//Дублирование кода с CatConsoleCreator, нужно использовать базовый класс домашних животных для предотвращения этого
 namespace Animals.Console.Services.Creators
 {
 	public class DogConsoleCreator : BaseAnimalConsoleCreator
@@ -18,7 +18,7 @@ namespace Animals.Console.Services.Creators
 			float weight = tuple.Item2;
 			string eyeColor = tuple.Item3;
 
-
+            //Избавиться от дублирования кода
 			NotificationService.Write("Введите имя: ");
 			string name = ReaderService.ReadLine();
 			NotificationService.Write("Введите породу:");

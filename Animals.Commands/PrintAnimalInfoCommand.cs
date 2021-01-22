@@ -21,6 +21,7 @@ namespace Animals.Commands
 				NotificationService.Write($"{lst[i]} ");
 			}
 		}
+		//Метод можно было реализовать лучше
 		public override string ToString()
 		{
 			return "Посмотреть информацию о животном с номером i.";

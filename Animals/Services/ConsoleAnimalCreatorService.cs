@@ -15,32 +15,20 @@ namespace Animals.Console.Services
 			_notificationService = notificationService;
 		}
 		public IAnimal Create(string type)
-		{
-			switch (type)
-			{
-				case "Cat":
-					_animalCreator = new CatConsoleCreator(_readerService, _notificationService);
-					break;
-				case "Dog":
-					_animalCreator = new DogConsoleCreator(_readerService, _notificationService);
-					break;
-				case "Chicken":
-					_animalCreator = new ChickenConsoleCreator(_readerService, _notificationService);
-					break;
-				case "Stork":
-					_animalCreator = new StorkConsoleCreator(_readerService, _notificationService);
-					break;
-				case "Wolf":
-					_animalCreator = new WolfConsoleCreator(_readerService, _notificationService);
-					break;
-				case "Tiger":
-					_animalCreator = new TigerConsoleCreator(_readerService, _notificationService);
-					break;
-				default:
-					throw new IncorrectActionException("There is no animal like this");
-			}
-			return _animalCreator.Create();
-		}
+        {
+            //Этод код можно было вынести в отдельный фабричный метод или сделать его шаблонным методом
+            _animalCreator = type switch
+            {
+                "Cat" => (BaseAnimalConsoleCreator) new CatConsoleCreator(_readerService, _notificationService),
+                "Dog" => new DogConsoleCreator(_readerService, _notificationService),
+                "Chicken" => new ChickenConsoleCreator(_readerService, _notificationService),
+                "Stork" => new StorkConsoleCreator(_readerService, _notificationService),
+                "Wolf" => new WolfConsoleCreator(_readerService, _notificationService),
+                "Tiger" => new TigerConsoleCreator(_readerService, _notificationService),
+                _ => throw new IncorrectActionException("There is no animal like this")
+            };
+            return _animalCreator.Create();
+        }
 	}
 
 }

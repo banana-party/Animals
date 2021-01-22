@@ -1,7 +1,7 @@
 ﻿using Animals.Core.Business.Instances;
 using Animals.Core.Interfaces;
 using System;
-
+//Дублирование кода получения параметров из Tuple и разбора Tuple
 namespace Animals.Console.Services.Creators
 {
 	class TigerConsoleCreator : BaseAnimalConsoleCreator

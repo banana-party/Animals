@@ -1,7 +1,7 @@
 ﻿using Animals.Core.Business.Instances;
 using Animals.Core.Interfaces;
 using System;
-
+//Всё хорошо
 namespace Animals.Console.Services.Creators
 {
 	public class CatConsoleCreator : BaseAnimalConsoleCreator

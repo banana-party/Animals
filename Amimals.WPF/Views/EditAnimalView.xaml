@@ -6,5 +6,6 @@
         xmlns:local="clr-namespace:Amimals.WPF.Views" xmlns:controls="clr-namespace:Amimals.WPF.Controls"
 		mc:Ignorable="d"
         Title="EditAnimalView" Height="450" Width="800">
-	<controls:PropertyEditor Animal="{Binding SelectedAnimal}"/>
+    <!--Вроде бы всё должно быть правильно, осталось исправить исключения и проверить-->
+    <controls:PropertyEditor Animal="{Binding SelectedAnimal}"/>
 </Window>

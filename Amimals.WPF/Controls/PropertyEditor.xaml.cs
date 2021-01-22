@@ -62,7 +62,7 @@ namespace Amimals.WPF.Controls
                     userControl = new DatePicker();
                     dp = DatePicker.SelectedDateProperty;
                 }
-
+                //Ошибка при биндинге свойств доступных только для чтения, надо правильный Binding Mode сделаьть
                 BindingBase binding = new Binding()
                 {
                     Path = new PropertyPath(property.Name),

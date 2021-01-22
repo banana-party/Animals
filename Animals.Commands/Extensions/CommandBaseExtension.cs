@@ -1,9 +1,9 @@
 ﻿using Animals.Commands.Bases;
 using Animals.Core.Interfaces;
-
+//Отлично написанный класс
 namespace Animals.Commands.Extensions
 {
-	public static class CommandBaseExtension
+    public static class CommandBaseExtension
 	{
 		public static int ReadIndex(this CommandBase command, INotificationService notificationService, IReaderService readerService)
 		{

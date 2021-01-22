@@ -1,6 +1,6 @@
 ﻿using Animals.Core.Business;
 using Animals.Core.Interfaces;
-
+//Всё отлично
 namespace Animals.Commands.Bases
 {
 	public abstract class NotificationAndReaderCommandBase : NotificationCommandBase
@@ -11,7 +11,5 @@ namespace Animals.Commands.Bases
 		{
 			ReaderService = readerService;
 		}
-
-
-	}
+    }
 }

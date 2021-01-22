@@ -12,10 +12,12 @@ namespace Animals.Core.Business.Instances
 		{
 			IsItAlpha = isItAlpha;
 		}
+		//Метод можно было реализовать лучше
 		public override void MakeASound()
 		{
 			ASound.MakeASound();
 		}
+        //Метод можно было реализовать лучше
 		public override string ToString()
 		{
 			return $"{base.ToString()},{IsItAlpha}";

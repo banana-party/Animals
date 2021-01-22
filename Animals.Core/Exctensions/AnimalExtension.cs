@@ -1,10 +1,10 @@
 ﻿using Animals.Core.Business.Bases;
-using System.Text;
-
+//Всё отлично
 namespace Animals.Core.Exctensions
 {
-	public static class AnimalExtension
+    public static class AnimalExtension
 	{
+		//Метод можно было лучше реализовать
 		public static string Type(this AnimalBase animal)
 		{
 			return animal.GetType().Name;

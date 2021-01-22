@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 using Animals.Core.Interfaces;
-
+//Всё отлично
 namespace Amimals.WPF.Services
 {
 	class DialogService : IDialogService

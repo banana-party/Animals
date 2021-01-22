@@ -1,6 +1,6 @@
 ﻿using Animals.Core.Business.Instances;
 using Animals.Core.Interfaces;
-
+//Всё нормально
 namespace Animals.Console.Services.Creators
 {
 	public class ChickenConsoleCreator : BaseAnimalConsoleCreator

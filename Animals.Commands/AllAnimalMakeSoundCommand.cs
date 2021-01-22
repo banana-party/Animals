@@ -8,11 +8,12 @@ namespace Animals.Commands
 		public AllAnimalMakeSoundCommand(Zoo zoo) : base(zoo)
 		{
 		}
-
+		//Можно было реализовать лучше
 		public override void Execute()
 		{
 			Zoo.MakeASound();
 		}
+        //Можно было реализовать лучше
 		public override string ToString()
 		{
 			return "Заставить всех животных в зоопарке издать звук.";
