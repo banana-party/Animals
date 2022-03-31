@@ -1,4 +1,4 @@
-﻿using Amimals.WPF.Services;
+﻿using Animals.WPF.Services;
 using Animals.Core.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 //Полностью лишний конвертер
-namespace Amimals.WPF.Converters
+namespace Animals.WPF.Converters
 {
 	class AnimalToSoundPathConverter : IValueConverter
 	{

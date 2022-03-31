@@ -1,7 +1,7 @@
 ﻿using Animals.Core.Interfaces;
 using System.Media;
-//Всё отлично
-namespace Amimals.WPF.Services
+
+namespace Animals.WPF.Services
 {
 	class SoundService : IMakeASoundable
 	{

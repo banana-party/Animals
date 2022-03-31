@@ -2,29 +2,34 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Animals.Console.FileWorkers
 {
-	public class FileWriter : IFileWriter, IDisposable
-	{
-		private StreamWriter _streamWriter;
-		public FileWriter()
-		{
-			_streamWriter = new StreamWriter("Output.txt");
-		}
+    public class FileWriter : IFileWriter
+    {
+        private StreamWriter _streamWriter;
 
-		public void Dispose()
-		{
-			_streamWriter.Dispose();
-		}
-
-		public void WriteToFile(IEnumerable<string> animals)
-		{
-            //Те же самые ошибки, что и в StreamReader
-			//Необходимо проверять коллекцию на то, что в ней есть элементы иначе возможно исключение
-			foreach (var el in animals)
-				_streamWriter.WriteLine(el);
-			_streamWriter.Dispose();
-		}
-	}
+        public void WriteToFile(IEnumerable<IAnimal> animals)
+        {
+            if (animals is null || !animals.Any())
+                throw new ArgumentException("Argument is null or empty.");
+            using (_streamWriter = new StreamWriter("Output.txt"))
+            {
+                foreach (var el in animals)
+                    _streamWriter.WriteLine(el.ToString());
+            }
+        }
+        public async Task WriteToFileAsync(IEnumerable<IAnimal> animals)
+        {
+            if (animals is null || !animals.Any())
+                throw new ArgumentException("Argument is null or empty.");
+            await using (_streamWriter = new StreamWriter("Output.txt"))
+            {
+                foreach (var el in animals)
+                    await _streamWriter.WriteLineAsync(el.ToString());
+            }
+        }
+    }
 }

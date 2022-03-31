@@ -6,16 +6,14 @@ using System.Globalization;
 
 namespace Animals.Core.FileParsers
 {
-    public class CatParser : IFromFileParser
-	{
-		private readonly IMakeASoundable _aSound;
-        public CatParser(IMakeASoundable aSound)
+    public class CatParser : BaseParser, IFromFileParser
+    {
+        public CatParser(IMakeASoundable aSound) : base(aSound)
+        {
+        }
+        public IAnimal Parse(List<string> lst)
 		{
-			_aSound = aSound;
-		}
-		public IAnimal Parse(List<string> lst)
-		{
-			//Нужно сделать проверку на то, что параметров достаточно и коллекция не пуста и не null
+            //TODO: Нужно сделать проверку на то, что параметров достаточно и коллекция не пуста и не null
 			return new Cat(
 				float.Parse(lst[1], CultureInfo.InvariantCulture), 
 				float.Parse(lst[2], CultureInfo.InvariantCulture), 

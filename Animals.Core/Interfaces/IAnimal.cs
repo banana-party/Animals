@@ -1,10 +1,12 @@
-﻿namespace Animals.Core.Interfaces
-{
+﻿using System;
 
-    //Всё отлично в этом интерфейсе
-	public interface IAnimal
+namespace Animals.Core.Interfaces
+{
+    public interface IAnimal : ICloneable
 	{
+        float Height { get; set; }
+        float Weight { get; set; }
+        string EyeColor { get; set; }
 		void MakeASound();
 	}
-
 }

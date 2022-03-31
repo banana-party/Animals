@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Windows.Data;
 //Всё отлично
-namespace Amimals.WPF.Converters
+namespace Animals.WPF.Converters
 {
 	class ValueToBoolConverter : IValueConverter
 	{

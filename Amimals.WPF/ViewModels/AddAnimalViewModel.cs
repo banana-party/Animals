@@ -1,7 +1,19 @@
-﻿namespace Amimals.WPF.ViewModels
+﻿using Animals.Core.Interfaces;
+
+namespace Animals.WPF.ViewModels
 {
-    //Реализовать добаление животного в зоопарк в WPF
     class AddAnimalViewModel : BaseViewModel
-	{
-	}
+    {
+        private IAnimal _animal;
+
+        public IAnimal Animal
+        {
+            get => _animal;
+            set
+            {
+                _animal = value;
+                OnPropertyChanged();
+            }
+        }
+    }
 }

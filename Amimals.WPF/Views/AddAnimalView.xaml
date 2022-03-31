@@ -1,12 +1,13 @@
-﻿<Window x:Class="Amimals.WPF.Views.AddAnimalView"
+﻿<Window x:Class="Animals.WPF.Views.AddAnimalView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Amimals.WPF.Views"
+        xmlns:local="clr-namespace:Animals.WPF.Views"
+        xmlns:controls="clr-namespace:Animals.WPF.Controls"
         mc:Ignorable="d"
         Title="AddAnimalView" Height="450" Width="800">
-    <Grid>
-        <!--Реализовать добалвение животного в зоопарк!-->
-    </Grid>
+<Grid>
+    <controls:AnimalAdd/>
+</Grid>
 </Window>

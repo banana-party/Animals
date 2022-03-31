@@ -8,8 +8,7 @@ namespace Animals.Commands
 {
 	public class FileReadCommand : NotificationAndReaderCommandBase
 	{
-		//Поле лучше сделать readonly
-		private IFileReader _fileReader;
+        private readonly IFileReader _fileReader;
 		public FileReadCommand(Zoo zoo, INotificationService notificationService, IReaderService readerService, IFileReader fileReader) : base(zoo, notificationService, readerService)
 		{
 			_fileReader = fileReader;
@@ -24,7 +23,7 @@ namespace Animals.Commands
 			try
 			{
 				//Лучше использовать ?.
-				Zoo.Add(_fileReader.Read(text));
+				Zoo.AddRange(_fileReader?.Read(text));
 			}
 			//Не все виды ошибок перехвачены, возможны падения программы
 			catch (IOException)

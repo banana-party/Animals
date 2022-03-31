@@ -1,48 +1,49 @@
 ﻿using Animals.Core.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Animals.WPF.ViewModels;
+using Animals.WPF.Views;
 
-namespace Amimals.WPF.Controls
+
+namespace Animals.WPF.Controls
 {
-	/// <summary>
-	/// Логика взаимодействия для PropertyEditor.xaml
-	/// </summary>
-	public partial class PropertyEditor : UserControl
-	{
-		public IAnimal Animal
-		{
-			get { return (IAnimal)GetValue(AnimalProperty); }
-			set { SetValue(AnimalProperty, value); }
-		}
+    public partial class PropertyEditor : UserControl
+    {
+        public IAnimal Animal
+        {
+            get { return (IAnimal)GetValue(AnimalProperty); }
+            set { SetValue(AnimalProperty, value); }
+        }
 
-		// Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
-		public static readonly DependencyProperty AnimalProperty =
-			DependencyProperty.Register("Animal", typeof(IAnimal), typeof(PropertyEditor), new PropertyMetadata(null, AnimalChanged));
+        public static readonly DependencyProperty AnimalProperty =
+            DependencyProperty.Register("Animal", typeof(IAnimal), typeof(PropertyEditor), new PropertyMetadata(null, AnimalChanged));
 
-		private static void AnimalChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		{
+        private static void AnimalChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
             var type = e.NewValue.GetType();
-            if (!(d is PropertyEditor))
+            if (d is not PropertyEditor control)
                 return;
-            var control = d as PropertyEditor;
             control.Animal = e.NewValue as IAnimal;
             var grid = control.PropertyGrid;
             grid.Children.Clear();
             grid.RowDefinitions.Clear();
-            int i = 0;
-            foreach (var property in type.GetProperties())
+            var i = 0;
+
+            foreach (var property in type.GetProperties().OrderBy(p => p.Name))
             {
                 grid.RowDefinitions.Add(new RowDefinition()
                 {
@@ -55,30 +56,78 @@ namespace Amimals.WPF.Controls
                 Grid.SetRow(textBlock, i);
                 Grid.SetColumn(textBlock, 0);
                 grid.Children.Add(textBlock);
-                Control userControl = new TextBox();
-                DependencyProperty dp = TextBox.TextProperty;
-                if (property.PropertyType == typeof(DateTime))
+
+                Control userControl;
+                DependencyProperty dp;
+                var typeCode = Type.GetTypeCode(property.PropertyType);
+                switch (typeCode)
                 {
-                    userControl = new DatePicker();
-                    dp = DatePicker.SelectedDateProperty;
+                    case TypeCode.DateTime:
+                        userControl = new DatePicker();
+                        dp = DatePicker.SelectedDateProperty;
+                        break;
+                    case TypeCode.Boolean:
+                        userControl = new CheckBox();
+                        dp = ToggleButton.IsCheckedProperty;
+                        break;
+                    default:
+                        userControl = new TextBox();
+                        dp = TextBox.TextProperty;
+                        break;
+
                 }
-                //Ошибка при биндинге свойств доступных только для чтения, надо правильный Binding Mode сделаьть
-                BindingBase binding = new Binding()
+                //TODO: Проблемы при выводе собаки из за приватного сета
+                var binding = new Binding()
                 {
                     Path = new PropertyPath(property.Name),
-                    Mode = property.CanWrite ? BindingMode.TwoWay : BindingMode.OneWay
+                    Mode = property.CanWrite ? BindingMode.TwoWay : BindingMode.OneWay,
+                    NotifyOnSourceUpdated = true,
+                    NotifyOnTargetUpdated = true,
+                    UpdateSourceTrigger = UpdateSourceTrigger.LostFocus
                 };
-                BindingOperations.SetBinding(userControl, dp, binding);
+                if (property.SetMethod != null)
+                {
+                    var isPrivate = property.SetMethod.IsPrivate;
+                    ((Binding)binding).Mode = isPrivate ? BindingMode.OneWay : BindingMode.TwoWay;
+                    if (isPrivate)
+                        ((TextBox)userControl).IsReadOnly = true;
+                }
+
+
                 Grid.SetRow(userControl, i);
                 Grid.SetColumn(userControl, 1);
                 grid.Children.Add(userControl);
+
+                BindingOperations.SetBinding(userControl, dp, binding);
+
                 i++;
             }
         }
 
-		public PropertyEditor()
-		{
-			InitializeComponent();
-		}
-	}
+        public PropertyEditor()
+        {
+            InitializeComponent();
+        }
+
+        private void Save(object sender, RoutedEventArgs e)
+        {
+            var t = Window.GetWindow(this);
+            if (t is not null)
+            {
+                t.DialogResult = true;
+                ((EditAnimalViewModel)DataContext).SelectedAnimal = Animal;
+                t.Close();
+            }
+        }
+
+        private void Cancel(object sender, RoutedEventArgs e)
+        {
+            var t = Window.GetWindow(this);
+            if (t is not null)
+            {
+                t.DialogResult = false;
+                t.Close();
+            }
+        }
+    }
 }

@@ -1,5 +1,4 @@
-﻿//Всё отлично
-namespace Animals.Core.Interfaces
+﻿namespace Animals.Core.Interfaces
 {
 	public interface INotificationService
 	{

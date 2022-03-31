@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 //Всё отлично
-namespace Amimals.WPF.Exceptions
+namespace Animals.WPF.Exceptions
 {
 	internal class IncorrectTypeException : Exception
 	{

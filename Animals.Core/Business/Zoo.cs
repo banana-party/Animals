@@ -3,6 +3,7 @@ using Animals.Core.Interfaces;
 using Animals.Core.Business.Bases;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Animals.Core.Exctensions;
 
 namespace Animals.Core.Business
@@ -18,21 +19,16 @@ namespace Animals.Core.Business
 		}
 		public void Add(IAnimal animal)
 		{
-            //Лучше в подобных ситуациях кидать ArgumentNullException
-			if (animal == null)
-				throw new NullReferenceException("Reference was null.");
+            if (animal == null)
+				throw new ArgumentNullException("Reference is null.");
 			_animals.Add(animal);
 		}
-		//Метод можно было назвать AddRange
-		public void Add(IEnumerable<IAnimal> animals)
+        public void AddRange(IEnumerable<IAnimal> animals)
 		{
-			//Необходимо проверить, что коллекция ещё и не пуста
-			if (animals == null)
-				throw new NullReferenceException("Reference was null.");
-            //Лучше использовать метод AddRange у списка
-			foreach (var el in animals)
-				_animals.Add(el);
-		}
+            if (animals == null || !animals.Any())
+				throw new NullReferenceException("Collection is null or empty.");
+            _animals.AddRange(animals);
+        }
 		public void RemoveAt(int index)
 		{
 			if (index < 0 || index >= _animals.Count)
@@ -58,27 +54,27 @@ namespace Animals.Core.Business
 				throw new IndexOutOfRangeException("Index Out of range");
 			return _animals[index].ToString();
 		}
-		public IEnumerable<string> Info()
+		public IEnumerable<IAnimal> Info()
 		{
 			if (Count == 0)
 				throw new IncorrectActionException("В зоопарке нет животных");
-			//можно было использовать Linq
-			List<string> res = new List<string>();
-			foreach (var el in _animals)
-				res.Add(el.ToString());
-			return res;
-		}
+
+            return _animals;
+        }
         //Метод не используется, не понимаю его смысл
         public string GetTypeOfAnimal(int index)
 		{
+            if (index < 0 || index >= _animals.Count)
+                throw new IndexOutOfRangeException("Index Out of range");
 			if (_animals[index] is AnimalBase animal) // TODO: Костыль?
 				return animal.Type();
 			return "";
 		}
 		public string GetRusTypeOfAnimal(int index)
 		{
-			//Необходима проверка на index в этом методе.
-			if (_animals[index] is AnimalBase animal) 
+            if (index < 0 || index >= _animals.Count)
+                throw new IndexOutOfRangeException("Index Out of range");
+            if (_animals[index] is AnimalBase animal) 
 				return animal.RusType();
 			return "";
 		}

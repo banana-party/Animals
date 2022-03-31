@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Data;
-using Amimals.WPF.Exceptions;
 using Animals.Core.Business.Bases;
 using Animals.Core.Exctensions;
-//Всё отлично
-namespace Amimals.WPF.Converters
+using Animals.WPF.Exceptions;
+
+namespace Animals.WPF.Converters
 {
 	class AnimalToStringConverter : IValueConverter
 	{
@@ -23,8 +23,8 @@ namespace Amimals.WPF.Converters
         }
 
 		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-		{
-			throw new NotImplementedException();
-		}
+        {
+            return null;
+        }
 	}
 }

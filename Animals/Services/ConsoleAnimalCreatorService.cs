@@ -19,7 +19,7 @@ namespace Animals.Console.Services
             //Этод код можно было вынести в отдельный фабричный метод или сделать его шаблонным методом
             _animalCreator = type switch
             {
-                "Cat" => (BaseAnimalConsoleCreator) new CatConsoleCreator(_readerService, _notificationService),
+                "Cat" => new CatConsoleCreator(_readerService, _notificationService),
                 "Dog" => new DogConsoleCreator(_readerService, _notificationService),
                 "Chicken" => new ChickenConsoleCreator(_readerService, _notificationService),
                 "Stork" => new StorkConsoleCreator(_readerService, _notificationService),

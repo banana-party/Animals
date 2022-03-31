@@ -12,12 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Amimals.WPF.Views
+namespace Animals.WPF.Views
 {
-	/// <summary>
-	/// Логика взаимодействия для AddAnimalView.xaml
-	/// </summary>
-	public partial class AddAnimalView : Window
+    public partial class AddAnimalView : Window
 	{
 		public AddAnimalView()
 		{

@@ -14,20 +14,15 @@ namespace Animals.Commands
 
 		public override void Execute() //TODO: вывод на экран в консоли выглядит убого.
 		{
-			var arr = Zoo.Info().ToList();
-			List<List<string>> lst = new List<List<string>>();
-            //Нужно было воспользоваться LINQ
-			for (int i = 0; i < arr.Count; i++)
-				lst.Add(arr[i].Split(',').ToList());
+            var lst = Zoo.Info().Select(a => a.ToString().Split(','));
+
             int count = 1;
 			foreach (var el in lst)
 			{
 				NotificationService.Write($"{count++}. {el[0]}:\n\t");
-				for (int i = 1; i < el.Count ; i++)
-				{
-					NotificationService.Write($"{el[i]} ");
-				}
-				NotificationService.Write($"\n");
+                foreach (var e in el)
+                    NotificationService.Write($"{e} ");
+                NotificationService.Write($"\n");
 			}
 		}
         //Метод можно было реализовать лучше

@@ -4,8 +4,7 @@ namespace Animals.Factory
 	//Фабрика какая-то не фабрика, можно подумать над названием получше
 	public class AnimalsFactory
 	{
-
-		private readonly IAnimalCreator _animalCreator;
+        private readonly IAnimalCreator _animalCreator;
 		private AnimalsFactory(IAnimalCreator animalCreator)
 		{
 			_animalCreator = animalCreator;
@@ -18,6 +17,4 @@ namespace Animals.Factory
 			return _animalCreator.Create(type);
 		}
 	}
-
-
 }

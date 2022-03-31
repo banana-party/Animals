@@ -3,7 +3,7 @@
  Необходимо сделать реализацию этого сервиса
  */
 
-namespace Amimals.WPF.Services
+namespace Animals.WPF.Services
 {
 	class NotificationService : INotificationService
 	{

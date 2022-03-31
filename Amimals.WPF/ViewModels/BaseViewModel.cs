@@ -1,13 +1,17 @@
 ﻿using System.ComponentModel;
-//Всё отлично
-namespace Amimals.WPF.ViewModels
+using System.Runtime.CompilerServices;
+using Animals.Core.Annotations;
+
+namespace Animals.WPF.ViewModels
 {
 	public abstract class BaseViewModel : INotifyPropertyChanged
 	{
-		public event PropertyChangedEventHandler PropertyChanged;
-		public void NotifyOfPropertyChanged(string text)
-		{
-			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(text));
-		}
-	}
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+    }
 }

@@ -1,10 +1,8 @@
-﻿using Amimals.WPF.Commands;
-using Animals.Core.Interfaces;
-using System;
-//Необходимо реализовать редактирование животного в WPF
-namespace Amimals.WPF.ViewModels
+﻿using Animals.Core.Interfaces;
+
+namespace Animals.WPF.ViewModels
 {
-	class EditAnimalViewModel : BaseViewModel
+	public class EditAnimalViewModel : BaseViewModel
 	{
 		private IAnimal _selectedAnimal;
 		public IAnimal SelectedAnimal
@@ -13,23 +11,8 @@ namespace Amimals.WPF.ViewModels
 			set
 			{
 				_selectedAnimal = value;
-				NotifyOfPropertyChanged("SelectedAnimal");
+                OnPropertyChanged();
 			}
 		}
-		public EditAnimalViewModel()
-		{
-		}
-		public Command SaveCommand => new Command(Save);
-
-		public void Save()
-		{
-			throw new NotImplementedException();
-		}
-		public Command CancelCommand => new Command(Cancel);
-
-		public void Cancel()
-		{
-			throw new NotImplementedException();
-		}
-	}
+    }
 }

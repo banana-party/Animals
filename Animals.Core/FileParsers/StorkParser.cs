@@ -6,18 +6,14 @@ using System.Globalization;
 
 namespace Animals.Core.FileParsers
 {
-	//Дублирование кода конструктора
-	public class StorkParser : IFromFileParser
+    public class StorkParser : BaseParser, IFromFileParser
 	{
-		private readonly IMakeASoundable _aSound;
-		public StorkParser(IMakeASoundable aSound)
-		{
-			_aSound = aSound;
-		}
+        public StorkParser(IMakeASoundable aSound) : base(aSound)
+        {
+        }
 		public IAnimal Parse(List<string> lst)
 		{
-			//Необходимо сделать проверку на то, что коллекция не null и параметров достаточно, а так же
-			//float.Parse может приводить к исключению
+            //TODO: Необходимо сделать проверку на то, что коллекция не null и параметров достаточно, а так же float.Parse может приводить к исключению
 			return new Stork(
 				float.Parse(lst[1], CultureInfo.InvariantCulture), 
 				float.Parse(lst[2], CultureInfo.InvariantCulture), 
