@@ -12,7 +12,7 @@ namespace Animals.Factory
 		private static AnimalsFactory _factory;
 		public static AnimalsFactory CreateFactory(IAnimalCreator animalCreator) =>_factory ?? (_factory = new AnimalsFactory(animalCreator));
         //получилось, что фабрика вовсе не фабрика, и вся ее реализация переехала в энимал криэйтор
-		public IAnimal GetAnimal(string type)
+		public IAnimal Create(string type)
 		{
 			return _animalCreator.Create(type);
 		}

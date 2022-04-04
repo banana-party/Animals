@@ -6,9 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Animals.Commands\Animals.Commands.csproj" />
     <ProjectReference Include="..\Animals.Core\Animals.Core.csproj" />
-    <ProjectReference Include="..\Animals.Factory\Animals.Factory.csproj" />
   </ItemGroup>
 
   <ItemGroup>

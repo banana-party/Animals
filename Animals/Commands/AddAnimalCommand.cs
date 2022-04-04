@@ -1,17 +1,17 @@
-﻿using Animals.Commands.Bases;
-using Animals.Core.Interfaces;
-using System.Collections.Generic;
-using Animals.Core.Exceptions;
+﻿using System.Collections.Generic;
+using Animals.Console.Commands.Bases;
+using Animals.Console.Services.Creators;
 using Animals.Core.Business;
+using Animals.Core.Exceptions;
+using Animals.Core.Interfaces;
 
-namespace Animals.Commands
+namespace Animals.Console.Commands
 {
 	public class AddAnimalCommand : NotificationAndReaderCommandBase
 	{
-        //Поля можно сделать readonly
-		private Dictionary<string, string> _dict;
-		private ConsoleFactory _factory;
-		public AddAnimalCommand(Zoo zoo, AnimalsFactory factory, INotificationService notificationService, IReaderService readerService) : base(zoo, notificationService, readerService)
+        private readonly Dictionary<string, string> _dict;
+		private readonly ConsoleFactory _factory;
+		public AddAnimalCommand(Zoo zoo, ConsoleFactory factory, INotificationService notificationService, IReaderService readerService) : base(zoo, notificationService, readerService)
 		{
 			_dict = new Dictionary<string, string>()
 			{
@@ -31,7 +31,7 @@ namespace Animals.Commands
 			string choose = ReaderService.ReadLine();
 			//Необходима проверка на наличие команды в выборе
 			if (_dict.ContainsKey(choose))
-				Zoo.Add(_factory.Create(_dict[choose]));
+				Zoo.Add(_factory.CreateAnimal(_dict[choose]));
 			else
 				throw new IncorrectActionException("Неверный ввод.");
 		}

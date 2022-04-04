@@ -3,39 +3,38 @@ using Animals.Console.FileWorkers;
 using Animals.Core.Business;
 using Animals.Core.Exceptions;
 using Animals.Core.Interfaces;
-using Animals.Factory;
 using System;
 using System.Collections.Generic;
+using Animals.Console.Commands;
+using Animals.Console.Services.Creators;
 
 namespace Animals.Console.Services
 {
 	class ConsoleMenuService
 	{
-		//Поля лучше сделать readonly
-		private readonly IReaderService _reader;
+        private readonly IReaderService _reader;
 		private readonly INotificationService _notification;
 		private readonly IAnimalParser _animalParser;
-		private IFileReader _fileReader;
-		private IFileWriter _fileWriter;
-		private Dictionary<string, ICommand> _dict;
-		private readonly ConsoleAnimalCreatorService _service;
-		private Zoo _zoo;
+		private readonly IFileReader _fileReader;
+		private readonly IFileWriter _fileWriter;
+		private readonly Dictionary<string, ICommand> _dict;
+		private readonly ConsoleFactory _factory;
+		private readonly Zoo _zoo;
 		public ConsoleMenuService(Zoo zoo)
 		{
 			_reader = new ConsoleReaderService();
-			_notification = new ConsoleNotificationService(); //Сервисы ввода/вывода в консоль
+			_notification = new ConsoleNotificationService(); 
 			_animalParser = new ConsoleAnimalParserService();
 
 			_fileReader = new FileReader(_animalParser);
 			_fileWriter = new FileWriter();
 
-			_service = new ConsoleAnimalCreatorService(_reader, _notification);
-			AnimalsFactory factory = AnimalsFactory.CreateFactory(_service);
-			_zoo = zoo;
+            _factory = ConsoleFactory.CreateFactory(_reader, _notification);
+            _zoo = zoo;
 
 			_dict = new Dictionary<string, ICommand>()
 			{
-				{"1", new AddAnimalCommand(_zoo, factory, _notification, _reader) }, // TODO: Вводить "ваше животное успешно добавлено"
+				{"1", new AddAnimalCommand(_zoo, _factory, _notification, _reader) }, // TODO: Вводить "ваше животное успешно добавлено"
 				{"2", new DeleteAnimalCommand(_zoo, _notification, _reader) },	 // TODO: Вводить "ваше животное успешно удалено"
 				{"3", new PrintAnimalInfoCommand(_zoo, _notification, _reader)},  //TODO: Убрать вывод животных над меню
 				{"4", new AnimalMakeSoundCommand(_zoo, _notification, _reader) }, 
