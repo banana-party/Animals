@@ -5,6 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Animals.WPF.Views" xmlns:controls="clr-namespace:Animals.WPF.Controls"
 		mc:Ignorable="d"
-        Title="EditAnimalView" Height="450" Width="800">
-    <controls:PropertyEditor Animal="{Binding SelectedAnimal, Mode=TwoWay}"/>
+        Title="EditAnimalView" Height="450" Width="800" WindowStartupLocation="CenterOwner">
+    <controls:AnimalEditor Animal="{Binding SelectedAnimal, Mode=TwoWay}"/>
 </Window>

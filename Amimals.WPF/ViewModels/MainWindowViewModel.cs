@@ -65,7 +65,8 @@ namespace Animals.WPF.ViewModels
         {
             AddAnimalView view = new AddAnimalView()
             {
-                DataContext = new AddAnimalViewModel()
+                DataContext = new AddAnimalViewModel(),
+                Owner = App.Current.MainWindow
             };
             
             if ((bool) view.ShowDialog())
@@ -82,7 +83,8 @@ namespace Animals.WPF.ViewModels
                 DataContext = new EditAnimalViewModel()
                 {
                     SelectedAnimal = (IAnimal)a
-                }
+                },
+                Owner = App.Current.MainWindow
             };
             if ((bool)view.ShowDialog())
             {

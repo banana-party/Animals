@@ -17,8 +17,7 @@
         </Style>
 		<converters:AnimalToStringConverter x:Key="AnimalToStringConverter"/>
 		<converters:ValueToBoolConverter x:Key="ValueToBoolConverter"/>
-        <converters:AnimalToSoundPathConverter x:Key="AnimalToSoundPathConverter"/><!--Лишний конвертер-->
-	</Window.Resources>
+    </Window.Resources>
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="6*"/>

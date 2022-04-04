@@ -10,7 +10,7 @@ namespace Animals.Core.Business.Bases
 {
 	public abstract class AnimalBase : IAnimal, INotifyPropertyChanged
 	{
-		protected IMakeASoundable ASound;
+        protected IMakeASoundable ASound;
 		protected AnimalBase(float height, float weight, string eyeColor, IMakeASoundable aSound)
 		{
 			Height = height;
@@ -57,7 +57,7 @@ namespace Animals.Core.Business.Bases
 
         public void MakeASound()
         {
-            ASound.MakeASound();
+            ASound?.MakeASound();
         }
 		public override string ToString()
 		{

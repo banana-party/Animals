@@ -12,6 +12,10 @@ namespace Animals.Core.Business.Instances
 			IsItWooled = isItWooled;
 		}
 
+        public Cat(float height, float weight, string eyeColor, IMakeASoundable sound) :  base(height, weight, eyeColor,sound)
+        {
+        }
+
         #region Properties
 
         private bool _isItWooled;
@@ -27,7 +31,6 @@ namespace Animals.Core.Business.Instances
 
         #endregion
 
-		//метод можно было реализовать лучше
 		public override string ToString()
 		{
 			return $"{base.ToString()},{IsItWooled}";

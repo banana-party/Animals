@@ -21,7 +21,7 @@ using Animals.WPF.Views;
 
 namespace Animals.WPF.Controls
 {
-    public partial class PropertyEditor : UserControl
+    public partial class AnimalEditor : UserControl
     {
         public IAnimal Animal
         {
@@ -30,12 +30,12 @@ namespace Animals.WPF.Controls
         }
 
         public static readonly DependencyProperty AnimalProperty =
-            DependencyProperty.Register("Animal", typeof(IAnimal), typeof(PropertyEditor), new PropertyMetadata(null, AnimalChanged));
+            DependencyProperty.Register("Animal", typeof(IAnimal), typeof(AnimalEditor), new PropertyMetadata(null, AnimalChanged));
 
         private static void AnimalChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var type = e.NewValue.GetType();
-            if (d is not PropertyEditor control)
+            if (d is not AnimalEditor control)
                 return;
             control.Animal = e.NewValue as IAnimal;
             var grid = control.PropertyGrid;
@@ -81,8 +81,6 @@ namespace Animals.WPF.Controls
                 {
                     Path = new PropertyPath(property.Name),
                     Mode = property.CanWrite ? BindingMode.TwoWay : BindingMode.OneWay,
-                    NotifyOnSourceUpdated = true,
-                    NotifyOnTargetUpdated = true,
                     UpdateSourceTrigger = UpdateSourceTrigger.LostFocus
                 };
                 if (property.SetMethod != null)
@@ -104,7 +102,7 @@ namespace Animals.WPF.Controls
             }
         }
 
-        public PropertyEditor()
+        public AnimalEditor()
         {
             InitializeComponent();
         }
