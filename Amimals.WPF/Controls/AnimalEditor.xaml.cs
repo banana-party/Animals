@@ -88,7 +88,7 @@ namespace Animals.WPF.Controls
                     var isPrivate = property.SetMethod.IsPrivate;
                     ((Binding)binding).Mode = isPrivate ? BindingMode.OneWay : BindingMode.TwoWay;
                     if (isPrivate)
-                        ((TextBox)userControl).IsReadOnly = true;
+                        userControl.IsEnabled = false;
                 }
 
 
