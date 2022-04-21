@@ -11,7 +11,6 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Animals.WPF.ViewModels
 {
-    //TODO: Реализовать добавление, удаление и редактирование животных в зоопарке
     public class MainWindowViewModel : BaseViewModel
     {
         private readonly IDialogService _dialogService = App.ServiceProvider.GetService<IDialogService>() ?? throw new NullReferenceException();
@@ -81,6 +80,7 @@ namespace Animals.WPF.ViewModels
             
             if ((bool) view.ShowDialog())
             {
+                Animals.Add(((AddAnimalViewModel) view.DataContext).Animal);
             }
         }
         public Command EditCommand => new Command(Edit);

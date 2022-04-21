@@ -1,4 +1,6 @@
-﻿using Animals.Core.Interfaces;
+﻿using System.ComponentModel;
+using System.Windows;
+using Animals.Core.Interfaces;
 
 namespace Animals.WPF.ViewModels
 {
@@ -14,6 +16,6 @@ namespace Animals.WPF.ViewModels
                 _animal = value;
                 OnPropertyChanged();
             }
-        } 
+        }
     }
 }

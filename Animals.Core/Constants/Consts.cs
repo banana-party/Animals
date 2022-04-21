@@ -2,8 +2,17 @@
 {
     public static class Consts
     {
-        #region SoundStrings
+        #region Animals
+        public const string Cat = "Cat";
+        public const string Dog = "Dog";
+        public const string Stork = "Stork";
+        public const string Chicken = "Chicken";
+        public const string Wolf = "Wolf";
+        public const string Tiger = "Tiger";
+        
+        #endregion
 
+        #region SoundStrings
         public static string GetCatSound => "Мяяяу";
         public static string GetDogSound => "ГАВ";
         public static string GetChickenSound => "Пок-пок-пок";

@@ -37,10 +37,10 @@ namespace Animals.WPF
             services.AddSingleton<IDialogService, DialogService>()
                 .AddSingleton<MainWindowView>()
                 .AddSingleton<MainWindowViewModel>()
-                .AddSingleton<AddAnimalViewModel>()
-                .AddSingleton(x => new AddAnimalView {Owner = x.GetRequiredService<MainWindowView>()})
-                .AddSingleton<EditAnimalViewModel>()
-                .AddSingleton(x => new EditAnimalView {Owner = x.GetRequiredService<MainWindowView>()});
+                .AddTransient<AddAnimalViewModel>()
+                .AddTransient(x => new AddAnimalView {Owner = x.GetRequiredService<MainWindowView>()})
+                .AddTransient<EditAnimalViewModel>()
+                .AddTransient(x => new EditAnimalView {Owner = x.GetRequiredService<MainWindowView>()});
         }
         protected void OnStartup(object sender, StartupEventArgs e)
         {

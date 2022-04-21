@@ -17,12 +17,12 @@ namespace Animals.WPF.Services.Creators
         {
             return type switch
             {
-                "Cat" => new Cat(new SoundService(Consts.GetCatSoundPath)),
-                "Dog" => new Dog(new SoundService(Consts.GetDogSoundPath)),
-                "Chicken" => new Chicken(new SoundService(Consts.GetChcikenSoundPath)),
-                "Stork" => new Stork(new SoundService(Consts.GetStorkSoundPath)),
-                "Wolf" => new Wolf(new SoundService(Consts.GetWolfSoundPath)),
-                "Tiger" => new Tiger(new SoundService(Consts.GetTigerSoundPath)),
+                Consts.Cat => new Cat(new SoundService(Consts.GetCatSoundPath)),
+                Consts.Dog => new Dog(new SoundService(Consts.GetDogSoundPath)),
+                Consts.Chicken => new Chicken(new SoundService(Consts.GetChcikenSoundPath)),
+                Consts.Stork => new Stork(new SoundService(Consts.GetStorkSoundPath)),
+                Consts.Wolf => new Wolf(new SoundService(Consts.GetWolfSoundPath)),
+                Consts.Tiger => new Tiger(new SoundService(Consts.GetTigerSoundPath)),
                 _ => throw new IncorrectActionException("There is no animal like this")
             };
         }

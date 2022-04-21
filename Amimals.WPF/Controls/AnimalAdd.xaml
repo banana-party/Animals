@@ -35,8 +35,9 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" >Сохранить</Button>
-            <Button Grid.Column="1" >Отмена</Button>
+
+            <Button Grid.Column="0" Click="Save">Сохранить</Button>
+            <Button Grid.Column="1" Click="Cancel">Отмена</Button>
         </Grid>
 
     </Grid>

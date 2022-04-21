@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,31 +19,21 @@ using System.Windows.Shapes;
 using Animals.Core.Business.Instances;
 using Animals.Core.Interfaces;
 using Animals.WPF.Helpers;
+using Animals.WPF.Services.Creators;
+using Animals.WPF.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Animals.WPF.Controls
 {
     public partial class AnimalAdd : UserControl
     {
+        private static readonly WpfFactory _factory = WpfFactory.CreateFactory();
+        private readonly IDialogService _dialogService = App.ServiceProvider.GetRequiredService<IDialogService>() ?? throw new NullReferenceException();
         private class Item
         {
             public string DisplayName { get; set; }
             public IAnimal Animal { get; set; }
         }
-
-
-        public AnimalAdd()
-        {
-            InitializeComponent();
-
-            var l = new List<Item>();
-            foreach (var item in AnimalTypesHelper.GetAnimalTypes().ToList())
-            {
-                l.Add(new Item { DisplayName = item.Name, Animal = AnimalTypesHelper.GetAnimal(item) });
-            }
-            ChooseAnimalComboBox.ItemsSource = l;
-            ChooseAnimalComboBox.SelectedItem = l.First();
-        }
-
 
         public IAnimal Animal
         {
@@ -51,17 +42,27 @@ namespace Animals.WPF.Controls
         }
 
         public static readonly DependencyProperty AnimalProperty =
-            DependencyProperty.Register("Animal", typeof(IAnimal), typeof(AnimalAdd), new PropertyMetadata(null, new PropertyChangedCallback(OnAnimalChanged)));
+            DependencyProperty.Register("Animal", typeof(IAnimal), typeof(AnimalAdd), new PropertyMetadata(null, OnAnimalChanged));
 
+        public AnimalAdd()
+        {
+            InitializeComponent();
+
+            var l = new List<Item>();
+            foreach (var item in AnimalTypesHelper.GetAnimalTypes().ToList())
+            {
+                l.Add(new Item { DisplayName = item.Name, Animal = _factory.CreateAnimal(item.Name) });
+            }
+            ChooseAnimalComboBox.ItemsSource = l;
+            //ChooseAnimalComboBox.SelectedItem = l.First();
+            //ChooseAnimalComboBox.SelectedValue = l.First();
+        }
         private static void OnAnimalChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             if (d is not AnimalAdd control)
                 return;
-
             control.PropertyEditor.SetGrid(control.Animal);
         }
-
-
         private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (sender is ComboBox c)
@@ -69,5 +70,37 @@ namespace Animals.WPF.Controls
                 Animal = ((Item)c.SelectedItem).Animal;
             }
         }
+
+        private void Save(object sender, RoutedEventArgs e)
+        {
+            var window = Window.GetWindow(this);
+            if (window is not null)
+            {
+                if (PropertyEditor.CheckFields(out var errorFieldNames))
+                {
+                    _dialogService.ShowErrorDialog($"{string.Join(", ", errorFieldNames)} has not proper values.", "Error");
+                    return;
+                }
+                window.DialogResult = true;
+                ((AddAnimalViewModel)DataContext).Animal = Animal;
+                window.Close();
+            }
+        }
+
+        private void Cancel(object sender, RoutedEventArgs e)
+        {
+            var t = Window.GetWindow(this);
+            if (t is not null)
+            {
+                t.DialogResult = false;
+                this.Visibility = Visibility.Hidden;
+            }
+        }
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = true;
+            this.Visibility = Visibility.Hidden;
+        }
+
     }
 }

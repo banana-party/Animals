@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,13 @@ namespace Animals.WPF.Views
 		public AddAnimalView()
 		{
 			InitializeComponent();
+            Visibility = Visibility.Visible;
 		}
-	}
+
+        private void AddAnimalView_OnClosing(object sender, CancelEventArgs e)
+        {
+            e.Cancel = true;
+            Visibility = Visibility.Hidden;
+        }
+    }
 }

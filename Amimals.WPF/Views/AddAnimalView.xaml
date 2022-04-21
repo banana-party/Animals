@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Animals.WPF.Views"
         xmlns:controls="clr-namespace:Animals.WPF.Controls"
         mc:Ignorable="d"
-        Title="AddAnimalView" Height="450" Width="800" WindowStartupLocation="CenterOwner">
+        Title="AddAnimalView" Height="450" Width="800" WindowStartupLocation="CenterOwner" >
     
     <Window.DataContext>
         <Binding Source="{StaticResource LocatorService}" Path="AddAnimalViewModel"/>
