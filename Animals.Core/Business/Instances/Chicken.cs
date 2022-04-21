@@ -5,6 +5,10 @@ namespace Animals.Core.Business.Instances
 {
 	public class Chicken : BirdBase
 	{
+        public Chicken(IMakeASoundable sound)
+        {
+            ASound = sound;
+        }
 		public Chicken(float height, float weight, string eyeColor, int flyheight, IMakeASoundable aSound) : base(height, weight, eyeColor, flyheight, aSound)
 		{
 		}

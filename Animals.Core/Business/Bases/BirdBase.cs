@@ -19,16 +19,20 @@ namespace Animals.Core.Business.Bases
 
         #endregion
 
+        protected BirdBase() : base()
+        {
+        }
 		protected BirdBase(float height, float weight, string eyeColor, int flyHeight, IMakeASoundable aSound) : base( height, weight, eyeColor, aSound)
 		{
 			FlyHeight = flyHeight;
 		}
-		//Лишний метод? Метод можно было реализовать лучше
+		
+        //TODO: Реализовать вызов метода
 		public string Fly()
 		{
 			return $"Я лечу на высоте {FlyHeight} метров!";
 		}
-		//Метод можно было реализовать лучше
+		
 		public override string ToString()
 		{
 			return $"{base.ToString()},{FlyHeight}";

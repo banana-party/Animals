@@ -16,12 +16,9 @@
 			<RowDefinition Height="6*"/>
 			<RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
-		<Grid Grid.Row="0" x:Name="PropertyGrid" DataContext="{Binding ElementName=Control, Path=Animal, Mode=TwoWay}">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="Auto"/>
-				<ColumnDefinition Width="*"/>
-			</Grid.ColumnDefinitions>
-		</Grid>
+
+        <local:PropertyEdit x:Name="PropertyEditor" Grid.Row="0" DataContext="{Binding ElementName=Control, Path=Animal, Mode=TwoWay}" />
+
 		<Grid Grid.Row="1">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="*"/>
@@ -30,7 +27,6 @@
 
 			<Button Grid.Column="0" Click="Save">Сохранить</Button>
 			<Button Grid.Column="1" Click="Cancel">Отмена</Button>
-			
-		</Grid>
+        </Grid>
 	</Grid>
 </UserControl>

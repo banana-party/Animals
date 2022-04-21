@@ -1,22 +1,55 @@
-﻿using Animals.Core.Business.Instances;
+﻿using System;
+using Animals.Core.Business.Instances;
 using Animals.Core.Interfaces;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Reflection;
-using System.Windows;
-using System.Windows.Media.Animation;
-using Animals.Core.Business.Bases;
+using Animals.Core.Constants;
 using Animals.WPF.Commands;
 using Animals.WPF.Services;
+using Animals.WPF.Services.Creators;
 using Animals.WPF.Views;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Animals.WPF.ViewModels
 {
-    //Реализовать добавление, удаление и редактирование животных в зоопарке
-    class MainWindowViewModel : BaseViewModel
+    //TODO: Реализовать добавление, удаление и редактирование животных в зоопарке
+    public class MainWindowViewModel : BaseViewModel
     {
-        private readonly IDialogService _dialogService;
+        private readonly IDialogService _dialogService = App.ServiceProvider.GetService<IDialogService>() ?? throw new NullReferenceException();
+        private readonly WpfFactory _factory = WpfFactory.CreateFactory();
+
+        public MainWindowViewModel()
+        {
+            var chicken = _factory.CreateAnimal("Chicken");
+            chicken.EyeColor = "Red";
+            chicken.Height = 12.2f;
+            chicken.Weight = 13.3f;
+            if (chicken is Chicken c)
+                c.FlyHeight = 0;
+            
+
+            Animals = new ObservableCollection<IAnimal>()
+            {
+                chicken,
+                new Cat
+                (
+                     12f, 44f,
+                    "Green", "Vasya", "Tasmanian", true,
+                    "Black", new System.DateTime(1332, 11, 3),
+                    true, new SoundService(Consts.GetCatSoundPath)
+                ),
+                new Dog
+                (
+                    12.2f,33f,
+                    "Yellow", "Boobick", "Street", false,
+                    "Brown", new System.DateTime(2015,3,24),
+                    false, new SoundService(Consts.GetDogSoundPath)
+                ),
+                new Stork(11.1f,22,"Black", 200, new SoundService(Consts.GetStorkSoundPath))
+            };
+        }
+
+        #region Properties
+
         private ObservableCollection<IAnimal> _animals;
         public ObservableCollection<IAnimal> Animals
         {
@@ -26,29 +59,6 @@ namespace Animals.WPF.ViewModels
                 _animals = value;
                 OnPropertyChanged();
             }
-        }
-        public MainWindowViewModel(IDialogService dialogService)
-        {
-            _dialogService = dialogService;
-            Animals = new ObservableCollection<IAnimal>()
-            {
-                new Chicken(12.2f, 13.3f, "Red", 0, new SoundService(@"Sounds\chicken.wav")),
-                new Cat
-                (
-                     12f, 44f,
-                    "Green", "Vasya", "Tasmanian", true,
-                    "Black", new System.DateTime(1332, 11, 3),
-                    true, new SoundService(@"Sounds\meow.wav")
-                ),
-                new Dog
-                (
-                    12.2f,33f,
-                    "Yellow", "Boobick", "Street", false,
-                    "Brown", new System.DateTime(2015,3,24),
-                    false, new SoundService(@"Sounds\bark.wav")
-                ),
-                new Stork(11.1f,22,"Black", 200, new SoundService(@"Sounds\stork.wav"))
-            };
         }
         private IAnimal _selectedAnimal;
         public IAnimal SelectedAnimal
@@ -60,14 +70,14 @@ namespace Animals.WPF.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        #endregion
+
+        #region Commands
         public Command AddCommand => new Command(Add);
         public void Add()
         {
-            AddAnimalView view = new AddAnimalView()
-            {
-                DataContext = new AddAnimalViewModel(),
-                Owner = App.Current.MainWindow
-            };
+            var view = App.ServiceProvider.GetRequiredService<AddAnimalView>();
             
             if ((bool) view.ShowDialog())
             {
@@ -76,16 +86,10 @@ namespace Animals.WPF.ViewModels
         public Command EditCommand => new Command(Edit);
         public void Edit()
         {
-            var a = SelectedAnimal.Clone();
-            //Нужно использовать сервис навигации
-            EditAnimalView view = new EditAnimalView()
-            {
-                DataContext = new EditAnimalViewModel()
-                {
-                    SelectedAnimal = (IAnimal)a
-                },
-                Owner = App.Current.MainWindow
-            };
+            var animal = (IAnimal)SelectedAnimal.Clone();
+            var view = App.ServiceProvider.GetRequiredService<EditAnimalView>();
+            ((EditAnimalViewModel) view.DataContext).SelectedAnimal = animal;
+
             if ((bool)view.ShowDialog())
             {
                 var i = Animals.IndexOf(SelectedAnimal);
@@ -110,5 +114,8 @@ namespace Animals.WPF.ViewModels
         {
             SelectedAnimal.MakeASound();
         }
+
+        #endregion
+
     }
 }

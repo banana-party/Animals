@@ -1,5 +1,5 @@
 ﻿using Animals.Core.Interfaces;
-//Всё отлично
+
 namespace Animals.Console.Services
 {
 	public class ConsoleNotificationService : INotificationService

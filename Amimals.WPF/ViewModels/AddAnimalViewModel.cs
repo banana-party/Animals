@@ -2,7 +2,7 @@
 
 namespace Animals.WPF.ViewModels
 {
-    class AddAnimalViewModel : BaseViewModel
+    public class AddAnimalViewModel : BaseViewModel
     {
         private IAnimal _animal;
 
@@ -14,6 +14,6 @@ namespace Animals.WPF.ViewModels
                 _animal = value;
                 OnPropertyChanged();
             }
-        }
+        } 
     }
 }

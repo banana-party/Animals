@@ -4,5 +4,6 @@
 	public interface IDialogService
 	{
 		bool ShowYesNoDialog(string text, string caption);
-	}
+        bool ShowErrorDialog(string text, string caption);
+    }
 }

@@ -5,6 +5,9 @@ namespace Animals.Core.Business.Bases
 {
     public abstract class WildAnimalBase : AnimalBase
     {
+        protected WildAnimalBase()
+        {
+        }
         protected WildAnimalBase(float height, float weight, string eyeColor, string habitat, DateTime dateOfFind, IMakeASoundable aSound) : base(height, weight, eyeColor, aSound)
         {
             Habitat = habitat;

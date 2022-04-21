@@ -23,14 +23,12 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <ComboBox Name="ChooseAnimalComboBox" Grid.Row="0"/>
+        <ComboBox Name="ChooseAnimalComboBox" Grid.Row="0" 
+                  SelectionChanged="OnSelectionChanged"
+                  DisplayMemberPath="DisplayName"
+                  SelectedValuePath="Animal"/>
 
-        <Grid Grid.Row="1" Name="AnimalGrid" Margin="10" DataContext="{Binding ElementName=Control, Path=Animal, Mode=TwoWay}">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-        </Grid>
+        <local:PropertyEdit x:Name="PropertyEditor" Grid.Row="1" DataContext="{Binding ElementName=Control, Path=Animal, Mode=TwoWay}"/>
 
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>

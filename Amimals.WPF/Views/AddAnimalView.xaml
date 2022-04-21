@@ -7,7 +7,12 @@
         xmlns:controls="clr-namespace:Animals.WPF.Controls"
         mc:Ignorable="d"
         Title="AddAnimalView" Height="450" Width="800" WindowStartupLocation="CenterOwner">
-<Grid>
-    <controls:AnimalAdd/>
-</Grid>
+    
+    <Window.DataContext>
+        <Binding Source="{StaticResource LocatorService}" Path="AddAnimalViewModel"/>
+    </Window.DataContext>
+
+    <Grid>
+        <controls:AnimalAdd Animal="{Binding Animal, Mode=TwoWay}"/>
+    </Grid>
 </Window>

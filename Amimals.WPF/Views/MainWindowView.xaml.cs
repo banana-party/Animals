@@ -26,9 +26,7 @@ namespace Animals.WPF.Views
 	{
 		public MainWindowView()
 		{
-			IDialogService dialogService = new DialogService();
-			DataContext = new MainWindowViewModel(dialogService);
-			InitializeComponent();
+            InitializeComponent();
 		}
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)

@@ -12,8 +12,9 @@ namespace Animals.Core.Business.Instances
 			IsItWooled = isItWooled;
 		}
 
-        public Cat(float height, float weight, string eyeColor, IMakeASoundable sound) :  base(height, weight, eyeColor,sound)
+        public Cat(IMakeASoundable sound)
         {
+            ASound = sound;
         }
 
         #region Properties

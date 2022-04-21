@@ -2,8 +2,10 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Animals.WPF"
-             StartupUri="Views/MainWindowView.xaml">
+             Startup="OnStartup">
     <Application.Resources>
-         
+         <ResourceDictionary>
+             <vm:ViewModelLocatorService xmlns:vm="clr-namespace:Animals.WPF.Services" x:Key="LocatorService"/>
+         </ResourceDictionary>
     </Application.Resources>
 </Application>

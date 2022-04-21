@@ -21,6 +21,10 @@ namespace Animals.Core.Business.Instances
 
         #endregion
 
+        public Wolf(IMakeASoundable sound)
+        {
+            ASound = sound;
+        }
 		public Wolf(float height, float weight, string eyeColor, string habitat, DateTime dateOfFind, bool isItAlpha, IMakeASoundable aSound) 
 			: base(height, weight, eyeColor, habitat, dateOfFind, aSound)
 		{

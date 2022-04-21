@@ -7,6 +7,10 @@ namespace Animals.Core.Business.Bases
 {
     public abstract class HomeAnimalBase : AnimalBase
     {
+        protected HomeAnimalBase() : base()
+        {
+
+        }
         protected HomeAnimalBase(float height, float weight, string eyeColor, IMakeASoundable sound) : base(height, weight, eyeColor, sound)
         {
         }
