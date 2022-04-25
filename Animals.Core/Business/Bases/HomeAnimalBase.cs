@@ -82,9 +82,9 @@ namespace Animals.Core.Business.Bases
         #endregion
 
         //Можно было его лучше написать
-        public string Care()
+        public string Pet()
         {
-            return $"{this.RusType()} проявляет заботу о вас..";
+            return $"Вы гладите {this.RusType()}, оно довольное...";
         }
         //метод можно было неаписать лучше
         public override string ToString()

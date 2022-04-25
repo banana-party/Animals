@@ -38,7 +38,7 @@
             ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <controls:AnimalCard Width="230" Height="230" Margin="0,3,0,3"/>
+                    <controls:AnimalCard Width="230" Height="270" Margin="0,3,0,3"/>
                 </DataTemplate>
             </ListView.ItemTemplate>
             <ListView.ItemsPanel>

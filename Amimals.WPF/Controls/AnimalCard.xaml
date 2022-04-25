@@ -13,6 +13,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="10*"/>
+                <RowDefinition Height="2.5*"/>
             </Grid.RowDefinitions>
             <TextBlock 
                 Text="{Binding ElementName=Control, Path=AnimalName}" 
@@ -25,7 +26,7 @@
                 x:Name="PropertyEditor" 
                 DataContext="{Binding ElementName=Control, Path=Animal, Mode=TwoWay}" 
                 Margin="5"/>
-
+            <Grid Grid.Row="2" x:Name="ButtonsGrid"/>
         </Grid>
     </Border>
 </UserControl>
