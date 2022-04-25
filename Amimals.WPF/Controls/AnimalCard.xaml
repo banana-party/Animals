@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="Animals.WPF.Controls.AnimalCard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Animals.WPF.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="200" x:Name="Control" DataContextChanged="AnimalCard_OnDataContextChanged">
+    <UserControl.Resources>
+    </UserControl.Resources>
+    <Border BorderBrush="Black" BorderThickness="2">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="10*"/>
+            </Grid.RowDefinitions>
+            <TextBlock 
+                Text="{Binding ElementName=Control, Path=AnimalName}" 
+                FontSize="15" 
+                FontStyle="Oblique" 
+                HorizontalAlignment="Center"/>
+
+            <local:PropertyEdit 
+                Grid.Row="1" 
+                x:Name="PropertyEditor" 
+                DataContext="{Binding ElementName=Control, Path=Animal, Mode=TwoWay}" 
+                Margin="5"/>
+
+        </Grid>
+    </Border>
+</UserControl>

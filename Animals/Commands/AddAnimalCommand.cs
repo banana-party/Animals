@@ -2,6 +2,7 @@
 using Animals.Console.Commands.Bases;
 using Animals.Console.Services.Creators;
 using Animals.Core.Business;
+using Animals.Core.Constants;
 using Animals.Core.Exceptions;
 using Animals.Core.Interfaces;
 
@@ -15,12 +16,12 @@ namespace Animals.Console.Commands
 		{
 			_dict = new Dictionary<string, string>()
 			{
-				{ "1", "Cat" },
-				{ "2", "Dog" },
-				{ "3", "Chicken" },
-				{ "4", "Stork" },
-				{ "5", "Tiger" },
-				{ "6", "Wolf" }
+				{ "1", Consts.Cat },
+				{ "2", Consts.Dog },
+				{ "3", Consts.Chicken },
+				{ "4", Consts.Stork },
+				{ "5", Consts.Tiger },
+				{ "6", Consts.Wolf }
 			};
 			_factory = factory;
 		}

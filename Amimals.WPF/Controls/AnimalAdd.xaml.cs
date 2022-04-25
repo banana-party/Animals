@@ -19,6 +19,7 @@ using System.Windows.Shapes;
 using Animals.Core.Business.Instances;
 using Animals.Core.Interfaces;
 using Animals.WPF.Helpers;
+using Animals.WPF.Services;
 using Animals.WPF.Services.Creators;
 using Animals.WPF.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
@@ -37,8 +38,8 @@ namespace Animals.WPF.Controls
 
         public IAnimal Animal
         {
-            get { return (IAnimal)GetValue(AnimalProperty); }
-            set { SetValue(AnimalProperty, value); }
+            get => (IAnimal)GetValue(AnimalProperty);
+            set => SetValue(AnimalProperty, value);
         }
 
         public static readonly DependencyProperty AnimalProperty =
@@ -50,12 +51,9 @@ namespace Animals.WPF.Controls
 
             var l = new List<Item>();
             foreach (var item in AnimalTypesHelper.GetAnimalTypes().ToList())
-            {
                 l.Add(new Item { DisplayName = item.Name, Animal = _factory.CreateAnimal(item.Name) });
-            }
+            
             ChooseAnimalComboBox.ItemsSource = l;
-            //ChooseAnimalComboBox.SelectedItem = l.First();
-            //ChooseAnimalComboBox.SelectedValue = l.First();
         }
         private static void OnAnimalChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -89,18 +87,12 @@ namespace Animals.WPF.Controls
 
         private void Cancel(object sender, RoutedEventArgs e)
         {
-            var t = Window.GetWindow(this);
-            if (t is not null)
+            var window = Window.GetWindow(this);
+            if (window is not null)
             {
-                t.DialogResult = false;
-                this.Visibility = Visibility.Hidden;
+                window.DialogResult = false;
+                window.Close();
             }
         }
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            e.Cancel = true;
-            this.Visibility = Visibility.Hidden;
-        }
-
     }
 }

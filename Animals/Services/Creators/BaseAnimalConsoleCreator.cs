@@ -30,6 +30,15 @@ namespace Animals.Console.Services.Creators
             float weight;
             while (!float.TryParse(ReaderService.ReadLine(), out weight))
             {
+                try
+                { 
+                    ValueEnter(weight, f => f > 0);
+                }
+                catch (Exception e)
+                {
+                    NotificationService.Write(e.Message);
+                    continue;
+                }
                 NotificationService.Write("Не корректрый формат данных.");
                 NotificationService.Write("Введите вес:");
             }
@@ -66,6 +75,12 @@ namespace Animals.Console.Services.Creators
                 NotificationService.Write(e.Message);
                 throw;
             }
+        }
+
+        protected T ValueEnter<T>(T value, Predicate<T> predicate)
+        {
+            //TODO: Подобрать подходящий эксепшн
+            return predicate(value) ? value : throw new Exception("Incorrect value.");
         }
     }
 }

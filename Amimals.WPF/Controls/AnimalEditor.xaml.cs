@@ -16,8 +16,8 @@ namespace Animals.WPF.Controls
         }
         public IAnimal Animal
         {
-            get { return (IAnimal)GetValue(AnimalProperty); }
-            set { SetValue(AnimalProperty, value); }
+            get => (IAnimal)GetValue(AnimalProperty);
+            set => SetValue(AnimalProperty, value);
         }
 
         public static readonly DependencyProperty AnimalProperty =

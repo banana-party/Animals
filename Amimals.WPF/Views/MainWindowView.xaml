@@ -6,52 +6,59 @@
         xmlns:local="clr-namespace:Animals.WPF" 
 		xmlns:converters="clr-namespace:Animals.WPF.Converters"
 		xmlns:services="clr-namespace:Animals.WPF.Services"
+		xmlns:controls="clr-namespace:Animals.WPF.Controls"
 		mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
 
     <Window.DataContext>
-		<Binding Source="{StaticResource LocatorService}" Path="MainWindowViewModel"/>
+        <Binding Source="{StaticResource LocatorService}" Path="MainWindowViewModel"/>
     </Window.DataContext>
 
     <Window.Resources>
-		<Style TargetType="Button">
-			<Setter Property="Margin" Value="12"/>
-		</Style>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="12"/>
+        </Style>
         <Style TargetType="services:CustomButton">
             <Setter Property="Margin" Value="12"/>
         </Style>
-		<converters:AnimalToStringConverter x:Key="AnimalToStringConverter"/>
-		<converters:ValueToBoolConverter x:Key="ValueToBoolConverter"/>
+        <converters:AnimalToStringConverter x:Key="AnimalToStringConverter"/>
+        <converters:ValueToBoolConverter x:Key="ValueToBoolConverter"/>
     </Window.Resources>
-	<Grid>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="6*"/>
-			<RowDefinition Height="*"/>
-		</Grid.RowDefinitions>
-		<DataGrid Grid.Row="0" 
-				  ItemsSource="{Binding Animals, Mode=OneWay}" 
-				  AutoGenerateColumns="True" 
-				  CanUserAddRows="False" 
-				  SelectedItem="{Binding SelectedAnimal, Mode=TwoWay}">
-			<DataGrid.Columns>
-				<DataGridTextColumn Header="Тип" IsReadOnly="True" Binding="{Binding Path=., Converter={StaticResource AnimalToStringConverter}}"/>
-                <DataGridTextColumn Header="Рост" Binding="{Binding Height}" IsReadOnly="True"/>
-				<DataGridTextColumn Header="Вес" Binding="{Binding Weight}" IsReadOnly="True"/>
-				<DataGridTextColumn Header="Цвет глаз" Binding="{Binding EyeColor}" IsReadOnly="True"/>
-			</DataGrid.Columns>
-		</DataGrid>
-		<Grid Grid.Row="1">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="*"/>
-				<ColumnDefinition Width="*"/>
-				<ColumnDefinition Width="*"/>
-				<ColumnDefinition Width="*"/>
-			</Grid.ColumnDefinitions>
-			<!--TODO:Проверить работу этой View-->
-			<services:CustomButton Grid.Column="0" Command="{Binding AddCommand}" Click="ButtonBase_OnClick">Добавить</services:CustomButton>
-			<Button Grid.Column="1" Command="{Binding EditCommand}" IsEnabled="{Binding SelectedAnimal, Converter={StaticResource ValueToBoolConverter}}">Редактировать</Button>
-			<Button Grid.Column="2" Command="{Binding RemoveCommand}" IsEnabled="{Binding SelectedAnimal, Converter={StaticResource ValueToBoolConverter}}">Удалить</Button>
-			<Button Grid.Column="3" Command="{Binding PlaySoundCommand}" IsEnabled="{Binding SelectedAnimal, Converter={StaticResource ValueToBoolConverter}}">Издать звук</Button>
-		</Grid>
-	</Grid>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <ListView 
+            ItemsSource="{Binding Animals}" 
+            SelectedItem="{Binding SelectedAnimal}"
+            SelectionMode="Single"
+            HorizontalContentAlignment="Stretch" 
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <controls:AnimalCard Width="230" Height="230" Margin="0,3,0,3"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel></WrapPanel>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+        </ListView>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <services:CustomButton Grid.Column="0" Command="{Binding AddCommand}" Click="ButtonBase_OnClick">Добавить</services:CustomButton>
+            <Button Grid.Column="1" Command="{Binding EditCommand}" IsEnabled="{Binding SelectedAnimal, Converter={StaticResource ValueToBoolConverter}}">Редактировать</Button>
+            <Button Grid.Column="2" Command="{Binding RemoveCommand}" IsEnabled="{Binding SelectedAnimal, Converter={StaticResource ValueToBoolConverter}}">Удалить</Button>
+            <Button Grid.Column="3" Command="{Binding PlaySoundCommand}" IsEnabled="{Binding SelectedAnimal, Converter={StaticResource ValueToBoolConverter}}">Издать звук</Button>
+        </Grid>
+    </Grid>
 </Window>

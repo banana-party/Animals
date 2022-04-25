@@ -210,6 +210,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\AnimalCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AddAnimalView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -235,6 +239,9 @@
     </Compile>
     <Compile Include="Controls\PropertyEdit.xaml.cs">
       <DependentUpon>PropertyEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\AnimalCard.xaml.cs">
+      <DependentUpon>AnimalCard.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\AnimalToSoundPathConverter.cs" />
     <Compile Include="Converters\AnimalToStringConverter.cs" />

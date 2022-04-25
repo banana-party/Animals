@@ -9,6 +9,8 @@ using Animals.WPF.Services.Creators;
 using Animals.WPF.Views;
 using Microsoft.Extensions.DependencyInjection;
 
+using ICommand = System.Windows.Input.ICommand;
+
 namespace Animals.WPF.ViewModels
 {
     public class MainWindowViewModel : BaseViewModel
@@ -18,13 +20,13 @@ namespace Animals.WPF.ViewModels
 
         public MainWindowViewModel()
         {
-            var chicken = _factory.CreateAnimal("Chicken");
+            var chicken = _factory.CreateAnimal(Consts.Chicken);
             chicken.EyeColor = "Red";
             chicken.Height = 12.2f;
             chicken.Weight = 13.3f;
             if (chicken is Chicken c)
                 c.FlyHeight = 0;
-            
+
 
             Animals = new ObservableCollection<IAnimal>()
             {
@@ -33,14 +35,14 @@ namespace Animals.WPF.ViewModels
                 (
                      12f, 44f,
                     "Green", "Vasya", "Tasmanian", true,
-                    "Black", new System.DateTime(1332, 11, 3),
+                    "Black", new DateTime(1332, 11, 3),
                     true, new SoundService(Consts.GetCatSoundPath)
                 ),
                 new Dog
                 (
                     12.2f,33f,
                     "Yellow", "Boobick", "Street", false,
-                    "Brown", new System.DateTime(2015,3,24),
+                    "Brown", new DateTime(2015,3,24),
                     false, new SoundService(Consts.GetDogSoundPath)
                 ),
                 new Stork(11.1f,22,"Black", 200, new SoundService(Consts.GetStorkSoundPath))
@@ -49,16 +51,8 @@ namespace Animals.WPF.ViewModels
 
         #region Properties
 
-        private ObservableCollection<IAnimal> _animals;
-        public ObservableCollection<IAnimal> Animals
-        {
-            get => _animals;
-            set
-            {
-                _animals = value;
-                OnPropertyChanged();
-            }
-        }
+        public ObservableCollection<IAnimal> Animals { get; set; }
+
         private IAnimal _selectedAnimal;
         public IAnimal SelectedAnimal
         {
@@ -73,22 +67,20 @@ namespace Animals.WPF.ViewModels
         #endregion
 
         #region Commands
-        public Command AddCommand => new Command(Add);
+        public ICommand AddCommand => new Command(Add);
         public void Add()
         {
             var view = App.ServiceProvider.GetRequiredService<AddAnimalView>();
-            
-            if ((bool) view.ShowDialog())
-            {
-                Animals.Add(((AddAnimalViewModel) view.DataContext).Animal);
-            }
+            if (view is not null)
+                if ((bool) view.ShowDialog())
+                    Animals.Add(((AddAnimalViewModel) view.DataContext).Animal);
         }
-        public Command EditCommand => new Command(Edit);
+        public ICommand EditCommand => new Command(Edit);
         public void Edit()
         {
             var animal = (IAnimal)SelectedAnimal.Clone();
             var view = App.ServiceProvider.GetRequiredService<EditAnimalView>();
-            ((EditAnimalViewModel) view.DataContext).SelectedAnimal = animal;
+            ((EditAnimalViewModel)view.DataContext).SelectedAnimal = animal;
 
             if ((bool)view.ShowDialog())
             {
@@ -98,10 +90,9 @@ namespace Animals.WPF.ViewModels
             }
             else
                 SelectedAnimal = null;
-            
         }
 
-        public Command RemoveCommand => new Command(Remove);
+        public ICommand RemoveCommand => new Command(Remove);
         public void Remove()
         {
             if (!_dialogService.ShowYesNoDialog("Вы действительно хотите удалить это животное?", "Удаление"))
@@ -109,13 +100,12 @@ namespace Animals.WPF.ViewModels
             Animals.Remove(SelectedAnimal);
             SelectedAnimal = null;
         }
-        public Command PlaySoundCommand => new Command(PlaySound);
+        public ICommand PlaySoundCommand => new Command(PlaySound);
         private void PlaySound()
         {
             SelectedAnimal.MakeASound();
         }
 
         #endregion
-
     }
 }
