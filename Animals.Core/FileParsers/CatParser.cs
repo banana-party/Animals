@@ -8,23 +8,13 @@ namespace Animals.Core.FileParsers
 {
     public class CatParser : BaseParser, IFromFileParser
     {
-        public CatParser(IMakeASoundable aSound) : base(aSound)
+        public CatParser(IMakeASoundable aSound, IDialogService dialog) : base(aSound, dialog)
         {
         }
         public IAnimal Parse(List<string> lst)
 		{
             //TODO: Нужно сделать проверку на то, что параметров достаточно и коллекция не пуста и не null
-			return new Cat(
-				float.Parse(lst[1], CultureInfo.InvariantCulture), 
-				float.Parse(lst[2], CultureInfo.InvariantCulture), 
-				lst[3], 
-				lst[4], lst[5],
-				bool.Parse(lst[6]), 
-				lst[7],
-				DateTime.Parse(lst[8]),
-				bool.Parse(lst[9]),
-				_aSound
-				);
+			return new Cat(ASound, DialogService);
 		}
 
 	}

@@ -16,5 +16,10 @@ namespace Animals.WPF.Services
             return MessageBox.Show(text, caption, MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK) ==
                    MessageBoxResult.OK;
         }
+
+        public void ShowMessage(string text, string caption)
+        {
+            MessageBox.Show(text, caption, MessageBoxButton.OK, MessageBoxImage.Information);
+        }
     }
 }

@@ -7,22 +7,8 @@ namespace Animals.Core.Business.Bases
 {
     public abstract class HomeAnimalBase : AnimalBase
     {
-        protected HomeAnimalBase() : base()
+        protected HomeAnimalBase(IMakeASoundable sound, IDialogService dialog) : base(sound, dialog)
         {
-
-        }
-        protected HomeAnimalBase(float height, float weight, string eyeColor, IMakeASoundable sound) : base(height, weight, eyeColor, sound)
-        {
-        }
-
-        protected HomeAnimalBase(float height, float weight, string eyeColor, string name, string breed, bool isItVaccinated, string coatColor, DateTime birthDate, IMakeASoundable aSound)
-            : base(height, weight, eyeColor, aSound)
-        {
-            Name = name;
-            Breed = breed;
-            IsItVaccinated = isItVaccinated;
-            CoatColor = coatColor;
-            BirthDate = birthDate;
         }
 
         #region Properties
@@ -81,10 +67,10 @@ namespace Animals.Core.Business.Bases
 
         #endregion
 
-        //Можно было его лучше написать
-        public string Pet()
+
+        public void Pet()
         {
-            return $"Вы гладите {this.RusType()}, оно довольное...";
+            DialogService.ShowMessage($"Вы гладите {this.RusType()}, оно довольное...");
         }
         //метод можно было неаписать лучше
         public override string ToString()

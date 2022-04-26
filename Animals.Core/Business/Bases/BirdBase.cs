@@ -19,19 +19,15 @@ namespace Animals.Core.Business.Bases
 
         #endregion
 
-        protected BirdBase() : base()
+        protected BirdBase(IMakeASoundable sound, IDialogService dialog) : base(sound, dialog)
         {
         }
-		protected BirdBase(float height, float weight, string eyeColor, int flyHeight, IMakeASoundable aSound) : base( height, weight, eyeColor, aSound)
-		{
-			FlyHeight = flyHeight;
-		}
-		
+
         //TODO: Реализовать вызов метода
-		public string Fly()
-		{
-			return $"Я лечу на высоте {FlyHeight} метров!";
-		}
+		public void Fly()
+        {
+            DialogService.ShowMessage($"Я лечу на высоте {FlyHeight} метров!");
+        }
 		
 		public override string ToString()
 		{

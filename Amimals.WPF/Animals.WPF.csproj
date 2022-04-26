@@ -251,7 +251,6 @@
     <Compile Include="Services\Creators\WPFFactory.cs" />
     <Compile Include="Services\CustomButton.cs" />
     <Compile Include="Services\DialogService.cs" />
-    <Compile Include="Services\NotificationService.cs" />
     <Compile Include="Services\SoundService.cs" />
     <Compile Include="Services\ViewModelLocatorService.cs" />
     <Compile Include="ViewModels\AddAnimalViewModel.cs" />

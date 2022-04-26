@@ -4,10 +4,12 @@ namespace Animals.Core.FileParsers
 {
     public class BaseParser
     {
-        protected readonly IMakeASoundable _aSound;
-        public BaseParser(IMakeASoundable aSound)
+        protected readonly IMakeASoundable ASound;
+        protected readonly IDialogService DialogService;
+        public BaseParser(IMakeASoundable aSound, IDialogService dialog)
         {
-            _aSound = aSound;
+            ASound = aSound;
+            DialogService = dialog;
         }
     }
 }

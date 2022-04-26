@@ -1,9 +1,9 @@
 ﻿namespace Animals.Core.Interfaces
 {
-	//Хорошая реализация, но caption можно сделать необязательным параметром под Console
-	public interface IDialogService
+    public interface IDialogService
 	{
-		bool ShowYesNoDialog(string text, string caption);
-        bool ShowErrorDialog(string text, string caption);
+		bool ShowYesNoDialog(string text, string caption = null);
+        bool ShowErrorDialog(string text, string caption = null);
+		void ShowMessage(string text, string caption = null);
     }
 }

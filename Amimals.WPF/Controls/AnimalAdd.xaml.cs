@@ -28,7 +28,7 @@ namespace Animals.WPF.Controls
 {
     public partial class AnimalAdd : UserControl
     {
-        private static readonly WpfFactory _factory = WpfFactory.CreateFactory();
+        private readonly WpfFactory _factory;
         private readonly IDialogService _dialogService = App.ServiceProvider.GetRequiredService<IDialogService>() ?? throw new NullReferenceException();
         private class Item
         {
@@ -48,6 +48,7 @@ namespace Animals.WPF.Controls
         public AnimalAdd()
         {
             InitializeComponent();
+            _factory = WpfFactory.CreateFactory(_dialogService);
 
             var l = new List<Item>();
             foreach (var item in AnimalTypesHelper.GetAnimalTypes().ToList())

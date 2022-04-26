@@ -9,19 +9,14 @@ using Animals.Core.Annotations;
 namespace Animals.Core.Business.Bases
 {
 	public abstract class AnimalBase : IAnimal, INotifyPropertyChanged
-    {
-        protected AnimalBase()
-        {
-
-        }
+    {     
         protected IMakeASoundable ASound;
-		protected AnimalBase(float height, float weight, string eyeColor, IMakeASoundable aSound)
-		{
-			Height = height;
-			Weight = weight;
-			EyeColor = eyeColor;
-			ASound = aSound;
-		}
+        protected IDialogService DialogService;
+        protected AnimalBase(IMakeASoundable aSound, IDialogService dialog)
+        {
+            ASound = aSound;
+            DialogService = dialog;
+        }
 
         #region Properties
 

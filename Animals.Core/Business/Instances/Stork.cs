@@ -5,12 +5,8 @@ namespace Animals.Core.Business.Instances
 {
 	public class Stork : BirdBase
 	{
-        public Stork(IMakeASoundable sound)
+        public Stork(IMakeASoundable sound, IDialogService dialog) : base(sound, dialog)
         {
-            ASound = sound;
         }
-		public Stork(float height, float weight, string eyeColor, int flyHeight, IMakeASoundable aSound) : base(height, weight, eyeColor, flyHeight, aSound)
-		{
-		}
     }
 }

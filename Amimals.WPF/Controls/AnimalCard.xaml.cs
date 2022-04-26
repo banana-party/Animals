@@ -11,8 +11,11 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using Animals.Core.Annotations;
 using Animals.Core.Business.Bases;
+using Animals.Core.Business.Instances;
 using Animals.Core.Interfaces;
 using Animals.WPF.Commands;
+using Microsoft.Extensions.DependencyInjection;
+using Command = Animals.WPF.Commands.Command;
 
 namespace Animals.WPF.Controls
 {
@@ -21,6 +24,9 @@ namespace Animals.WPF.Controls
     /// </summary>
     public partial class AnimalCard : UserControl, INotifyPropertyChanged
     {
+
+        private IDialogService _dialogService = App.ServiceProvider.GetRequiredService<IDialogService>();
+
         public AnimalCard()
         {
             InitializeComponent();
@@ -72,8 +78,26 @@ namespace Animals.WPF.Controls
             {
                 ButtonsGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
 
-                var button = new Button();
-                button.Content = method.Name;
+                var button = new Button
+                {
+                    Content = method.Name,
+                };
+
+                if (method.ReturnType == typeof(void))
+                {
+                    var d = (Action) method.CreateDelegate(typeof(Action), Animal);
+                   // d += DoAnimalThing;
+                    button.Command = new Command(d);
+                }
+
+                if (method.ReturnType == typeof(string))
+                {
+                    var d = (Func<string>) method.CreateDelegate(typeof(Func<string>), Animal);
+                   // d += DoAnimalThing;
+                }
+                
+
+                
                 Grid.SetColumn(button, i++);
                 Grid.SetRow(button, 0);
 
@@ -81,6 +105,16 @@ namespace Animals.WPF.Controls
             }
 
 
+        }
+
+        private void DoAnimalThing()
+        {
+            if (Animal is Dog d)
+            {
+                _dialogService.ShowErrorDialog("123", "123");
+                d.Train();
+            }
+         
         }
 
         private void AnimalCard_OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)

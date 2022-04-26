@@ -16,36 +16,58 @@ namespace Animals.WPF.ViewModels
     public class MainWindowViewModel : BaseViewModel
     {
         private readonly IDialogService _dialogService = App.ServiceProvider.GetService<IDialogService>() ?? throw new NullReferenceException();
-        private readonly WpfFactory _factory = WpfFactory.CreateFactory();
 
         public MainWindowViewModel()
         {
-            var chicken = _factory.CreateAnimal(Consts.Chicken);
+            //TODO: Данные для тестов. Удалить
+            var factory = WpfFactory.CreateFactory(_dialogService);
+            var chicken = factory.CreateAnimal(Consts.Chicken);
             chicken.EyeColor = "Red";
             chicken.Height = 12.2f;
             chicken.Weight = 13.3f;
-            if (chicken is Chicken c)
-                c.FlyHeight = 0;
+            if (chicken is Chicken chick)
+                chick.FlyHeight = 0;
 
-
-            Animals = new ObservableCollection<IAnimal>()
+            var cat = factory.CreateAnimal(Consts.Cat);
+            cat.EyeColor = "Green";
+            cat.Height = 12f;
+            cat.Weight = 44f;
+            if (cat is Cat kitty)
             {
-                chicken,
-                new Cat
-                (
-                     12f, 44f,
-                    "Green", "Vasya", "Tasmanian", true,
-                    "Black", new DateTime(1332, 11, 3),
-                    true, new SoundService(Consts.GetCatSoundPath)
-                ),
-                new Dog
-                (
-                    12.2f,33f,
-                    "Yellow", "Boobick", "Street", false,
-                    "Brown", new DateTime(2015,3,24),
-                    false, new SoundService(Consts.GetDogSoundPath)
-                ),
-                new Stork(11.1f,22,"Black", 200, new SoundService(Consts.GetStorkSoundPath))
+                kitty.IsItWooled = true;
+                kitty.Name = "Vasya";
+                kitty.Breed = "Tasmanian";
+                kitty.BirthDate = new DateTime(1332, 11, 3);
+                kitty.CoatColor = "Black";
+                kitty.IsItVaccinated = true;
+            }
+
+            var dog = factory.CreateAnimal(Consts.Dog);
+            dog.EyeColor = "Yellow";
+            dog.Height = 12.2f;
+            dog.Weight = 33f;
+            if (dog is Dog doggo)
+            {
+                doggo.Name = "Boobick";
+                doggo.BirthDate = new DateTime(2015, 3, 24);
+                doggo.CoatColor = "Brown";
+                doggo.Breed = "Streety";
+                doggo.EyeColor = "Yellow";
+                doggo.IsItVaccinated = false;
+            }
+
+            var stork = factory.CreateAnimal(Consts.Stork);
+            stork.EyeColor = "Black";
+            stork.Height = 11.2f;
+            stork.Weight = 22;
+            if (stork is Stork s)
+            {
+                s.FlyHeight = 100;
+            }
+
+            Animals = new ObservableCollection<IAnimal>
+            {
+                chicken, cat, dog, stork
             };
         }
 

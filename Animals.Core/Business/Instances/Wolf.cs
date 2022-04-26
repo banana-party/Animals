@@ -8,7 +8,7 @@ namespace Animals.Core.Business.Instances
     {
         #region Properties
 
-        private bool _isItAlpha;
+        private bool _isItAlpha = false;
         public bool IsItAlpha
         {
             get => _isItAlpha;
@@ -21,15 +21,10 @@ namespace Animals.Core.Business.Instances
 
         #endregion
 
-        public Wolf(IMakeASoundable sound)
+        public Wolf(IMakeASoundable sound, IDialogService dialog) : base(sound, dialog)
         {
-            ASound = sound;
         }
-		public Wolf(float height, float weight, string eyeColor, string habitat, DateTime dateOfFind, bool isItAlpha, IMakeASoundable aSound) 
-			: base(height, weight, eyeColor, habitat, dateOfFind, aSound)
-		{
-			IsItAlpha = isItAlpha;
-		}
+
         //Метод можно было реализовать лучше
 		public override string ToString()
 		{

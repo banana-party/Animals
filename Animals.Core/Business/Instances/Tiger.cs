@@ -6,13 +6,8 @@ namespace Animals.Core.Business.Instances
 {
 	public class Tiger : WildAnimalBase
 	{
-        public Tiger(IMakeASoundable sound)
+        public Tiger(IMakeASoundable sound, IDialogService dialog) : base(sound, dialog)
         {
-            ASound = sound;
         }
-		public Tiger(float height, float weight, string eyeColor, string habitat, DateTime dateOfFind, IMakeASoundable aSound) 
-			: base(height, weight, eyeColor, habitat, dateOfFind, aSound)
-		{
-		}
     }
 }
