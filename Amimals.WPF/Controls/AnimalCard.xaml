@@ -6,10 +6,13 @@
              xmlns:local="clr-namespace:Animals.WPF.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="200" x:Name="Control" DataContextChanged="AnimalCard_OnDataContextChanged">
-    <UserControl.Resources>
-    </UserControl.Resources>
-    <Border BorderBrush="Black" BorderThickness="2">
+
+    <Border BorderBrush="Black" CornerRadius="10" Background="WhiteSmoke">
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="8" Direction="0" RenderingBias="Quality" ShadowDepth="3"/>
+        </Border.Effect>
         <Grid>
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="10*"/>

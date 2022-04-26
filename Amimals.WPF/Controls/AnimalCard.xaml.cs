@@ -1,36 +1,31 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
 using Animals.Core.Annotations;
 using Animals.Core.Business.Bases;
-using Animals.Core.Business.Instances;
 using Animals.Core.Interfaces;
-using Animals.WPF.Commands;
-using Microsoft.Extensions.DependencyInjection;
+
 using Command = Animals.WPF.Commands.Command;
 
 namespace Animals.WPF.Controls
 {
-    /// <summary>
-    /// Interaction logic for AnimalCard.xaml
-    /// </summary>
     public partial class AnimalCard : UserControl, INotifyPropertyChanged
     {
-
-        private IDialogService _dialogService = App.ServiceProvider.GetRequiredService<IDialogService>();
+        #region Constructor
 
         public AnimalCard()
         {
             InitializeComponent();
         }
+
+        #endregion
+
+        #region Properties
 
         public IAnimal Animal
         {
@@ -53,6 +48,15 @@ namespace Animals.WPF.Controls
         public static readonly DependencyProperty AnimalProperty =
             DependencyProperty.Register("Animal", typeof(IAnimal), typeof(AnimalCard), new PropertyMetadata(null, SetGrid));
 
+        #endregion
+
+        #region Fields
+
+        private static readonly MethodInfo[] BaseMethods = typeof(AnimalBase).GetMethods();
+        
+        #endregion
+
+        #region Methods
         private static void SetGrid(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var type = e.NewValue?.GetType();
@@ -63,8 +67,6 @@ namespace Animals.WPF.Controls
 
             control.SetButtons(type);
         }
-
-        private static readonly MethodInfo[] BaseMethods = typeof(AnimalBase).GetMethods();
 
         private void SetButtons(Type type)
         {
@@ -91,18 +93,6 @@ namespace Animals.WPF.Controls
                 Grid.SetRow(button, 0);
                 ButtonsGrid.Children.Add(button);
             }
-
-
-        }
-
-        private void DoAnimalThing()
-        {
-            if (Animal is Dog d)
-            {
-                _dialogService.ShowErrorDialog("123", "123");
-                d.Train();
-            }
-
         }
 
         private void AnimalCard_OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -111,6 +101,10 @@ namespace Animals.WPF.Controls
             AnimalName = Animal.GetType().Name;
         }
 
+        #endregion
+
+        #region PropertyChangedInvocator
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
@@ -118,6 +112,11 @@ namespace Animals.WPF.Controls
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+        
+        #endregion
+
+        #region EuqalityComparer
+
         private class AnimalMethodsEqualityComaprer : IEqualityComparer<MethodInfo>
         {
             public bool Equals(MethodInfo x, MethodInfo y)
@@ -130,6 +129,8 @@ namespace Animals.WPF.Controls
                 return obj.Name.GetHashCode();
             }
         }
+        #endregion
+
     }
 
 }

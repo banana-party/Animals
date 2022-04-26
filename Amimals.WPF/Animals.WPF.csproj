@@ -243,7 +243,6 @@
     <Compile Include="Controls\AnimalCard.xaml.cs">
       <DependentUpon>AnimalCard.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Converters\AnimalToSoundPathConverter.cs" />
     <Compile Include="Converters\AnimalToStringConverter.cs" />
     <Compile Include="Exceptions\IncorrectTypeException.cs" />
     <Compile Include="Converters\ValueToBoolConverter.cs" />
