@@ -6,19 +6,19 @@ using Animals.Core.Interfaces;
 
 namespace Animals.Console.Commands
 {
-	public class PrintAnimalInfoCommand : NotificationAndReaderCommandBase
+	public class PrintAnimalInfoCommand : DialogAndReaderCommandBase
 	{
-		public PrintAnimalInfoCommand(Zoo zoo, INotificationService notificationService, IReaderService readerService) : base(zoo, notificationService, readerService)
+		public PrintAnimalInfoCommand(Zoo zoo, IDialogService dialogService, IReaderService readerService) : base(zoo, dialogService, readerService)
 		{
 		}
 
 		public override void Execute()
 		{
-			var lst = Zoo.Info(this.ReadIndex(NotificationService, ReaderService)).Split(',').ToList();
-			NotificationService.Write($"{lst[0]}:\n\t");
+			var lst = Zoo.Info(this.ReadIndex(DialogService, ReaderService)).Split(',').ToList();
+            DialogService.ShowMessage($"{lst[0]}:\n\t");
 			for (int i = 1; i < lst.Count; i++)
 			{
-				NotificationService.Write($"{lst[i]} ");
+                DialogService.ShowMessage($"{lst[i]} ");
 			}
 		}
 		//Метод можно было реализовать лучше

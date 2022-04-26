@@ -5,7 +5,7 @@ namespace Animals.Console.Services.Creators
 {
 	public class ChickenConsoleCreator : BaseAnimalConsoleCreator
 	{
-		public ChickenConsoleCreator(IReaderService readerService, INotificationService notificationService) : base(readerService, notificationService)
+		public ChickenConsoleCreator(IReaderService readerService, IDialogService dialog) : base(readerService, dialog)
 		{
 			SoundService = ConsoleSoundService.CreateSoundService("Пок-пок-пок");
 		}
@@ -17,7 +17,7 @@ namespace Animals.Console.Services.Creators
 			float weight = tuple.Item2;
 			string eyeColor = tuple.Item3;
 
-			return new Chicken( height, weight, eyeColor, 0, SoundService);
+			return new Chicken(SoundService, DialogService);
 		}
 	}
 }

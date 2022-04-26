@@ -6,12 +6,12 @@ namespace Animals.Console.Services.Creators
 {
     public abstract class BaseAnimalConsoleCreator
     {
-        protected readonly INotificationService NotificationService;
+        protected readonly IDialogService DialogService;
         protected readonly IReaderService ReaderService;
         protected IMakeASoundable SoundService;
-        protected BaseAnimalConsoleCreator(IReaderService readerService, INotificationService notificationService)
+        protected BaseAnimalConsoleCreator(IReaderService readerService, IDialogService dialog)
         {
-            NotificationService = notificationService;
+            DialogService = dialog;
             ReaderService = readerService;
         }
         public abstract IAnimal Create();
@@ -19,14 +19,14 @@ namespace Animals.Console.Services.Creators
         {
             //Повторяющиеся действия с проверкой корректности и считывания можно было вынести с отдельный
             //сервис или Extension
-            NotificationService.Write("Введите рост:");
+            DialogService.ShowMessage("Введите рост:");
             float height;
             while (!float.TryParse(ReaderService.ReadLine(), out height))
             {
-                NotificationService.Write("Не корректрый формат данных.");
-                NotificationService.Write("Введите рост:");
+                DialogService.ShowMessage("Не корректрый формат данных.");
+                DialogService.ShowMessage("Введите рост:");
             }
-            NotificationService.Write("Введите вес:");
+            DialogService.ShowMessage("Введите вес:");
             float weight;
             while (!float.TryParse(ReaderService.ReadLine(), out weight))
             {
@@ -36,13 +36,13 @@ namespace Animals.Console.Services.Creators
                 }
                 catch (Exception e)
                 {
-                    NotificationService.Write(e.Message);
+                    DialogService.ShowMessage(e.Message);
                     continue;
                 }
-                NotificationService.Write("Не корректрый формат данных.");
-                NotificationService.Write("Введите вес:");
+                DialogService.ShowMessage("Не корректрый формат данных.");
+                DialogService.ShowMessage("Введите вес:");
             }
-            NotificationService.Write("Введите цвет глаз:");
+            DialogService.ShowMessage("Введите цвет глаз:");
             string eyeColor = ReaderService.ReadLine();
             //Tuple - удобно, но не очень объектно-ориентировано, надо об этом подумать
             return new Tuple<float, float, string>(height, weight, eyeColor);
@@ -53,26 +53,26 @@ namespace Animals.Console.Services.Creators
             {
                 //Использование else лишнее, а так же у Вас есть IDialogService где у вас есть метод ShowYesNoDialog
                 //лучше это всё вынести в этот сервис консольной реализации
-                NotificationService.Write($"{text} (Д/Н)");
+                DialogService.ShowMessage($"{text} (Д/Н)");
                 string choose = ReaderService.ReadLine();
                 if (choose == "Д" || choose == "д" || choose == "Y" || choose == "y")
                     return true;
                 if (choose == "Н" || choose == "н" || choose == "N" || choose == "n")
                     return false;
 
-                NotificationService.Write("Не верный формат. Повторите ввод.\n");
+                DialogService.ShowMessage("Не верный формат. Повторите ввод.\n");
             } while (true);
         }
         protected DateTime? DateEnter(string text)
         {
-            NotificationService.Write($"{text} (dd.mm.yyyy): ");
+            DialogService.ShowMessage($"{text} (dd.mm.yyyy): ");
             try
             {
                 return DateTime.Parse(ReaderService.ReadLine());
             }
             catch (Exception e)
             {
-                NotificationService.Write(e.Message);
+                DialogService.ShowMessage(e.Message);
                 throw;
             }
         }

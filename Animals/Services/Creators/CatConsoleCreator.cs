@@ -6,7 +6,7 @@ namespace Animals.Console.Services.Creators
 {
 	public class CatConsoleCreator : BaseAnimalConsoleCreator
 	{
-		public CatConsoleCreator(IReaderService readerService, INotificationService notificationService) : base(readerService, notificationService)
+		public CatConsoleCreator(IReaderService readerService, IDialogService dialog) : base(readerService, dialog)
 		{
 			SoundService = ConsoleSoundService.CreateSoundService("МЯЯУ");
 		}
@@ -17,9 +17,9 @@ namespace Animals.Console.Services.Creators
 			float height = tuple.Item1; float weight = tuple.Item2; string eyeColor = tuple.Item3;
 
 
-			NotificationService.Write("Введите имя: ");
+			DialogService.ShowMessage("Введите имя: ");
 			string name = ReaderService.ReadLine();
-			NotificationService.Write("Введите породу: ");
+            DialogService.ShowMessage("Введите породу: ");
 			string breed = ReaderService.ReadLine();
 
 			bool isItWooled = BoolEnter("У нее есть шерсть?");
@@ -27,7 +27,7 @@ namespace Animals.Console.Services.Creators
 			string coatColor;
 			if (isItWooled)
 			{
-				NotificationService.Write("Введите цвет шерсти: ");
+                DialogService.ShowMessage("Введите цвет шерсти: ");
 				coatColor = ReaderService.ReadLine();
 			}
 			else
@@ -35,7 +35,7 @@ namespace Animals.Console.Services.Creators
 
 			bool isItVaccinated = BoolEnter("У нее есть прививки?");
 			DateTime birthDate = (DateTime)DateEnter("Введите дату рождения");
-			return new Cat(height, weight, eyeColor, name, breed, isItVaccinated, coatColor, birthDate, isItWooled, SoundService);
+			return new Cat(SoundService, DialogService);
 		}
 	}
 }

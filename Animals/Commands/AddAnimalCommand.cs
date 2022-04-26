@@ -8,11 +8,11 @@ using Animals.Core.Interfaces;
 
 namespace Animals.Console.Commands
 {
-	public class AddAnimalCommand : NotificationAndReaderCommandBase
+	public class AddAnimalCommand : DialogAndReaderCommandBase
 	{
         private readonly Dictionary<string, string> _dict;
 		private readonly ConsoleFactory _factory;
-		public AddAnimalCommand(Zoo zoo, ConsoleFactory factory, INotificationService notificationService, IReaderService readerService) : base(zoo, notificationService, readerService)
+		public AddAnimalCommand(Zoo zoo, ConsoleFactory factory, IDialogService dialog, IReaderService readerService) : base(zoo, dialog, readerService)
 		{
 			_dict = new Dictionary<string, string>()
 			{
@@ -28,7 +28,7 @@ namespace Animals.Console.Commands
 
 		public override void Execute()
 		{
-			NotificationService.Write("Выберете животное, которое хотите добавить:\n1 - Кошка\n2 - Собака\n3 - Курица\n4 - Аист\n5 - Тигр\n6 - Волк\n");
+            DialogService.ShowMessage("Выберете животное, которое хотите добавить:\n1 - Кошка\n2 - Собака\n3 - Курица\n4 - Аист\n5 - Тигр\n6 - Волк\n");
 			string choose = ReaderService.ReadLine();
 			//Необходима проверка на наличие команды в выборе
 			if (_dict.ContainsKey(choose))

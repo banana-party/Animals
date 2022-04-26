@@ -76,31 +76,19 @@ namespace Animals.WPF.Controls
 
             foreach (var method in uniqueMethods)
             {
-                ButtonsGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
+                ButtonsGrid.ColumnDefinitions.Add(new ColumnDefinition
+                    {Width = new GridLength(1, GridUnitType.Star)});
+
+                var d = (Action)method.CreateDelegate(typeof(Action), Animal);
 
                 var button = new Button
                 {
                     Content = method.Name,
+                    Command = new Command(d)
                 };
 
-                if (method.ReturnType == typeof(void))
-                {
-                    var d = (Action) method.CreateDelegate(typeof(Action), Animal);
-                   // d += DoAnimalThing;
-                    button.Command = new Command(d);
-                }
-
-                if (method.ReturnType == typeof(string))
-                {
-                    var d = (Func<string>) method.CreateDelegate(typeof(Func<string>), Animal);
-                   // d += DoAnimalThing;
-                }
-                
-
-                
                 Grid.SetColumn(button, i++);
                 Grid.SetRow(button, 0);
-
                 ButtonsGrid.Children.Add(button);
             }
 
@@ -114,7 +102,7 @@ namespace Animals.WPF.Controls
                 _dialogService.ShowErrorDialog("123", "123");
                 d.Train();
             }
-         
+
         }
 
         private void AnimalCard_OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)

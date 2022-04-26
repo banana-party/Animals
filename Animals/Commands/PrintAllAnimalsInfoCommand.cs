@@ -6,9 +6,9 @@ using Animals.Core.Interfaces;
 namespace Animals.Console.Commands
 
 {
-	public class PrintAllAnimalsInfoCommand : NotificationCommandBase
+	public class PrintAllAnimalsInfoCommand : DialogCommandBase
 	{
-		public PrintAllAnimalsInfoCommand(Zoo zoo, INotificationService notificationService) : base(zoo, notificationService)
+		public PrintAllAnimalsInfoCommand(Zoo zoo, IDialogService dialogService) : base(zoo, dialogService)
 		{
 		}
 
@@ -19,10 +19,10 @@ namespace Animals.Console.Commands
             int count = 1;
 			foreach (var el in lst)
 			{
-				NotificationService.Write($"{count++}. {el[0]}:\n\t");
+				DialogService.ShowMessage($"{count++}. {el[0]}:\n\t");
                 foreach (var e in el)
-                    NotificationService.Write($"{e} ");
-                NotificationService.Write($"\n");
+                    DialogService.ShowMessage($"{e} ");
+                DialogService.ShowMessage($"\n");
 			}
 		}
         //Метод можно было реализовать лучше

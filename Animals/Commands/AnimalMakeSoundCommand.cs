@@ -5,16 +5,16 @@ using Animals.Core.Interfaces;
 
 namespace Animals.Console.Commands
 {
-	public class AnimalMakeSoundCommand : NotificationAndReaderCommandBase
+	public class AnimalMakeSoundCommand : DialogAndReaderCommandBase
 	{
-		public AnimalMakeSoundCommand(Zoo zoo, INotificationService notificationService, IReaderService readerService) : base(zoo, notificationService, readerService)
+		public AnimalMakeSoundCommand(Zoo zoo, IDialogService dialog, IReaderService readerService) : base(zoo, dialog, readerService)
 		{
 		}
 		
         public override void Execute()
 		{
 			//Лучше использовать ?.
-			Zoo.MakeASound(this.ReadIndex(NotificationService, ReaderService));
+			Zoo.MakeASound(this.ReadIndex(DialogService, ReaderService));
 		}
 		
 		public override string ToString()

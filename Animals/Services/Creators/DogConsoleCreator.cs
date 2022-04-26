@@ -6,7 +6,7 @@ namespace Animals.Console.Services.Creators
 {
 	public class DogConsoleCreator : BaseAnimalConsoleCreator
 	{
-		public DogConsoleCreator(IReaderService readerService, INotificationService notificationService) : base(readerService, notificationService)
+		public DogConsoleCreator(IReaderService readerService, IDialogService dialog) : base(readerService, dialog)
 		{
 			SoundService = ConsoleSoundService.CreateSoundService("ГАВ");
 		}
@@ -19,19 +19,19 @@ namespace Animals.Console.Services.Creators
 			string eyeColor = tuple.Item3;
 
             //Избавиться от дублирования кода
-			NotificationService.Write("Введите имя: ");
+            DialogService.ShowMessage("Введите имя: ");
 			string name = ReaderService.ReadLine();
-			NotificationService.Write("Введите породу:");
+            DialogService.ShowMessage("Введите породу:");
 			string breed = ReaderService.ReadLine();
 
-			NotificationService.Write("Введите цвет шерсти: ");
+            DialogService.ShowMessage("Введите цвет шерсти: ");
 			string coatColor = ReaderService.ReadLine();
 
 			bool isItVaccinated = BoolEnter("У нее есть прививки?");
 			DateTime birthDate = (DateTime)DateEnter("Введите дату рождения");
 
 			bool isItTrained = BoolEnter("Собака тренированная?");
-			return new Dog(height, weight, eyeColor, name, breed, isItVaccinated, coatColor, birthDate, isItTrained, SoundService);
+			return new Dog(SoundService, DialogService);
 		}
 	}
 }

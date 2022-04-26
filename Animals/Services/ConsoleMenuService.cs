@@ -13,7 +13,7 @@ namespace Animals.Console.Services
 	class ConsoleMenuService
 	{
         private readonly IReaderService _reader;
-		private readonly INotificationService _notification;
+		private readonly IDialogService _dialog;
 		private readonly IAnimalParser _animalParser;
 		private readonly IFileReader _fileReader;
 		private readonly IFileWriter _fileWriter;
@@ -23,24 +23,24 @@ namespace Animals.Console.Services
 		public ConsoleMenuService(Zoo zoo)
 		{
 			_reader = new ConsoleReaderService();
-			_notification = new ConsoleNotificationService(); 
+			_dialog = new ConsoleDialogService(); 
 			_animalParser = new ConsoleAnimalParserService();
 
 			_fileReader = new FileReader(_animalParser);
 			_fileWriter = new FileWriter();
 
-            _factory = ConsoleFactory.CreateFactory(_reader, _notification);
+            _factory = ConsoleFactory.CreateFactory(_reader, _dialog);
             _zoo = zoo;
 
 			_dict = new Dictionary<string, ICommand>()
 			{
-				{"1", new AddAnimalCommand(_zoo, _factory, _notification, _reader) }, // TODO: Вводить "ваше животное успешно добавлено"
-				{"2", new DeleteAnimalCommand(_zoo, _notification, _reader) },	 // TODO: Вводить "ваше животное успешно удалено"
-				{"3", new PrintAnimalInfoCommand(_zoo, _notification, _reader)},  //TODO: Убрать вывод животных над меню
-				{"4", new AnimalMakeSoundCommand(_zoo, _notification, _reader) }, 
-				{"5", new PrintAllAnimalsInfoCommand(_zoo, _notification) },
+				{"1", new AddAnimalCommand(_zoo, _factory, _dialog, _reader) }, // TODO: Вводить "ваше животное успешно добавлено"
+				{"2", new DeleteAnimalCommand(_zoo, _dialog, _reader) },	 // TODO: Вводить "ваше животное успешно удалено"
+				{"3", new PrintAnimalInfoCommand(_zoo, _dialog, _reader)},  //TODO: Убрать вывод животных над меню
+				{"4", new AnimalMakeSoundCommand(_zoo, _dialog, _reader) }, 
+				{"5", new PrintAllAnimalsInfoCommand(_zoo, _dialog) },
 				{"6", new AllAnimalMakeSoundCommand(_zoo) },
-				{"7", new FileReadCommand(_zoo, _notification, _reader, _fileReader) },
+				{"7", new FileReadCommand(_zoo, _dialog, _reader, _fileReader) },
 				{"8", new FileWriteCommand(_zoo, _fileWriter) },
 				{"0", new ExitCommand() } 
 
@@ -65,18 +65,18 @@ namespace Animals.Console.Services
 					}
 					else
 					{
-						_notification.Write("Нет такой команды.\n");
+						_dialog.ShowMessage("Нет такой команды.\n");
 						System.Console.ReadKey();
 					}
 				}
 				catch (IndexOutOfRangeException)
 				{
-					_notification.Write("Индекс вне области\n");
+					_dialog.ShowMessage("Индекс вне области\n");
 					System.Console.ReadKey();
 				}
 				catch (IncorrectActionException e)
 				{
-					_notification.Write(e.Message + "\n");
+					_dialog.ShowMessage(e.Message + "\n");
 					System.Console.ReadKey();
 				}
 			} while (i != "0");
@@ -85,13 +85,13 @@ namespace Animals.Console.Services
 		public void PrintMenu(Dictionary<string, ICommand> dict)
 		{
 			foreach (var item in dict)
-				_notification.Write($"{item.Key} - {item.Value}\n");
+				_dialog.ShowMessage($"{item.Key} - {item.Value}\n");
 		}
 		public void PrintAnimalsList(Zoo zoo) // TODO: Удалить в релизе
 		{
 			for (int i = 0; i < zoo.Count; i++)
 			{
-				_notification.Write($"{i + 1}. {zoo.GetRusTypeOfAnimal(i)}\n");
+				_dialog.ShowMessage($"{i + 1}. {zoo.GetRusTypeOfAnimal(i)}\n");
 			}
 		}
 	}

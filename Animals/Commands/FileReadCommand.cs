@@ -5,17 +5,17 @@ using Animals.Core.Interfaces;
 
 namespace Animals.Console.Commands
 {
-	public class FileReadCommand : NotificationAndReaderCommandBase
+	public class FileReadCommand : DialogAndReaderCommandBase
 	{
         private readonly IFileReader _fileReader;
-		public FileReadCommand(Zoo zoo, INotificationService notificationService, IReaderService readerService, IFileReader fileReader) : base(zoo, notificationService, readerService)
+		public FileReadCommand(Zoo zoo, IDialogService dialog, IReaderService readerService, IFileReader fileReader) : base(zoo, dialog, readerService)
 		{
 			_fileReader = fileReader;
 		}
 
 		public override void Execute()
 		{
-			NotificationService.Write("Введите путь к файлу (пустая строка означает путь по умолчанию): \n");
+			DialogService.ShowMessage("Введите путь к файлу (пустая строка означает путь по умолчанию): \n");
 			string text = ReaderService.ReadLine();
 			if (string.IsNullOrEmpty(text))
 				text = "Input.txt";
@@ -27,7 +27,7 @@ namespace Animals.Console.Commands
 			//Не все виды ошибок перехвачены, возможны падения программы
 			catch (IOException)
 			{
-				NotificationService.Write("File or directory does not exist.");
+                DialogService.ShowMessage("File or directory does not exist.");
 			}
 
 		}

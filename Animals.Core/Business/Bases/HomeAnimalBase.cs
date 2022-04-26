@@ -70,7 +70,7 @@ namespace Animals.Core.Business.Bases
 
         public void Pet()
         {
-            DialogService.ShowMessage($"Вы гладите {this.RusType()}, оно довольное...");
+            DialogService.ShowMessage($"Вы гладите {this.RusType()}, оно довольное...", "Гладиццо...");
         }
         //метод можно было неаписать лучше
         public override string ToString()

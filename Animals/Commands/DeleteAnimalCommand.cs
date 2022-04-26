@@ -5,9 +5,9 @@ using Animals.Core.Interfaces;
 
 namespace Animals.Console.Commands
 {
-    public class DeleteAnimalCommand : NotificationAndReaderCommandBase
+    public class DeleteAnimalCommand : DialogAndReaderCommandBase
 	{
-		public DeleteAnimalCommand(Zoo zoo, INotificationService notificationService, IReaderService readerService) : base(zoo, notificationService, readerService)
+		public DeleteAnimalCommand(Zoo zoo, IDialogService dialog, IReaderService readerService) : base(zoo, dialog, readerService)
 		{
 		}
 		//Метод можно было написать лучше
@@ -15,7 +15,7 @@ namespace Animals.Console.Commands
 		{
 			//Лучше использовать ?.
             //Нужно проверять индекс, который ввёл пользователь
-			Zoo.RemoveAt(this.ReadIndex(NotificationService, ReaderService));
+			Zoo.RemoveAt(this.ReadIndex(DialogService, ReaderService));
 		}
 		//Метод можно было написать лучше
 		public override string ToString()

@@ -6,7 +6,7 @@ namespace Animals.Console.Services.Creators
 {
 	class WolfConsoleCreator : BaseAnimalConsoleCreator
 	{
-		public WolfConsoleCreator(IReaderService readerService, INotificationService notificationService) : base(readerService, notificationService)
+		public WolfConsoleCreator(IReaderService readerService, IDialogService dialog) : base(readerService, dialog)
 		{
 			SoundService = ConsoleSoundService.CreateSoundService("АУУУУ");
 		}
@@ -18,13 +18,13 @@ namespace Animals.Console.Services.Creators
 			float weight = tuple.Item2;
 			string eyeColor = tuple.Item3;
 
-			NotificationService.Write("Введите среду обитания: ");
+			DialogService.ShowMessage("Введите среду обитания: ");
 			string habitat = ReaderService.ReadLine();
 
 			DateTime dateOfFind = (DateTime)DateEnter("Введите дату нахождения");
 			bool isItAlpha = BoolEnter("Он вожак стаи?");
 
-			return new Wolf(height, weight, eyeColor, habitat, dateOfFind, isItAlpha, SoundService);
+			return new Wolf(SoundService, DialogService);
 		}
 	}
 }

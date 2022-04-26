@@ -6,7 +6,7 @@ namespace Animals.Console.Services.Creators
 {
 	class TigerConsoleCreator : BaseAnimalConsoleCreator
 	{
-		public TigerConsoleCreator(IReaderService readerService, INotificationService notificationService) : base(readerService, notificationService)
+		public TigerConsoleCreator(IReaderService readerService, IDialogService dialog) : base(readerService, dialog)
 		{
 			SoundService = ConsoleSoundService.CreateSoundService("РЯЯ");
 		}
@@ -18,12 +18,12 @@ namespace Animals.Console.Services.Creators
 			float weight = tuple.Item2;
 			string eyeColor = tuple.Item3;
 
-			NotificationService.Write("Введите среду обитания: ");
+			DialogService.ShowMessage("Введите среду обитания: ");
 			string habitat = ReaderService.ReadLine();
 
 			DateTime dateOfFind = (DateTime)DateEnter("Введите дату нахождения");
 
-			return new Tiger(height, weight, eyeColor, habitat, dateOfFind, SoundService);
+			return new Tiger(SoundService, DialogService);
 		}
 	}
 }

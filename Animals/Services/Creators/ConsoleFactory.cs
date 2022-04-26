@@ -8,29 +8,29 @@ namespace Animals.Console.Services.Creators
     {
         private BaseAnimalConsoleCreator _animalConsoleCreator;
         private readonly IReaderService _readerService;
-        private readonly INotificationService _notificationService;
-        private ConsoleFactory(IReaderService reader, INotificationService notification)
+        private readonly IDialogService _dialogService;
+        private ConsoleFactory(IReaderService reader, IDialogService dialog)
         {
             _readerService = reader;
-            _notificationService = notification;
+            _dialogService = dialog;
         }
         private static ConsoleFactory _factory;
 
-        public static ConsoleFactory CreateFactory(IReaderService reader, INotificationService notification)
+        public static ConsoleFactory CreateFactory(IReaderService reader, IDialogService dialog)
         {
-            return _factory ??= new ConsoleFactory(reader, notification);
+            return _factory ??= new ConsoleFactory(reader, dialog);
         }
 
         public IAnimal CreateAnimal(string type)
         { 
             _animalConsoleCreator = type switch
             {
-                Consts.Cat => new CatConsoleCreator(_readerService, _notificationService),
-                Consts.Dog => new DogConsoleCreator(_readerService, _notificationService),
-                Consts.Chicken => new ChickenConsoleCreator(_readerService, _notificationService),
-                Consts.Stork => new StorkConsoleCreator(_readerService, _notificationService),
-                Consts.Wolf => new WolfConsoleCreator(_readerService, _notificationService),
-                Consts.Tiger => new TigerConsoleCreator(_readerService, _notificationService),
+                Consts.Cat => new CatConsoleCreator(_readerService, _dialogService),
+                Consts.Dog => new DogConsoleCreator(_readerService, _dialogService),
+                Consts.Chicken => new ChickenConsoleCreator(_readerService, _dialogService),
+                Consts.Stork => new StorkConsoleCreator(_readerService, _dialogService),
+                Consts.Wolf => new WolfConsoleCreator(_readerService, _dialogService),
+                Consts.Tiger => new TigerConsoleCreator(_readerService, _dialogService),
                 _ => throw new IncorrectActionException("There is no animal like this")
             };
             return _animalConsoleCreator.Create();

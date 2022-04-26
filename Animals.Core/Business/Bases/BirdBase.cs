@@ -26,7 +26,7 @@ namespace Animals.Core.Business.Bases
         //TODO: Реализовать вызов метода
 		public void Fly()
         {
-            DialogService.ShowMessage($"Я лечу на высоте {FlyHeight} метров!");
+            DialogService.ShowMessage($"Я лечу на высоте {FlyHeight} метров!", "Лечу!");
         }
 		
 		public override string ToString()

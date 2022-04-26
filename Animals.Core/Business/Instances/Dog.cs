@@ -28,10 +28,14 @@ namespace Animals.Core.Business.Instances
 
 		public void Train()
 		{
-			if (IsItTrained)
-				return;
+            if (IsItTrained)
+            {
+                DialogService.ShowMessage("Уже натренировано, больше некуда.", "Тренировка");
+                return;
+            }
 			IsItTrained = true;
-		}
+            DialogService.ShowMessage("Собака натренирована успешно.", "Тренировка");
+        }
         //метод можно было реализовать лучше
 		public override string ToString()
 		{

@@ -5,7 +5,7 @@ namespace Animals.Console.Services.Creators
 {
 	class StorkConsoleCreator : BaseAnimalConsoleCreator
 	{
-		public StorkConsoleCreator(IReaderService readerService, INotificationService notificationService) : base(readerService, notificationService)
+		public StorkConsoleCreator(IReaderService readerService, IDialogService dialog) : base(readerService, dialog)
 		{
 			SoundService = ConsoleSoundService.CreateSoundService("Вааа");
 		}
@@ -17,7 +17,7 @@ namespace Animals.Console.Services.Creators
 			float weight = tuple.Item2;
 			string eyeColor = tuple.Item3;
 
-			return new Stork(height, weight, eyeColor, 200, SoundService);
+			return new Stork(SoundService, DialogService);
 		}
 	}
 }

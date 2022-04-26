@@ -5,14 +5,14 @@ namespace Animals.Console.Commands.Extensions
 {
     public static class CommandBaseExtension
 	{
-		public static int ReadIndex(this CommandBase command, INotificationService notificationService, IReaderService readerService)
+		public static int ReadIndex(this CommandBase command, IDialogService dialogService, IReaderService readerService)
 		{
-			notificationService.Write("Введите номер животного: ");
+			dialogService.ShowMessage("Введите номер животного: ");
 			int index;
 			while (!int.TryParse(readerService.ReadLine(), out index))
 			{
-				notificationService.Write("Неверный ввод.\n");
-				notificationService.Write("Введите индекс животного: ");
+				dialogService.ShowMessage("Неверный ввод.\n");
+				dialogService.ShowMessage("Введите индекс животного: ");
 			}
 			return --index;
 		}
