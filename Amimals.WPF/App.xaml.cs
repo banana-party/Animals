@@ -5,18 +5,14 @@ using Animals.Core.Interfaces;
 using Animals.WPF.Services;
 using Animals.WPF.ViewModels;
 using Animals.WPF.Views;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 namespace Animals.WPF
 {
-	/// <summary>
-	/// Логика взаимодействия для App.xaml
-	/// </summary>
-	public partial class App : Application
+    public partial class App : Application
     {
-        private IHost _host;
+        private readonly IHost _host;
         public static IServiceProvider ServiceProvider { get; private set; }
 
         public App()
@@ -38,9 +34,9 @@ namespace Animals.WPF
                 .AddSingleton<MainWindowView>()
                 .AddSingleton<MainWindowViewModel>()
                 .AddTransient<AddAnimalViewModel>()
-                .AddTransient(x => new AddAnimalView {Owner = x.GetRequiredService<MainWindowView>()})
+                .AddTransient(x => new AddAnimalView { Owner = x.GetRequiredService<MainWindowView>() })
                 .AddTransient<EditAnimalViewModel>()
-                .AddTransient(x => new EditAnimalView {Owner = x.GetRequiredService<MainWindowView>()});
+                .AddTransient(x => new EditAnimalView { Owner = x.GetRequiredService<MainWindowView>() });
         }
         protected void OnStartup(object sender, StartupEventArgs e)
         {

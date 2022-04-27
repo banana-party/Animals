@@ -8,7 +8,7 @@
 		xmlns:services="clr-namespace:Animals.WPF.Services"
 		xmlns:controls="clr-namespace:Animals.WPF.Controls"
 		mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Зоопарк" Height="450" Width="800" Icon="../Assets/884188.png">
 
     <Window.DataContext>
         <Binding Source="{StaticResource LocatorService}" Path="MainWindowViewModel"/>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Animals.WPF.Views" xmlns:controls="clr-namespace:Animals.WPF.Controls"
 		mc:Ignorable="d"
-        Title="EditAnimalView" Height="450" Width="800" WindowStartupLocation="CenterOwner">
+        Title="Редактирование" Height="450" Width="800" Icon="../Assets/884188.png">
 
     <Window.DataContext>
         <Binding Source="{StaticResource LocatorService}" Path="EditAnimalViewModel"/>

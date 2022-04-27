@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-using System.Windows;
-using Animals.Core.Interfaces;
+﻿using Animals.Core.Interfaces;
 
 namespace Animals.WPF.ViewModels
 {

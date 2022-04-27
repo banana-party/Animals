@@ -14,6 +14,9 @@ namespace Animals.WPF.Controls
         {
             InitializeComponent();
         }
+
+        #region DependencyProperty
+
         public IAnimal Animal
         {
             get => (IAnimal)GetValue(AnimalProperty);
@@ -23,6 +26,9 @@ namespace Animals.WPF.Controls
         public static readonly DependencyProperty AnimalProperty =
             DependencyProperty.Register("Animal", typeof(IAnimal), typeof(AnimalEditor), new PropertyMetadata(null, OnAnimalChanged));
 
+        #endregion
+
+        #region Methods
         private static void OnAnimalChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var type = e.NewValue.GetType();
@@ -57,5 +63,7 @@ namespace Animals.WPF.Controls
                 t.Close();
             }
         }
+
+        #endregion
     }
 }

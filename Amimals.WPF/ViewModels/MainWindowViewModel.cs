@@ -94,8 +94,8 @@ namespace Animals.WPF.ViewModels
         {
             var view = App.ServiceProvider.GetRequiredService<AddAnimalView>();
             if (view is not null)
-                if ((bool) view.ShowDialog())
-                    Animals.Add(((AddAnimalViewModel) view.DataContext).Animal);
+                if ((bool)view.ShowDialog())
+                    Animals.Add(((AddAnimalViewModel)view.DataContext).Animal);
         }
         public ICommand EditCommand => new Command(Edit);
         public void Edit()

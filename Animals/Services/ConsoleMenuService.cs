@@ -24,7 +24,7 @@ namespace Animals.Console.Services
 		{
 			_reader = new ConsoleReaderService();
 			_dialog = new ConsoleDialogService(); 
-			_animalParser = new ConsoleAnimalParserService();
+			_animalParser = new ConsoleAnimalParserService(_dialog);
 
 			_fileReader = new FileReader(_animalParser);
 			_fileWriter = new FileWriter();

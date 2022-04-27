@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text;
 using Animals.Console.Commands.Bases;
 using Animals.Console.Services.Creators;
 using Animals.Core.Business;
@@ -27,8 +28,12 @@ namespace Animals.Console.Commands
 		}
 
 		public override void Execute()
-		{
-            DialogService.ShowMessage("Выберете животное, которое хотите добавить:\n1 - Кошка\n2 - Собака\n3 - Курица\n4 - Аист\n5 - Тигр\n6 - Волк\n");
+        {
+            var sb = new StringBuilder();
+            foreach (var val in _dict)
+                sb.Append($"\n{val.Key} {val.Value}");
+            
+            DialogService.ShowMessage($"Выберете животное, которое хотите добавить:{sb}");
 			string choose = ReaderService.ReadLine();
 			//Необходима проверка на наличие команды в выборе
 			if (_dict.ContainsKey(choose))

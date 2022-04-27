@@ -1,4 +1,5 @@
 ﻿using Animals.Core.Business.Bases;
+using Animals.Core.Constants;
 
 namespace Animals.Core.Exctensions
 {
@@ -13,17 +14,17 @@ namespace Animals.Core.Exctensions
 			var type = animal.Type();
 			switch (type)
 			{
-				case "Chicken":
+				case Consts.Chicken:
 					return "Курица";
-				case "Cat":
+				case Consts.Cat:
 					return "Кошка";
-				case "Dog":
+				case Consts.Dog:
 					return "Собака";
-				case "Stork":
+				case Consts.Stork:
 					return "Аист";
-				case "Tiger":
+				case Consts.Tiger:
 					return "Тигр";
-				case "Wolf":
+				case Consts.Wolf:
 					return "Волк";
 				default:
 					return type;

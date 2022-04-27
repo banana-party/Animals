@@ -1,25 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Animals.Core.Business.Instances;
 using Animals.Core.Interfaces;
 using Animals.WPF.Helpers;
-using Animals.WPF.Services;
 using Animals.WPF.Services.Creators;
 using Animals.WPF.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,7 +12,6 @@ namespace Animals.WPF.Controls
 {
     public partial class AnimalAdd : UserControl
     {
-        private readonly WpfFactory _factory;
         private readonly IDialogService _dialogService = App.ServiceProvider.GetRequiredService<IDialogService>() ?? throw new NullReferenceException();
         private class Item
         {
@@ -48,14 +31,18 @@ namespace Animals.WPF.Controls
         public AnimalAdd()
         {
             InitializeComponent();
-            _factory = WpfFactory.CreateFactory(_dialogService);
+            var factory = WpfFactory.CreateFactory(_dialogService);
 
-            var l = new List<Item>();
-            foreach (var item in AnimalTypesHelper.GetAnimalTypes().ToList())
-                l.Add(new Item { DisplayName = item.Name, Animal = _factory.CreateAnimal(item.Name) });
-            
-            ChooseAnimalComboBox.ItemsSource = l;
+            ChooseAnimalComboBox.ItemsSource = AnimalTypesHelper.GetAnimalTypes()
+                .Select(item => new Item
+                {
+                    DisplayName = item.Name,
+                    Animal = factory.CreateAnimal(item.Name)
+                });
         }
+
+        #region Methods
+
         private static void OnAnimalChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             if (d is not AnimalAdd control)
@@ -95,5 +82,7 @@ namespace Animals.WPF.Controls
                 window.Close();
             }
         }
+
+        #endregion
     }
 }

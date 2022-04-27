@@ -19,6 +19,7 @@ namespace Animals.WPF.Controls
 
         public IAnimal Animal { get; set; }
 
+        #region Methods
         public void SetGrid(IAnimal animal, bool isReadOnly = false)
         {
             if (animal is null)
@@ -131,6 +132,8 @@ namespace Animals.WPF.Controls
             fieldNames = null;
             return false;
         }
+
+        #endregion
 
     }
 }

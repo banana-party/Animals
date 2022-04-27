@@ -9,16 +9,16 @@ namespace Animals.Console.Services
 	class ConsoleAnimalParserService : IAnimalParser
 	{
         private readonly Dictionary<string, IFromFileParser> _dict;
-		public ConsoleAnimalParserService()
+		public ConsoleAnimalParserService(IDialogService dialog)
 		{
 			_dict = new Dictionary<string, IFromFileParser>()
 			{
-				{"Cat", new CatParser(ConsoleSoundService.CreateSoundService(Consts.GetCatSound)) },
-				{"Dog", new DogParser(ConsoleSoundService.CreateSoundService(Consts.GetDogSound)) },
-				{"Chicken", new ChickenParser(ConsoleSoundService.CreateSoundService(Consts.GetChickenSound)) },
-				{"Stork", new StorkParser(ConsoleSoundService.CreateSoundService(Consts.GetStorkSound)) },
-				{"Tiger", new TigerParser(ConsoleSoundService.CreateSoundService(Consts.GetTigerSound)) },
-				{"Wolf", new WolfParser(ConsoleSoundService.CreateSoundService(Consts.GetWolfSound)) }
+				{"Cat", new CatParser(ConsoleSoundService.CreateSoundService(Consts.GetCatSound), dialog) },
+				{"Dog", new DogParser(ConsoleSoundService.CreateSoundService(Consts.GetDogSound), dialog) },
+				{"Chicken", new ChickenParser(ConsoleSoundService.CreateSoundService(Consts.GetChickenSound), dialog) },
+				{"Stork", new StorkParser(ConsoleSoundService.CreateSoundService(Consts.GetStorkSound), dialog) },
+				{"Tiger", new TigerParser(ConsoleSoundService.CreateSoundService(Consts.GetTigerSound), dialog) },
+				{"Wolf", new WolfParser(ConsoleSoundService.CreateSoundService(Consts.GetWolfSound), dialog) }
 			};
 		}
 

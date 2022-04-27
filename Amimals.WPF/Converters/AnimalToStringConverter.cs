@@ -7,10 +7,10 @@ using Animals.WPF.Exceptions;
 
 namespace Animals.WPF.Converters
 {
-	class AnimalToStringConverter : IValueConverter
-	{
-		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-		{
+    class AnimalToStringConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
             switch (value)
             {
                 case null:
@@ -22,9 +22,9 @@ namespace Animals.WPF.Converters
             }
         }
 
-		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return null;
         }
-	}
+    }
 }
