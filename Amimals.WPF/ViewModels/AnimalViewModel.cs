@@ -2,7 +2,7 @@
 
 namespace Animals.WPF.ViewModels
 {
-    public class AddAnimalViewModel : BaseViewModel
+    public class AnimalViewModel : BaseViewModel
     {
         private IAnimal _animal;
 

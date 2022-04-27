@@ -252,9 +252,8 @@
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\SoundService.cs" />
     <Compile Include="Services\ViewModelLocatorService.cs" />
-    <Compile Include="ViewModels\AddAnimalViewModel.cs" />
+    <Compile Include="ViewModels\AnimalViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="ViewModels\EditAnimalViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Views\AddAnimalView.xaml.cs">
       <DependentUpon>AddAnimalView.xaml</DependentUpon>

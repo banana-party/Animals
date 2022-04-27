@@ -49,7 +49,7 @@ namespace Animals.WPF.Controls
                     return;
                 }
                 window.DialogResult = true;
-                ((EditAnimalViewModel)DataContext).SelectedAnimal = Animal;
+                ((AnimalViewModel)DataContext).Animal = Animal;
                 window.Close();
             }
         }

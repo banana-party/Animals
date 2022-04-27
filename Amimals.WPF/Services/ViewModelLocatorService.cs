@@ -7,9 +7,7 @@ namespace Animals.WPF.Services
     {
         public MainWindowViewModel MainWindowViewModel
             => App.ServiceProvider.GetRequiredService<MainWindowViewModel>();
-        public AddAnimalViewModel AddAnimalViewModel
-            => App.ServiceProvider.GetRequiredService<AddAnimalViewModel>();
-        public EditAnimalViewModel EditAnimalViewModel
-            => App.ServiceProvider.GetRequiredService<EditAnimalViewModel>();
+        public AnimalViewModel AnimalViewModel
+            => App.ServiceProvider.GetRequiredService<AnimalViewModel>();
     }
 }

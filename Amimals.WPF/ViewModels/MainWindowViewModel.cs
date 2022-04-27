@@ -4,7 +4,6 @@ using Animals.Core.Interfaces;
 using System.Collections.ObjectModel;
 using Animals.Core.Constants;
 using Animals.WPF.Commands;
-using Animals.WPF.Services;
 using Animals.WPF.Services.Creators;
 using Animals.WPF.Views;
 using Microsoft.Extensions.DependencyInjection;
@@ -95,20 +94,20 @@ namespace Animals.WPF.ViewModels
             var view = App.ServiceProvider.GetRequiredService<AddAnimalView>();
             if (view is not null)
                 if ((bool)view.ShowDialog())
-                    Animals.Add(((AddAnimalViewModel)view.DataContext).Animal);
+                    Animals.Add(((AnimalViewModel)view.DataContext).Animal);
         }
         public ICommand EditCommand => new Command(Edit);
         public void Edit()
         {
             var animal = (IAnimal)SelectedAnimal.Clone();
             var view = App.ServiceProvider.GetRequiredService<EditAnimalView>();
-            ((EditAnimalViewModel)view.DataContext).SelectedAnimal = animal;
+            ((AnimalViewModel)view.DataContext).Animal = animal;
 
             if ((bool)view.ShowDialog())
             {
                 var i = Animals.IndexOf(SelectedAnimal);
                 Animals.RemoveAt(i);
-                Animals.Insert(i, (IAnimal)((EditAnimalViewModel)view.DataContext).SelectedAnimal.Clone());
+                Animals.Insert(i, (IAnimal)((AnimalViewModel)view.DataContext).Animal.Clone());
             }
             else
                 SelectedAnimal = null;

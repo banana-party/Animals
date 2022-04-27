@@ -115,12 +115,18 @@ namespace Animals.WPF.Controls
             var tmp = string.Empty;
             foreach (var field in AnimalGrid.Children)
             {
-                if (field is TextBlock t)
-                    tmp = t.Text;
-
-                if (field is Control c)
-                    if (Validation.GetHasError(c))
-                        fields.Add(tmp);
+                switch (field)
+                {
+                    case TextBlock t:
+                        tmp = t.Text;
+                        break;
+                    case Control c:
+                    {
+                        if (Validation.GetHasError(c))
+                            fields.Add(tmp);
+                        break;
+                    }
+                }
             }
 
             if (fields.Any())

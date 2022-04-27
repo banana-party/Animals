@@ -8,8 +8,8 @@
         Title="Редактирование" Height="450" Width="800" Icon="../Assets/884188.png">
 
     <Window.DataContext>
-        <Binding Source="{StaticResource LocatorService}" Path="EditAnimalViewModel"/>
+        <Binding Source="{StaticResource LocatorService}" Path="AnimalViewModel"/>
     </Window.DataContext>
 
-    <controls:AnimalEditor Animal="{Binding SelectedAnimal, Mode=TwoWay}"/>
+    <controls:AnimalEditor Animal="{Binding Animal, Mode=TwoWay}"/>
 </Window>
