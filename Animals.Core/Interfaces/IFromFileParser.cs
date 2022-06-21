@@ -4,6 +4,6 @@ namespace Animals.Core.Interfaces
 {
     public interface IFromFileParser
 	{
-		IAnimal Parse(List<string> lst);
+		IAnimal Parse(IEnumerable<string> lst);
 	}
 }

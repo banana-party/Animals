@@ -29,7 +29,7 @@ namespace Animals.Console.Services
 			_fileReader = new FileReader(_animalParser);
 			_fileWriter = new FileWriter();
 
-            _factory = ConsoleFactory.CreateFactory(_reader, _dialog);
+            _factory = ConsoleFactory.Factory ?? ConsoleFactory.CreateFactory(_reader, _dialog);
             _zoo = zoo;
 
 			_dict = new Dictionary<string, ICommand>()
@@ -84,8 +84,8 @@ namespace Animals.Console.Services
 
 		public void PrintMenu(Dictionary<string, ICommand> dict)
 		{
-			foreach (var item in dict)
-				_dialog.ShowMessage($"{item.Key} - {item.Value}\n");
+			foreach (var (key, value) in dict)
+				_dialog.ShowMessage($"{key} - {value}\n");
 		}
 		public void PrintAnimalsList(Zoo zoo) // TODO: Удалить в релизе
 		{

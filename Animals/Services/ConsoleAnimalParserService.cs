@@ -2,6 +2,7 @@
 using Animals.Core.FileParsers;
 using Animals.Core.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 using Animals.Core.Constants;
 
 namespace Animals.Console.Services
@@ -22,11 +23,11 @@ namespace Animals.Console.Services
 			};
 		}
 
-		public IAnimal Parse(List<string> animals)
+		public IAnimal Parse(IEnumerable<string> animals)
 		{
 			IAnimal animal;
-			if (_dict.ContainsKey(animals[0]))
-				animal = _dict[animals[0]].Parse(animals);
+			if (_dict.ContainsKey(animals.First()))
+				animal = _dict[animals.First()].Parse(animals);
 			else
 				throw new IncorrectActionException("There is no animal like this.");
 			return animal;

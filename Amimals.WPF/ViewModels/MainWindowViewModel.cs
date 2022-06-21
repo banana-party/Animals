@@ -127,6 +127,20 @@ namespace Animals.WPF.ViewModels
             SelectedAnimal.MakeASound();
         }
 
+        public ICommand OpenFileCommand => new Command(OpenFile);
+
+        private void OpenFile()
+        {
+            throw new NotImplementedException();
+        }
+
+        public ICommand SaveFileCommand => new Command(SaveFile);
+
+        private void SaveFile()
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
     }
 }

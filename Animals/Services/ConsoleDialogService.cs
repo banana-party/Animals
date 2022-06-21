@@ -16,7 +16,7 @@ namespace Animals.Console.Services
 
         public void ShowMessage(string text, string caption = null)
         {
-            System.Console.Write("text");
+            System.Console.Write(text);
         }
     }
 }

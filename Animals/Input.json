@@ -2,15 +2,15 @@
     {
       "Cat": 
       {
-        "isItWooled": true,
-        "height": 12.5,
-        "weight": 3.3,
-        "eyeColor": "Green",
-        "name": "Grisha",
-        "breed": "Streety",
-        "isItVaccinated": false,
-        "coatColor": "No coat",
-        "birthDate": "11.05.2017"
+        "IsItWooled": true,
+        "Height": 12.5,
+        "Weight": 3.3,
+        "EyeColor": "Green",
+        "Name": "Grisha",
+        "Breed": "Streety",
+        "IsItVaccinated": false,
+        "CoatColor": "No coat",
+        "BirthDate": "11.05.2017"
       }
     },
     {

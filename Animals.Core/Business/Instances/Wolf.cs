@@ -6,6 +6,10 @@ namespace Animals.Core.Business.Instances
 {
 	public class Wolf : WildAnimalBase
     {
+        public Wolf(IMakeASoundable sound, IDialogService dialog) : base(sound, dialog)
+        {
+        }
+
         #region Properties
 
         private bool _isItAlpha = false;
@@ -21,10 +25,7 @@ namespace Animals.Core.Business.Instances
 
         #endregion
 
-        public Wolf(IMakeASoundable sound, IDialogService dialog) : base(sound, dialog)
-        {
-        }
-
+       
         //Метод можно было реализовать лучше
 		public override string ToString()
 		{

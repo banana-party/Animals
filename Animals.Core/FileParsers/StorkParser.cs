@@ -11,7 +11,7 @@ namespace Animals.Core.FileParsers
         public StorkParser(IMakeASoundable aSound, IDialogService dialog) : base(aSound, dialog)
         {
         }
-		public IAnimal Parse(List<string> lst)
+		public IAnimal Parse(IEnumerable<string> lst)
 		{
             //TODO: Необходимо сделать проверку на то, что коллекция не null и параметров достаточно, а так же float.Parse может приводить к исключению
             return new Stork(ASound, DialogService);

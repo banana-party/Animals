@@ -14,11 +14,11 @@ namespace Animals.Console.Services.Creators
             _readerService = reader;
             _dialogService = dialog;
         }
-        private static ConsoleFactory _factory;
+        public static ConsoleFactory Factory { get; private set; }
 
         public static ConsoleFactory CreateFactory(IReaderService reader, IDialogService dialog)
         {
-            return _factory ??= new ConsoleFactory(reader, dialog);
+            return Factory ??= new ConsoleFactory(reader, dialog);
         }
 
         public IAnimal CreateAnimal(string type)

@@ -96,7 +96,8 @@ namespace Animals.WPF.Controls
             {
                 Path = new PropertyPath(property.Name),
                 Mode = property.CanWrite ? BindingMode.TwoWay : BindingMode.OneWay,
-                UpdateSourceTrigger = UpdateSourceTrigger.LostFocus
+                UpdateSourceTrigger = UpdateSourceTrigger.LostFocus,
+                ValidationRules = { new DataErrorValidationRule() }
             };
             if (property.SetMethod != null)
             {

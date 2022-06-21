@@ -11,7 +11,7 @@ namespace Animals.Core.FileParsers
         public WolfParser(IMakeASoundable aSound, IDialogService dialog) : base(aSound, dialog)
         {
         }
-		public IAnimal Parse(List<string> lst)
+		public IAnimal Parse(IEnumerable<string> lst)
 		{
 			//TODO: Необходимо сделать проверку что параметров достаточно и float.Parse может приводить к исключению
             if (lst is null)

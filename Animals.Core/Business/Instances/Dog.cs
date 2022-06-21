@@ -6,6 +6,10 @@ namespace Animals.Core.Business.Instances
 {
 	public class Dog : HomeAnimalBase
     {
+        public Dog(IMakeASoundable sound, IDialogService dialog) : base(sound, dialog)
+        {
+        }
+
         #region Properties
 
         private bool _isItTrained = false;
@@ -22,10 +26,7 @@ namespace Animals.Core.Business.Instances
 
         #endregion
 
-        public Dog(IMakeASoundable sound, IDialogService dialog) : base(sound, dialog)
-        {
-        }
-
+      
 		public void Train()
 		{
             if (IsItTrained)

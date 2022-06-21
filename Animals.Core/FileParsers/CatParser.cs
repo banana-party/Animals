@@ -11,7 +11,7 @@ namespace Animals.Core.FileParsers
         public CatParser(IMakeASoundable aSound, IDialogService dialog) : base(aSound, dialog)
         {
         }
-        public IAnimal Parse(List<string> lst)
+        public IAnimal Parse(IEnumerable<string> lst)
 		{
             //TODO: Нужно сделать проверку на то, что параметров достаточно и коллекция не пуста и не null
 			return new Cat(ASound, DialogService);

@@ -13,28 +13,28 @@ namespace Animals.Console.Services.Creators
 
 		public override IAnimal Create()
 		{
-			var tuple = AnimalParams();
-			float height = tuple.Item1; float weight = tuple.Item2; string eyeColor = tuple.Item3;
+			//var tuple = AnimalParams();
+			//float height = tuple.Item1; float weight = tuple.Item2; string eyeColor = tuple.Item3;
 
 
-			DialogService.ShowMessage("Введите имя: ");
-			string name = ReaderService.ReadLine();
-            DialogService.ShowMessage("Введите породу: ");
-			string breed = ReaderService.ReadLine();
+			//DialogService.ShowMessage("Введите имя: ");
+			//string name = ReaderService.ReadLine();
+   //         DialogService.ShowMessage("Введите породу: ");
+			//string breed = ReaderService.ReadLine();
 
-			bool isItWooled = BoolEnter("У нее есть шерсть?");
+			//bool isItWooled = BoolEnter("У нее есть шерсть?");
 
-			string coatColor;
-			if (isItWooled)
-			{
-                DialogService.ShowMessage("Введите цвет шерсти: ");
-				coatColor = ReaderService.ReadLine();
-			}
-			else
-				coatColor = "Шерсти нет";
+			//string coatColor;
+			//if (isItWooled)
+			//{
+   //             DialogService.ShowMessage("Введите цвет шерсти: ");
+			//	coatColor = ReaderService.ReadLine();
+			//}
+			//else
+			//	coatColor = "Шерсти нет";
 
-			bool isItVaccinated = BoolEnter("У нее есть прививки?");
-			DateTime birthDate = (DateTime)DateEnter("Введите дату рождения");
+			//bool isItVaccinated = BoolEnter("У нее есть прививки?");
+			//DateTime birthDate = (DateTime)DateEnter("Введите дату рождения");
 			return new Cat(SoundService, DialogService);
 		}
 	}

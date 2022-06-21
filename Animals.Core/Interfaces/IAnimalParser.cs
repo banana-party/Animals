@@ -4,6 +4,6 @@ namespace Animals.Core.Interfaces
 {
 	public interface IAnimalParser
 	{
-		IAnimal Parse(List<string> animals);
+		IAnimal Parse(IEnumerable<string> animals);
 	}
 }
